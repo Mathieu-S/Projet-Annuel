@@ -14,6 +14,7 @@ Encore
     .enableSassLoader()
     .enableTypeScriptLoader(function (typeScriptConfigOptions) {
         typeScriptConfigOptions.transpileOnly = true;
+        typeScriptConfigOptions.configFile = 'tsconfig.json';
     })
     .enableVueLoader(function(options) {
         options.loaders = {
@@ -22,7 +23,7 @@ Encore
     })
 
     // Other options
-    .autoProvidejQuery()
+    // .autoProvidejQuery()
 
     // Build config
     .enableSourceMaps(!Encore.isProduction())
