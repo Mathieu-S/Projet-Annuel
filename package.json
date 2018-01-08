@@ -1,0 +1,19 @@
+{
+  "scripts": {
+    "dev": "encore dev",
+    "dev-watch": "encore dev --watch",
+    "prod": "encore production"
+  },
+  "devDependencies": {
+    "@kazupon/vue-i18n-loader": "^0.2.1",
+    "@symfony/webpack-encore": "^0.17.1",
+    "node-sass": "^4.7.2",
+    "sass-loader": "^6.0.6",
+    "ts-loader": "^3.2.0",
+    "typescript": "^2.6.2",
+    "vue": "^2.5.13",
+    "vue-i18n": "^7.3.4",
+    "vue-loader": "^13.6.2",
+    "vue-template-compiler": "^2.5.13"
+  }
+}
