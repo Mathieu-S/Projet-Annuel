@@ -29,7 +29,7 @@
         border: 2px solid #aaaaaa;
         padding: 20px;
         h1 {
-            color: #0000bc;
+            color: #0000ac;
         }
         p {
             color: gray;
