@@ -8,7 +8,18 @@
         {% endblock %}
     </head>
     <body id="app">
-        {% block body %}{% endblock %}
+        <header>
+            {% include 'common/_header.html.twig' %}
+        </header>
+
+        <main>
+            {% block body %}{% endblock %}
+        </main>
+
+        <footer>
+            {% include 'common/_footer.html.twig' %}
+        </footer>
+
         {% block javascripts %}
             <script src="{{ asset('build/app.js') }}"></script>
         {% endblock %}
