@@ -8,18 +8,21 @@
             <link rel="stylesheet" href="{{ asset('build/global.css') }}">
         {% endblock %}
     </head>
-    <body id="app">
-        <header>
-            {% include 'common/_header.html.twig' %}
-        </header>
+    <body>
+        <div id="app">
+            <header>
+                {% include 'common/_nav.html.twig' %}
+                {% include 'common/_header.html.twig' %}
+            </header>
 
-        <main>
-            {% block body %}{% endblock %}
-        </main>
+            <main>
+                {% block body %}{% endblock %}
+            </main>
 
-        <footer>
-            {% include 'common/_footer.html.twig' %}
-        </footer>
+            <footer>
+                {% include 'common/_footer.html.twig' %}
+            </footer>
+        </div>
 
         {% block javascripts %}
             <script src="{{ asset('build/app.js') }}"></script>
