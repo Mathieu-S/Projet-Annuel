@@ -9,20 +9,18 @@
         {% endblock %}
     </head>
     <body>
-        <div id="app">
-            <header>
-                {% include 'common/_nav.html.twig' %}
-                {% include 'common/_header.html.twig' %}
-            </header>
+        <header>
+            {% include 'common/_nav.html.twig' %}
+            {% include 'common/_header.html.twig' %}
+        </header>
 
-            <main>
-                {% block body %}{% endblock %}
-            </main>
+        <main id="app">
+            {% block body %}{% endblock %}
+        </main>
 
-            <footer>
-                {% include 'common/_footer.html.twig' %}
-            </footer>
-        </div>
+        <footer>
+            {% include 'common/_footer.html.twig' %}
+        </footer>
 
         {% block javascripts %}
             <script src="{{ asset('build/app.js') }}"></script>
