@@ -23,7 +23,7 @@ Encore
     })
 
     // Other options
-    // .autoProvidejQuery()
+    .autoProvidejQuery()
 
     // Build config
     .enableSourceMaps(!Encore.isProduction())

@@ -7,8 +7,9 @@
   "devDependencies": {
     "@kazupon/vue-i18n-loader": "^0.2.1",
     "@symfony/webpack-encore": "^0.17.1",
-    "bootstrap": "4.0.0-beta.3",
+    "bootstrap": "^4.0.0",
     "bootstrap-vue": "^2.0.0-rc.1",
+    "jquery": "^3.3.1",
     "node-sass": "^4.7.2",
     "sass-loader": "^6.0.6",
     "ts-loader": "^3.2.0",
