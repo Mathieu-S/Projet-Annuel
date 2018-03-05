@@ -2,9 +2,46 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="fr" datatype="plaintext" original="file.ext">
         <body>
+            <!--Navbar-->
+            <trans-unit id="navbar.login">
+                <source>navbar.login</source>
+                <target>Se connecter</target>
+            </trans-unit>
+            <trans-unit id="navbar.logout">
+                <source>navbar.logout</source>
+                <target>Se déconnecter</target>
+            </trans-unit>
+
+            <!--Header-->
+
+            <!--Footer-->
+
+            <!--Home page-->
             <trans-unit id="home.message">
                 <source>home.message</source>
                 <target>Bonjour</target>
+            </trans-unit>
+
+            <!--Register page-->
+            <trans-unit id="register.firstname">
+                <source>register.firstname</source>
+                <target>Prénom</target>
+            </trans-unit>
+            <trans-unit id="register.lastname">
+                <source>register.lastname</source>
+                <target>Nom</target>
+            </trans-unit>
+            <trans-unit id="register.email">
+                <source>register.email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="register.password">
+                <source>register.password</source>
+                <target>Mot de passe</target>
+            </trans-unit>
+            <trans-unit id="register.password.repeat">
+                <source>register.password.repeat</source>
+                <target>Répéter mot de passe</target>
             </trans-unit>
         </body>
     </file>
