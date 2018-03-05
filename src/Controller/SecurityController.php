@@ -32,7 +32,7 @@ class SecurityController extends Controller
         $roles[] = 'ROLE_USER';
         $user->setRoles($roles);
 
-        $form = $this->createForm('AppBundle\Form\UserType', $user);
+        $form = $this->createForm('App\Form\UserType', $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -57,6 +57,7 @@ class SecurityController extends Controller
 
     /**
      * @Route("/logout", name="security_logout")
+     * @throws \Exception
      */
     public function logoutAction()
     {
