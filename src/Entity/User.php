@@ -2,49 +2,50 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\JoinColumn;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User
+class User implements UserInterface
 {
     use IdTrait;
 
     /**
-     * @var string
-     * @ORM\Column(name="lastname", type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=false)
+     * @Assert\NotBlank()
      */
     private $lastname;
 
     /**
-     * @var string
-     * @ORM\Column(name="firstname", type="string", length=255)
+     * @ORM\Column(type="string", nullable=false)
+     * @Assert\NotBlank()
      */
     private $firstname;
 
     /**
-     * @var string
-     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\Column(type="string", nullable=false, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Email()
      */
     private $email;
 
     /**
-     * @var string
-     * @ORM\Column(name="password", type="string", length=255)
+     * @ORM\Column(type="string", nullable=false)
+     * @Assert\NotBlank()
      */
     private $password;
 
     /**
-     * @ORM\Column(name="role", type="json")
+     * @ORM\Column(type="json")
      */
-    private $role;
+    private $roles = [];
 
     /**
      * @ORM\ManyToOne(targetEntity="TypeUser", inversedBy="users")
-     * @JoinColumn(name="type_user_id", referencedColumnName="id", onDelete="CASCADE")
+     * @ORM\JoinColumn(name="type_user_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $typeUser;
 
@@ -55,41 +56,12 @@ class User
      */
     private $hotels;
 
+    /**
+     * Constructor
+     */
     public function __construct() {
 
-        $this->hotels = new ArrayCollection();
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * @param mixed $email
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getFirstname()
-    {
-        return $this->firstname;
-    }
-
-    /**
-     * @param mixed $firstname
-     */
-    public function setFirstname($firstname)
-    {
-        $this->firstname = $firstname;
+        $this->hotels = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -111,50 +83,49 @@ class User
     /**
      * @return mixed
      */
-    public function getPassword()
+    public function getFirstname()
     {
-        return $this->password;
+        return $this->firstname;
     }
 
     /**
-     * @param mixed $password
+     * @param mixed $firstname
      */
-    public function setPassword($password)
+    public function setFirstname($firstname)
     {
-        $this->password = $password;
+        $this->firstname = $firstname;
     }
 
     /**
      * @return mixed
      */
-    public function getRole()
+    public function getEmail()
     {
-        return $this->role;
+        return $this->email;
     }
 
     /**
-     * @param mixed $role
+     * @param mixed $email
      */
-    public function setRole($role)
+    public function setEmail($email)
     {
-        $this->role = $role;
+        $this->email = $email;
     }
 
     /**
-     * @return User
+     * @return mixed
      */
     public function getTypeUser()
     {
         return $this->typeUser;
     }
+
     /**
-     * @param TypeUser $typeUser
-     * @return User
+     * @param mixed $typeUser
      */
-    public function setTypeUser(TypeUser $typeUser)
+    public function setTypeUser($typeUser)
     {
         $this->typeUser = $typeUser;
-        return $this;
     }
 
     /**
@@ -171,6 +142,98 @@ class User
     public function setHotels($hotels)
     {
         $this->hotels = $hotels;
+    }
+
+    /**
+     * Returns the roles granted to the user.
+     *
+     * <code>
+     * public function getRoles()
+     * {
+     *     return array('ROLE_USER');
+     * }
+     * </code>
+     *
+     * Alternatively, the roles might be stored on a ``roles`` property,
+     * and populated in any number of different ways when the user object
+     * is created.
+     *
+     * @return (Role|string)[] The user roles
+     */
+    public function getRoles()
+    {
+        $roles = $this->roles;
+
+        // guarantees that a user always has at least one role for security
+        if (empty($roles)) {
+            $roles[] = 'ROLE_USER';
+        }
+
+        return array_unique($roles);
+    }
+
+    /**
+     * @param array $roles
+     * @return $this
+     */
+    public function setRoles(array $roles)
+    {
+        $this->roles = $roles;
+
         return $this;
+    }
+
+    /**
+     * Returns the password used to authenticate the user.
+     *
+     * This should be the encoded password. On authentication, a plain-text
+     * password will be salted, encoded, and then compared to this value.
+     *
+     * @return string The password
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param $password
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
+    /**
+     * Returns the salt that was originally used to encode the password.
+     *
+     * This can return null if the password was not encoded using a salt.
+     *
+     * @return string|null The salt
+     */
+    public function getSalt()
+    {
+        return null;
+    }
+
+    /**
+     * Returns the username used to authenticate the user.
+     *
+     * @return string The username
+     */
+    public function getUsername()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Removes sensitive data from the user.
+     *
+     * This is important if, at any given point, sensitive information like
+     * the plain-text password is stored on this object.
+     */
+    public function eraseCredentials()
+    {
+        return false;
     }
 }
