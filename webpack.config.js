@@ -9,6 +9,7 @@ Encore
     // Entries
     .addEntry('app', './resources/assets/ts/main.ts')
     .addStyleEntry('global', './resources/assets/scss/global.scss')
+    .addStyleEntry('backoffice', './resources/assets/scss/backoffice.scss')
 
     // Loaders
     .enableSassLoader()
