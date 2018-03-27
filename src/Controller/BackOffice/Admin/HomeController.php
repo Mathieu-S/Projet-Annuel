@@ -33,4 +33,20 @@ class HomeController extends Controller
             'users' => $users
         ]);
     }
+
+    /**
+     * @Route("/hotels", name="adminHotels")
+     */
+    public function HotelsAction()
+    {
+        $hotels = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('App:Hotel')
+            ->findAll();
+
+        return $this->render('backoffice/admin/hotels.html.twig', [
+            'hotels' => $hotels
+        ]);
+    }
 }
