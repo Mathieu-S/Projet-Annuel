@@ -43,6 +43,20 @@
                 <source>register.password.repeat</source>
                 <target>Répéter mot de passe</target>
             </trans-unit>
+
+            <!--Hotel Register page-->
+            <trans-unit id="register.name">
+                <source>register.name</source>
+                <target>Nom</target>
+            </trans-unit>
+            <trans-unit id="register.address">
+                <source>register.address</source>
+                <target>Addresse</target>
+            </trans-unit>
+            <trans-unit id="register.description">
+                <source>register.description</source>
+                <target>Description</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

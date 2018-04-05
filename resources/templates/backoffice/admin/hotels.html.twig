@@ -8,20 +8,22 @@
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Prénom</th>
-                    <th scope="col">Nom</th>
+                    <th scope="col">Nom de l'hôtel</th>
+                    <th scope="col">Adresse</th>
                     <th scope="col">Email</th>
+                    <th scope="col">Description</th>
                 </tr>
             </thead>
             <tbody>
-                {#{% for user in users %}#}
-                    {#<tr>#}
-                        {#<th scope="row">{{ user.id }}</th>#}
-                        {#<td>{{ user.firstname }}</td>#}
-                        {#<td>{{ user.lastname }}</td>#}
-                        {#<td>{{ user.email }}</td>#}
-                    {#</tr>#}
-                {#{% endfor %}#}
+                {% for hotel in hotels %}
+                    <tr>
+                        <th scope="row">{{ hotel.id }}</th>
+                        <td>{{ hotel.name }}</td>
+                        <td>{{ hotel.address }}</td>
+                        <td>{{ hotel.email }}</td>
+                        <td>{{ hotel.description }}</td>
+                    </tr>
+                {% endfor %}
             </tbody>
         </table>
     </section>
