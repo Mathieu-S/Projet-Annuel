@@ -1,0 +1,18 @@
+{% extends 'backoffice/base_backoffice.html.twig' %}
+
+{% block body %}
+    <section class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        <h1>Ajouter un Hôtel</h1>
+
+        {% form_theme hotelForm 'bootstrap_3_layout.html.twig' %}
+        {{ form_start(hotelForm) }}
+
+        {{ form_row(hotelForm.name) }}
+        {{ form_row(hotelForm.address) }}
+        {{ form_row(hotelForm.email) }}
+        {{ form_row(hotelForm.description) }}
+
+        <button type="submit" class="btn btn-primary">Validate</button>
+        {{ form_end(hotelForm) }}
+    </section>
+{% endblock %}

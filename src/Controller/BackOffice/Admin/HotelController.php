@@ -21,6 +21,22 @@ class HotelController extends Controller
 {
 
     /**
+     * @Route("/", name="adminHotels")
+     */
+    public function HotelsAction()
+    {
+        $hotels = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('App:Hotel')
+            ->findAll();
+
+        return $this->render('backoffice/admin/hotels/hotels.html.twig', [
+            'hotels' => $hotels
+        ]);
+    }
+
+    /**
      * @param Request $request
      * @Route("/create", name="createHotelAdmin")
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
@@ -39,8 +55,8 @@ class HotelController extends Controller
             return $this->redirectToRoute('adminHotels');
 
         }
-        return $this->render('backoffice/admin/hotels-create.html.twig', [
-           'form' => $form->createView(),
+        return $this->render('backoffice/admin/hotels/form.html.twig', [
+           'hotelForm' => $form->createView(),
         ]);
 
 
