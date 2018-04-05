@@ -11,6 +11,8 @@
                     <th scope="col">Prénom</th>
                     <th scope="col">Nom</th>
                     <th scope="col">Email</th>
+                    <th scope="col">Rôles</th>
+                    <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,6 +22,17 @@
                         <td>{{ user.firstname }}</td>
                         <td>{{ user.lastname }}</td>
                         <td>{{ user.email }}</td>
+                        <td>
+                            {% if 'ROLE_USER' in user.roles %}
+                                User
+                            {% else %}
+                                {{ user.roles | first }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{{ path('adminEditUsers', {id: user.id}) }}" class="btn btn-warning">Edit</a>
+                            <a href="{{ path('adminDeleteUsers', {id: user.id}) }}" class="btn btn-danger">Delete</a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>
