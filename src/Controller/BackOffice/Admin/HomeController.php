@@ -19,22 +19,6 @@ class HomeController extends Controller
     }
 
     /**
-     * @Route("/users", name="adminUsers")
-     */
-    public function UsersAction()
-    {
-        $users = $this
-            ->getDoctrine()
-            ->getManager()
-            ->getRepository('App:User')
-            ->findAll();
-
-        return $this->render('backoffice/admin/users.html.twig', [
-            'users' => $users
-        ]);
-    }
-
-    /**
      * @Route("/hotels", name="adminHotels")
      */
     public function HotelsAction()
