@@ -33,6 +33,13 @@ class Hotel
     private $description;
 
     /**
+     * @ORM\Column(type="string", nullable=false, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Email()
+     */
+    private $email;
+
+    /**
      * @ORM\ManyToOne(targetEntity="PostalCode")
      * @JoinColumn(name="postal_code_id", referencedColumnName="id")
      */
@@ -121,6 +128,21 @@ class Hotel
         return $this->description;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
 
     /**
      * @return Hotel
