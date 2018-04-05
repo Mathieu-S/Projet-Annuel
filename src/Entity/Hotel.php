@@ -14,6 +14,25 @@ class Hotel
     use IdTrait;
 
     /**
+     * @var string
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @var string
+     * @ORM\Column(name="address", type="string", length=255)
+     */
+    private $address;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", nullable=true)
+     */
+    private $description;
+
+    /**
      * @ORM\ManyToOne(targetEntity="PostalCode")
      * @JoinColumn(name="postal_code_id", referencedColumnName="id")
      */
@@ -35,6 +54,73 @@ class Hotel
         $this->bedRooms = new ArrayCollection();
         $this->users = new ArrayCollection();
     }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Hotel
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
+    }
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set address
+     *
+     * @param string $address
+     *
+     * @return Hotel
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+        return $this;
+    }
+    /**
+     * Get address
+     *
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Hotel
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+        return $this;
+    }
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
 
     /**
      * @return Hotel
