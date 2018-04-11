@@ -23,10 +23,12 @@
                         <td>{{ user.lastname }}</td>
                         <td>{{ user.email }}</td>
                         <td>
-                            {% if 'ROLE_USER' in user.roles %}
-                                User
+                            {% if 'ROLE_ADMIN' in user.roles %}
+                                Administrateur
+                            {% elseif 'ROLE_HOTEL' in user.roles %}
+                                Hôtelier
                             {% else %}
-                                {{ user.roles | first }}
+                                Client
                             {% endif %}
                         </td>
                         <td>
