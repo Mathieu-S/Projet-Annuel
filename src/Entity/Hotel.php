@@ -41,6 +41,11 @@ class Hotel
     private $email;
 
     /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
+    /**
      * @ORM\ManyToOne(targetEntity="PostalCode")
      * @JoinColumn(name="postal_code_id", referencedColumnName="id")
      */
@@ -56,6 +61,12 @@ class Hotel
      * @ORM\ManyToMany(targetEntity="User", mappedBy="hotels")
      */
     private $users;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="hotels")
+     * @JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $user;
 
     public function __construct() {
 
@@ -146,6 +157,22 @@ class Hotel
     }
 
     /**
+     * @return mixed
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param mixed $added
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    /**
      * @return Hotel
      */
     public function getPostalCode()
@@ -194,5 +221,21 @@ class Hotel
     {
         $this->users = $users;
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
     }
 }

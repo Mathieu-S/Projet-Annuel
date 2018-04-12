@@ -14,6 +14,8 @@
                     <th scope="col">Adresse</th>
                     <th scope="col">Email</th>
                     <th scope="col">Description</th>
+                    <th scope="col">Date de publication</th>
+                    <th scope="col">Ajouté par</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
@@ -25,6 +27,8 @@
                         <td>{{ hotel.address }}</td>
                         <td>{{ hotel.email }}</td>
                         <td>{{ hotel.description }}</td>
+                        <td>{{ hotel.createdAt|date('d-m-Y H:i:s') }}</td>
+                        <td>{{ hotel.user.lastname }}  {{ hotel.user.firstname }}</td>
                         <td>
                             <a href="{{ path('adminEditHotels', {id: hotel.id}) }}" class="btn btn-warning">Edit</a>
                             <a href="{{ path('adminDeleteHotels', {id: hotel.id}) }}" class="btn btn-danger">Delete</a>
