@@ -38,7 +38,7 @@ class HotelController extends Controller
 
     /**
      * @param Request $request
-     * @Route("/create", name="createHotelAdmin")
+     * @Route("/create", name="adminCreateHotels")
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function createHotelAction(Request $request) {
@@ -60,5 +60,35 @@ class HotelController extends Controller
         ]);
 
 
+    }
+
+    /**
+     * @Route("/edit/{id}", name="adminEditHotels")
+     */
+    public function EditHotelAction(Request $request, Hotel $hotel)
+    {
+        $form = $this->createForm(HotelType::class, $hotel);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+            return $this->redirectToRoute('adminHotels');
+        }
+        return $this->render('backoffice/admin/hotels/form.html.twig', [
+            'hotelForm' => $form->createView()
+        ]);
+    }
+    /**
+     * @Route("/delete/{id}", name="adminDeleteHotels")
+     */
+    public function DeleteHotelAction(Hotel $hotel)
+    {
+        if ($hotel === null) {
+            return $this->redirectToRoute('adminHotels');
+        }
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($hotel);
+        $em->flush();
+        return $this->redirectToRoute('adminHotels');
     }
 }

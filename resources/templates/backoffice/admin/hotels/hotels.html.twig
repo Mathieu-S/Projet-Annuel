@@ -3,7 +3,9 @@
 {% block body %}
     <section class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
         <h1>Hôtels</h1>
-
+        <div class="spaceBtn">
+            <a href="{{ path('adminCreateHotels') }}"><button class="btn btn-primary">Ajouter un nouvel hôtel</button></a>
+        </div>
         <table class="table">
             <thead class="thead-dark">
                 <tr>
@@ -12,6 +14,7 @@
                     <th scope="col">Adresse</th>
                     <th scope="col">Email</th>
                     <th scope="col">Description</th>
+                    <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -22,6 +25,10 @@
                         <td>{{ hotel.address }}</td>
                         <td>{{ hotel.email }}</td>
                         <td>{{ hotel.description }}</td>
+                        <td>
+                            <a href="{{ path('adminEditHotels', {id: hotel.id}) }}" class="btn btn-warning">Edit</a>
+                            <a href="{{ path('adminDeleteHotels', {id: hotel.id}) }}" class="btn btn-danger">Delete</a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>
