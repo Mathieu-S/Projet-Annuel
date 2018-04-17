@@ -29,6 +29,12 @@
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
+                {% if app.user and 'ROLE_ADMIN' in app.user.roles %}
+                    <a href="{{ path('adminHome') }}" class="btn btn-outline-secondary">BackOffice</a>
+                {% elseif app.user and 'ROLE_HOTEL' in app.user.roles %}
+                    <a href="#" class="btn btn-outline-secondary">BackOffice</a>
+                {% endif %}
+
                 {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                     <a href="{{ path('security_login') }}" class="btn btn-outline-light">{{ 'navbar.login'|trans|raw }}</a>
                 {% else %}
