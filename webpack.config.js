@@ -24,7 +24,12 @@ Encore
     })
 
     // Other options
-    .autoProvidejQuery()
+    .autoProvideVariables({
+        $: 'jquery',
+        jQuery: 'jquery',
+        'window.jQuery': 'jquery',
+        Popper: ['popper.js', 'default']
+    })
 
     // Build config
     .enableSourceMaps(!Encore.isProduction())

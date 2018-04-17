@@ -10,9 +10,14 @@ use Doctrine\ORM\Mapping as ORM;
 class Hotelier extends User
 {
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=false)
      */
     private $siren;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=false, options={"default":false})
+     */
+    private $enableAccount;
 
     /**
      * @return mixed
@@ -28,5 +33,21 @@ class Hotelier extends User
     public function setSiren($siren)
     {
         $this->siren = $siren;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEnableAccount()
+    {
+        return $this->enableAccount;
+    }
+
+    /**
+     * @param mixed $enableAccount
+     */
+    public function setEnableAccount($enableAccount): void
+    {
+        $this->enableAccount = $enableAccount;
     }
 }
