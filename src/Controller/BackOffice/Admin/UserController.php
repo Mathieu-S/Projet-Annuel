@@ -2,6 +2,7 @@
 
 namespace App\Controller\BackOffice\Admin;
 
+use App\Entity\Hotelier;
 use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
@@ -66,6 +67,40 @@ class UserController extends Controller
 
         $em->remove($user);
 
+        $em->flush();
+
+        return $this->redirectToRoute('adminUsers');
+    }
+
+    /**
+     * @Route("/ennableAccount/{id}", name="adminEnnableAccount", requirements={"page": "[1-9]\d*"})
+     */
+    public function EnnableAccountAction(Hotelier $hotelier)
+    {
+        if ($hotelier === null) {
+            return $this->redirectToRoute('adminUsers');
+        }
+
+        $hotelier->setEnableAccount(true);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->flush();
+
+        return $this->redirectToRoute('adminUsers');
+    }
+
+    /**
+     * @Route("/disableAccount/{id}", name="adminDisableAccount", requirements={"page": "[1-9]\d*"})
+     */
+    public function DisableAccountAction(Hotelier $hotelier)
+    {
+        if ($hotelier === null) {
+            return $this->redirectToRoute('adminUsers');
+        }
+
+        $hotelier->setEnableAccount(false);
+
+        $em = $this->getDoctrine()->getManager();
         $em->flush();
 
         return $this->redirectToRoute('adminUsers');

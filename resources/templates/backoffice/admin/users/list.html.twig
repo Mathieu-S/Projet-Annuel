@@ -32,6 +32,13 @@
                             {% endif %}
                         </td>
                         <td>
+                            {% if 'ROLE_HOTEL' in user.roles %}
+                                {% if not user.enableAccount %}
+                                    <a href="{{ path('adminEnnableAccount', {id: user.id}) }}" class="btn btn-info">Ennable account</a>
+                                {% else %}
+                                    <a href="{{ path('adminDisableAccount', {id: user.id}) }}" class="btn btn-secondary">Disable account</a>
+                                {% endif %}
+                            {% endif %}
                             <a href="{{ path('adminEditUsers', {id: user.id}) }}" class="btn btn-warning">Edit</a>
                             <a href="{{ path('adminDeleteUsers', {id: user.id}) }}" class="btn btn-danger">Delete</a>
                         </td>
