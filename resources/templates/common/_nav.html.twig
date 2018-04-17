@@ -32,7 +32,13 @@
                 {% if app.user and 'ROLE_ADMIN' in app.user.roles %}
                     <a href="{{ path('adminHome') }}" class="btn btn-outline-secondary">BackOffice</a>
                 {% elseif app.user and 'ROLE_HOTEL' in app.user.roles %}
-                    <a href="#" class="btn btn-outline-secondary">BackOffice</a>
+                    {% if app.user.enableAccount %}
+                        <a href="#" class="btn btn-outline-secondary">BackOffice</a>
+                    {% else %}
+                        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Votre compte n'est pas activé. Vous ne pouvez pas accéder au back office">
+                            <a href="#" class="btn btn-outline-secondary disabled">BackOffice</a>
+                        </span>
+                    {% endif %}
                 {% endif %}
 
                 {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
