@@ -8,6 +8,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\InheritanceType("JOINED")
+ * @ORM\DiscriminatorColumn(name="type_account", type="string")
+ * @ORM\DiscriminatorMap({
+ *     "user" = "User",
+ *     "hotelier" = "Hotelier"
+ * })
  */
 class User implements UserInterface
 {
@@ -17,44 +23,38 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255, nullable=false)
      * @Assert\NotBlank()
      */
-    private $lastname;
+    protected $lastname;
 
     /**
      * @ORM\Column(type="string", nullable=false)
      * @Assert\NotBlank()
      */
-    private $firstname;
+    protected $firstname;
 
     /**
      * @ORM\Column(type="string", nullable=false, unique=true)
      * @Assert\NotBlank()
      * @Assert\Email()
      */
-    private $email;
+    protected $email;
 
     /**
      * @ORM\Column(type="string", nullable=false)
      * @Assert\NotBlank()
      */
-    private $password;
+    protected $password;
 
     /**
      * @ORM\Column(type="json")
      */
-    private $roles = [];
-
-    /**
-     * @ORM\ManyToOne(targetEntity="TypeUser", inversedBy="users")
-     * @ORM\JoinColumn(name="type_user_id", referencedColumnName="id", onDelete="CASCADE")
-     */
-    private $typeUser;
+    protected $roles = [];
 
     /**
      * Many Users have Many Hotels.
      * @ORM\ManyToMany(targetEntity="Hotel", inversedBy="users")
      * @ORM\JoinTable(name="users_hotels")
      */
-    private $hotels;
+    protected $hotels;
 
     /**
      * Constructor
@@ -110,22 +110,6 @@ class User implements UserInterface
     public function setEmail($email)
     {
         $this->email = $email;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTypeUser()
-    {
-        return $this->typeUser;
-    }
-
-    /**
-     * @param mixed $typeUser
-     */
-    public function setTypeUser($typeUser)
-    {
-        $this->typeUser = $typeUser;
     }
 
     /**
