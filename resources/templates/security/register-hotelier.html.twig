@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section class="container">
+        {% form_theme userForm 'bootstrap_3_layout.html.twig' %}
+        {{ form_start(userForm) }}
+
+        {{ form_row(userForm.firstname) }}
+        {{ form_row(userForm.lastname) }}
+        {{ form_row(userForm.email) }}
+        {{ form_row(userForm.siren) }}
+        {{ form_row(userForm.password.first) }}
+        {{ form_row(userForm.password.second) }}
+
+        <button type="submit" class="btn btn-primary">Validate</button>
+        {{ form_end(userForm) }}
+    </section>
+{% endblock %}

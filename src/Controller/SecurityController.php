@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Hotelier;
 use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -58,7 +59,7 @@ class SecurityController extends Controller
             return $this->redirectToRoute('homepage');
         }
 
-        return $this->render('security/register.html.twig', [
+        return $this->render('security/register-user.html.twig', [
             'userForm' => $form->createView()
         ]);
     }
@@ -68,11 +69,11 @@ class SecurityController extends Controller
      */
     public function registerHotelAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
-        $user = new User();
+        $user = new Hotelier();
         $roles[] = 'ROLE_HOTEL';
         $user->setRoles($roles);
 
-        $form = $this->createForm('App\Form\UserType', $user);
+        $form = $this->createForm('App\Form\HotelierType', $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -90,7 +91,7 @@ class SecurityController extends Controller
             return $this->redirectToRoute('homepage');
         }
 
-        return $this->render('security/register.html.twig', [
+        return $this->render('security/register-hotelier.html.twig', [
             'userForm' => $form->createView()
         ]);
     }
