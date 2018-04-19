@@ -15,7 +15,7 @@ class Hotelier extends User
     private $siren;
 
     /**
-     * @ORM\Column(type="boolean", nullable=false, options={"default":false})
+     * @ORM\Column(type="boolean", options={"default":false})
      */
     private $enableAccount;
 
