@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Stephanichou
- * Date: 05/04/2018
- * Time: 11:09
- */
 
 namespace App\Controller\BackOffice\Admin;
 
@@ -59,8 +53,6 @@ class HotelController extends Controller
         return $this->render('backoffice/admin/hotels/form.html.twig', [
            'hotelForm' => $form->createView(),
         ]);
-
-
     }
 
     /**
