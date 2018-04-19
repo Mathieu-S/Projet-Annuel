@@ -25,7 +25,7 @@
                         <td>{{ hotel.email }}</td>
                         <td>{{ hotel.description }}</td>
                         <td>{{ hotel.createdAt|date('d-m-Y H:i:s') }}</td>
-                        <td>{{ hotel.user.lastname }}  {{ hotel.user.firstname }}</td>
+                        <td>{{ hotel.owner.lastname }} {{ hotel.owner.firstname }}</td>
                         <td>
                             <a href="{{ path('adminEditHotels', {id: hotel.id}) }}" class="btn btn-warning">Edit</a>
                             <a href="{{ path('adminDeleteHotels', {id: hotel.id}) }}" class="btn btn-danger">Delete</a>
