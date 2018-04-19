@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -18,6 +19,20 @@ class Hotelier extends User
      * @ORM\Column(type="boolean", options={"default":false})
      */
     private $enableAccount;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Hotel", mappedBy="owner")
+     */
+    private $hotelsOwn;
+
+    /**
+     * Hotelier constructor.
+     * @param $hotels
+     */
+    public function __construct()
+    {
+        $this->hotelsOwn = new ArrayCollection();
+    }
 
     /**
      * @return mixed
@@ -49,5 +64,21 @@ class Hotelier extends User
     public function setEnableAccount($enableAccount): void
     {
         $this->enableAccount = $enableAccount;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHotelsOwn()
+    {
+        return $this->hotelsOwn;
+    }
+
+    /**
+     * @param mixed $hotelsOwn
+     */
+    public function setHotelsOwn($hotelsOwn): void
+    {
+        $this->hotelsOwn = $hotelsOwn;
     }
 }

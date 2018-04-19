@@ -63,10 +63,10 @@ class Hotel
     private $users;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="hotels")
-     * @JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Hotelier", inversedBy="hotelsOwn")
+     * @JoinColumn(name="hotelier_id", referencedColumnName="id")
      */
-    private $user;
+    private $owner;
 
     public function __construct() {
 
@@ -226,16 +226,16 @@ class Hotel
     /**
      * @return mixed
      */
-    public function getUser()
+    public function getOwner()
     {
-        return $this->user;
+        return $this->owner;
     }
 
     /**
-     * @param mixed $user
+     * @param mixed $owner
      */
-    public function setUser($user)
+    public function setOwner($owner): void
     {
-        $this->user = $user;
+        $this->owner = $owner;
     }
 }
