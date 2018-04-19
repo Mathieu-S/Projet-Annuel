@@ -43,7 +43,7 @@ class HotelController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $hotel->setCreatedAt(new \DateTime());
-            $hotel->setUser($this->getUser());
+            $hotel->setOwner($this->getUser());
             $em = $this->getDoctrine()->getManager();
             $em->persist($hotel);
             $em->flush();
