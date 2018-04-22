@@ -4,12 +4,14 @@ namespace App\Controller\BackOffice\Admin;
 
 use App\Entity\Hotel;
 use App\Form\HotelType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/admin/hotels")
+ * @Security("is_granted('ROLE_ADMIN')")
  */
 class HotelController extends Controller
 {
