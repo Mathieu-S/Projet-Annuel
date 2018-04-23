@@ -181,12 +181,10 @@ class Hotel
     }
     /**
      * @param PostalCode $postalCode
-     * @return Hotel
      */
     public function setPostalCode(PostalCode $postalCode)
     {
         $this->postalCode = $postalCode;
-        return $this;
     }
 
     /**

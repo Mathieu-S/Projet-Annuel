@@ -4,6 +4,7 @@ namespace App\Controller\BackOffice\Admin;
 
 use App\Entity\Hotel;
 use App\Form\HotelType;
+use App\Repository\PostalCodeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -40,11 +41,13 @@ class HotelController extends Controller
         $hotel = new Hotel();
         $form = $this->createForm(HotelType::class, $hotel);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
             $hotel->setCreatedAt(new \DateTime());
             $hotel->setOwner($this->getUser());
-            $em = $this->getDoctrine()->getManager();
+            $selectedPostalCodeId = $form->getData()->getPostalCode();
+            $postalCodeFromRepo = $em->getRepository(PostalCodeRepository::class)->findOneBy(['id' => $selectedPostalCodeId]);
+            $hotel->setPostalCode($postalCodeFromRepo);
             $em->persist($hotel);
             $em->flush();
             return $this->redirectToRoute('adminHotels');
