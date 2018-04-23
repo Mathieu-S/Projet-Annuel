@@ -7,7 +7,7 @@
         <p>Vos hotels :</p>
         <ul>
             {% for hotel in hotels %}
-                <li><a href="#">{{ hotel.name }}</a></li>
+                <li><a href="{{ path('hotelierChambresHotel', {id: hotel.id}) }}">{{ hotel.name }}</a></li>
             {% endfor %}
         </ul>
     </section>
