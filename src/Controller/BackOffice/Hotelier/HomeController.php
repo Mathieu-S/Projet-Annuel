@@ -17,6 +17,14 @@ class HomeController extends Controller
      */
     public function IndexAction()
     {
-        return $this->render('backoffice/hotelier/index.html.twig', []);
+        $hotels = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('App:Hotel')
+            ->getOwnerHotels($this->getUser());
+
+        return $this->render('backoffice/hotelier/index.html.twig', [
+            'hotels' => $hotels
+        ]);
     }
 }
