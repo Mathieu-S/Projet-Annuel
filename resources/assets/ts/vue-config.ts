@@ -9,6 +9,8 @@ Vue.use(BootstrapVue);
 // Compoments
 import App from "../components/App.vue"
 import Card from "../components/Card.vue"
+import BedRoomList from "../components/BedRoom-List.vue"
+import BedRoom from "../components/BedRoom.vue"
 
 // il8n config
 Vue.use(VueI18n);
@@ -27,19 +29,13 @@ const router = new VueRouter({
     routes: [
         {
             path: '/',
-            component: Card
+            component: BedRoomList
         },
         {
             path: '/:id-p-:slug',
-            name: 'product',
-            component: Card
-        },
-        {
-            path: '/:id-c-:slug',
-            name: 'category',
-            component: Card
+            name: 'bedRoom',
+            component: BedRoom
         }
-
     ]
 });
 
