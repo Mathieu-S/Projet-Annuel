@@ -38,7 +38,7 @@ class BedRoom
 
     /**
      * Many BedRooms have Many Options.
-     * @ORM\ManyToMany(targetEntity="Option", inversedBy="bedRooms")
+     * @ORM\ManyToMany(targetEntity="App\Entity\OptionalEquipment", inversedBy="bedRooms")
      * @ORM\JoinTable(name="bedrooms_options")
      */
     private $options;
