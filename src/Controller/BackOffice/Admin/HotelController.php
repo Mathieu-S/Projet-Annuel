@@ -45,9 +45,6 @@ class HotelController extends Controller
             $em = $this->getDoctrine()->getManager();
             $hotel->setCreatedAt(new \DateTime());
             $hotel->setOwner($this->getUser());
-//            $selectedPostalCodeId = $form->getData()->getPostalCode();
-//            $postalCodeFromRepo = $this->getDoctrine()->getRepository(PostalCodeRepository::class)->findOneBy(['id' => $selectedPostalCodeId]);
-//            $hotel->setPostalCode($postalCodeFromRepo);
             $em->persist($hotel);
             $em->flush();
             return $this->redirectToRoute('adminHotels');

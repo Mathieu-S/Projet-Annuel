@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Hotel;
 use App\Entity\PostalCode;
+use App\Repository\PostalCodeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -42,6 +43,9 @@ class HotelType extends AbstractType
             ->add('postalCode', EntityType::class, [
                 'label' => 'Code postal',
                 'class' => 'App\Entity\PostalCode',
+                'query_builder' => function (PostalCodeRepository $pcr) {
+                    return $pcr->findPostalCodesFromAquitaine();
+                },
                 'choice_label' => 'code'
             ])
         ;

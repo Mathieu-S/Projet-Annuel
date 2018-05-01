@@ -290,18 +290,6 @@
         },
         {
             "name": "doctrine/dbal",
-<<<<<<< HEAD
-            "version": "v2.7.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/doctrine/dbal.git",
-                "reference": "f76bf5ef631cec551a86c2291fc749534febebf1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/f76bf5ef631cec551a86c2291fc749534febebf1",
-                "reference": "f76bf5ef631cec551a86c2291fc749534febebf1",
-=======
             "version": "v2.7.1",
             "source": {
                 "type": "git",
@@ -312,7 +300,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/doctrine/dbal/zipball/11037b4352c008373561dc6fc836834eed80c3b5",
                 "reference": "11037b4352c008373561dc6fc836834eed80c3b5",
->>>>>>> feature/bo-hotel
                 "shasum": ""
             },
             "require": {
@@ -374,11 +361,7 @@
                 "persistence",
                 "queryobject"
             ],
-<<<<<<< HEAD
-            "time": "2018-04-01T23:33:17+00:00"
-=======
             "time": "2018-04-07T18:44:18+00:00"
->>>>>>> feature/bo-hotel
         },
         {
             "name": "doctrine/doctrine-bundle",
@@ -1424,11 +1407,7 @@
         },
         {
             "name": "symfony/asset",
-<<<<<<< HEAD
-            "version": "v4.0.7",
-=======
             "version": "v4.0.8",
->>>>>>> feature/bo-hotel
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/asset.git",

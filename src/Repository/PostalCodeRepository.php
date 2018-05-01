@@ -14,42 +14,36 @@ class PostalCodeRepository extends ServiceEntityRepository
         parent::__construct($registry, PostalCode::class);
     }
 
-    public function createDefaultQueryBuilder()
+    public function findPostalCodesFromAquitaine()
     {
         return $this->createQueryBuilder('postalCode')
-            ->select('city, department, region')
+            ->addSelect('city, department, region')
             ->join('postalCode.city', 'city')
             ->join('city.department', 'department')
             ->join('department.region', 'region')
-            ->where('region.slug = nouvelle-aquitaine')
+            ->where("region.slug = 'nouvelle-aquitaine'")
+            ->orderBy('postalCode.code', 'ASC')
             ;
     }
 
 //    public function findPostalCodesFromAquitaine()
 //    {
-//        $qb = $this->createDefaultQueryBuilder();
-//        $qb->orderBy('postalCode.code');
-//        return $qb->getQuery()->getResult();
+//        $qry = <<<QUERY
+//SELECT pc.id, pc.code
+//FROM postal_code as pc
+//LEFT JOIN city ON pc.city_id = city.id
+//LEFT JOIN department ON city.department_id = department.id
+//LEFT JOIN region ON department.region_id = region.id
+//WHERE region.slug = 'nouvelle-aquitaine'
+//GROUP BY pc.id
+//ORDER BY pc.code
+//QUERY;
+//        $rsm = new ResultSetMapping();
+//        $rsm->addScalarResult("id", "id");
+//        $rsm->addScalarResult("code", "code");
+//        $query = $this->getEntityManager()->createNativeQuery($qry, $rsm);
+//        return $query->getResult();
 //    }
-
-    public function findPostalCodesFromAquitaine()
-    {
-        $qry = <<<QUERY
-SELECT pc.id, pc.code
-FROM postal_code as pc
-LEFT JOIN city ON pc.city_id = city.id
-LEFT JOIN department ON city.department_id = department.id
-LEFT JOIN region ON department.region_id = region.id
-WHERE region.slug = 'nouvelle-aquitaine'
-GROUP BY pc.id
-ORDER BY pc.code
-QUERY;
-        $rsm = new ResultSetMapping();
-        $rsm->addScalarResult("id", "id");
-        $rsm->addScalarResult("code", "code");
-        $query = $this->getEntityManager()->createNativeQuery($qry, $rsm);
-        return $query->getResult();
-    }
 
     /*
     public function findBySomething($value)
