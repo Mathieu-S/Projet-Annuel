@@ -46,6 +46,24 @@ class Hotel
     private $createdAt;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Region")
+     * @JoinColumn(name="region_id", referencedColumnName="id")
+     */
+    private $region;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Department")
+     * @JoinColumn(name="department_id", referencedColumnName="id")
+     */
+    private $department;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="City")
+     * @JoinColumn(name="city_id", referencedColumnName="id")
+     */
+    private $city;
+
+    /**
      * @ORM\ManyToOne(targetEntity="PostalCode")
      * @JoinColumn(name="postal_code_id", referencedColumnName="id")
      */
@@ -170,6 +188,54 @@ class Hotel
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+    /**
+     * @param mixed $region
+     */
+    public function setRegion(Region $region)
+    {
+        $this->region = $region;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDepartment()
+    {
+        return $this->department;
+    }
+
+    /**
+     * @param mixed $department
+     */
+    public function setDepartment(Department $department)
+    {
+        $this->department = $department;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param mixed $city
+     */
+    public function setCity(City $city)
+    {
+        $this->city = $city;
     }
 
     /**
