@@ -13,6 +13,18 @@ class CityRepository extends ServiceEntityRepository
         parent::__construct($registry, City::class);
     }
 
+    public function findCitiesFromDepartment($departmentId)
+    {
+        return $this->createQueryBuilder('city')
+            ->addSelect('department, region')
+            ->join('city.department', 'department')
+            ->join('department.region', 'region')
+            ->where("department.id = :departmentId")
+            ->orderBy('city.name', 'ASC')
+            ->setParameter('departmentId', $departmentId)
+            ;
+    }
+
     public function findCitiesFromAquitaine()
     {
         return $this->createQueryBuilder('city')

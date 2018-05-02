@@ -13,6 +13,17 @@ class DepartmentRepository extends ServiceEntityRepository
         parent::__construct($registry, Department::class);
     }
 
+    public function findDepartmentsFromRegion($regionId)
+    {
+        return $this->createQueryBuilder('d')
+            ->addSelect('region')
+            ->join('d.region', 'region')
+            ->where("region.id = :regionId")
+            ->orderBy('d.name', 'ASC')
+            ->setParameter('regionId', $regionId)
+            ;
+    }
+
     /*
     public function findBySomething($value)
     {
