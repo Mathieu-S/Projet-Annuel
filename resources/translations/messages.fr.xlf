@@ -21,6 +21,10 @@
                 <source>home.message</source>
                 <target>Bonjour</target>
             </trans-unit>
+            <trans-unit id="home.filters">
+                <source>home.filters</source>
+                <target>Filtres</target>
+            </trans-unit>
 
             <!--Register page-->
             <trans-unit id="register.firstname">

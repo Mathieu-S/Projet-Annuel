@@ -6,6 +6,10 @@
                 <source>home.message</source>
                 <target>Hello</target>
             </trans-unit>
+            <trans-unit id="home.filters">
+                 <source>home.filters</source>
+                 <target>Filters</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
