@@ -2,10 +2,14 @@
 
 namespace App\Controller\BackOffice\Admin;
 
+use App\Entity\City;
+use App\Entity\Department;
 use App\Entity\Hotel;
+use App\Entity\Region;
 use App\Form\HotelType;
 use App\Repository\PostalCodeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -83,5 +87,33 @@ class HotelController extends Controller
         $em->remove($hotel);
         $em->flush();
         return $this->redirectToRoute('adminHotels');
+    }
+
+    /**
+     * @Route("/autocomplete-hotel/department/{regionId}", name="autocomplete_department")
+     * @ParamConverter("region", class=Region::class, options={"id" = "regionId"})
+     * @Method("GET")
+     * @return JsonResponse
+     */
+    public function autocompleteDepartment(Region $region)
+    {
+
+        $data = $this->getDoctrine()->getRepository(Department::class)->findDepartmentsFromRegion($region->getId());
+
+        return new JsonResponse($data);
+    }
+
+    /**
+     * @Route("/autocomplete-hotel/city/{departmentId}", name="autocomplete_city")
+     * @ParamConverter("department", class=Department::class, options={"id" = "departmentId"})
+     * @Method("GET")
+     * @return JsonResponse
+     */
+    public function autocompleteCity(Department $department)
+    {
+
+        $data = $this->getDoctrine()->getRepository(City::class)->findCitiesFromDepartment($department->getId());
+
+        return new JsonResponse($data);
     }
 }
