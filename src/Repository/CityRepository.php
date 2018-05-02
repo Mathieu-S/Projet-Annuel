@@ -13,6 +13,17 @@ class CityRepository extends ServiceEntityRepository
         parent::__construct($registry, City::class);
     }
 
+    public function findCitiesFromAquitaine()
+    {
+        return $this->createQueryBuilder('city')
+            ->addSelect('department, region')
+            ->join('city.department', 'department')
+            ->join('department.region', 'region')
+            ->where("region.slug = 'nouvelle-aquitaine'")
+            ->orderBy('city.name', 'ASC')
+            ;
+    }
+
     /*
     public function findBySomething($value)
     {
