@@ -7,14 +7,22 @@
         {% form_theme hotelForm 'bootstrap_3_layout.html.twig' %}
         {{ form_start(hotelForm) }}
 
-        {{ form_row(hotelForm.name) }}
-        {{ form_row(hotelForm.address) }}
-        {{ form_row(hotelForm.email) }}
-        {{ form_row(hotelForm.description) }}
-        {{ form_row(hotelForm.region) }}
-        {{ form_row(hotelForm.department) }}
-        {{ form_row(hotelForm.city) }}
-        {{ form_row(hotelForm.postalCode) }}
+        {{ form_label(hotelForm.name) }}
+        {{ form_widget(hotelForm.name) }}
+        {{ form_label(hotelForm.address) }}
+        {{ form_widget(hotelForm.address) }}
+        {{ form_label(hotelForm.email) }}
+        {{ form_widget(hotelForm.email) }}
+        {{ form_label(hotelForm.description) }}
+        {{ form_widget(hotelForm.description) }}
+        {{ form_label(hotelForm.region) }}
+        {{ form_widget(hotelForm.region) }}
+        {{ form_label(hotelForm.department) }}
+        {{ form_widget(hotelForm.department) }}
+        {{ form_label(hotelForm.city) }}
+        {{ form_widget(hotelForm.city) }}
+        {{ form_label(hotelForm.postalCode) }}
+        {{ form_widget(hotelForm.postalCode) }}
 
         <button type="submit" class="btn btn-primary">Valider</button>
         {{ form_end(hotelForm) }}
