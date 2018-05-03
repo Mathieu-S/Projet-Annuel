@@ -41,7 +41,7 @@ class ChambreController extends Controller
             ->getDoctrine()
             ->getManager()
             ->getRepository('App:BedRoom')
-            ->findAll();
+            ->findBy(['hotel' => $hotel->getId()]);
 
         return $this->render('backoffice/hotelier/chambres/chambres-hotel.html.twig', [
             'chambres' => $chambres,
@@ -64,7 +64,7 @@ class ChambreController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($bedRoom);
             $em->flush();
-            return $this->redirectToRoute('hotelierHome');
+            return $this->redirectToRoute('hotelierChambresHotel', ['id' => $hotel->getId()]);
 
         }
         return $this->render('backoffice/hotelier/chambres/form.html.twig', [
