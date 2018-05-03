@@ -27,8 +27,12 @@
                                 {% endfor %}
                             </ul>
                         </td>
-                        <td>{{ chambre.price }}</td>
-                        <td>{{ chambre.availability }}</td>
+                        <td>{{ chambre.price }}€</td>
+                        {% if chambre.availability %}
+                            <td>Oui</td>
+                        {% else %}
+                            <td>Non</td>
+                        {% endif %}
                         <td>
                             <a href="#" class="btn btn-warning">Edit</a>
                             <a href="#" class="btn btn-danger">Delete</a>
