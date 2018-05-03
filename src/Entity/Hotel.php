@@ -34,7 +34,7 @@ class Hotel
     private $description;
 
     /**
-     * @ORM\Column(type="string", nullable=false, unique=true)
+     * @ORM\Column(type="string", nullable=false)
      * @Assert\NotBlank()
      * @Assert\Email()
      */
