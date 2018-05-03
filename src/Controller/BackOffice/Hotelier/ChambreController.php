@@ -50,9 +50,9 @@ class ChambreController extends Controller
     }
 
     /**
-     * @Route("/create", name="hotelierCreateHotelChambers")
+     * @Route("/create/{id}", name="hotelierCreateHotelChambers")
      */
-    public function CreateHotelChambersAction(Request $request)
+    public function CreateHotelChambersAction(Hotel $hotel, Request $request)
     {
         $bedRoom = new BedRoom();
         $form = $this->createForm(BedRoomType::class, $bedRoom);
@@ -60,7 +60,7 @@ class ChambreController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $bedRoom->setAvailability(true);
-//            $bedRoom->set($this->getUser());
+            $bedRoom->setHotel($hotel);
             $em = $this->getDoctrine()->getManager();
             $em->persist($bedRoom);
             $em->flush();

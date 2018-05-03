@@ -3,7 +3,7 @@
 {% block body %}
     <section class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
         <h1>Chambres de l'hotel "{{ hotel.name }}"</h1>
-        <a href="{{ path('hotelierCreateHotelChambers') }}" class="btn btn-primary">Ajouter une chambre</a>
+        <a href="{{ path('hotelierCreateHotelChambers', {id: hotel.id}) }}" class="btn btn-primary">Ajouter une chambre</a>
         <table class="table">
             <thead class="thead-dark">
                 <tr>
