@@ -52,7 +52,7 @@ class ChambreController extends Controller
     /**
      * @Route("/create/{id}", name="hotelierCreateHotelChambers")
      */
-    public function CreateHotelChambersAction(Hotel $hotel, Request $request)
+    public function CreateHotelChambersAction(Request $request, Hotel $hotel)
     {
         $bedRoom = new BedRoom();
         $form = $this->createForm(BedRoomType::class, $bedRoom);
@@ -73,32 +73,32 @@ class ChambreController extends Controller
     }
 
     /**
-     * @Route("/edit/{id}", name="hotelierEditHotels")
+     * @Route("/edit/{id}", name="hotelierEditHotelChambers")
      */
-    public function EditHotelChambersAction(Request $request, Hotel $hotel)
+    public function EditHotelChambersAction(Request $request, BedRoom $bedRoom)
     {
-        $form = $this->createForm(HotelType::class, $hotel);
+        $form = $this->createForm(BedRoomType::class, $bedRoom);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->flush();
-            return $this->redirectToRoute('hotelierHome');
+            return $this->redirectToRoute('hotelierChambresHotel', ['id' => $bedRoom->getHotel()->getId()]);
         }
-        return $this->render('backoffice/hotelier/hotels/form.html.twig', [
-            'hotelForm' => $form->createView()
+        return $this->render('backoffice/hotelier/chambres/form.html.twig', [
+            'bedRoomForm' => $form->createView(),
         ]);
     }
     /**
-     * @Route("/delete/{id}", name="hotelierDeleteHotels")
+     * @Route("/delete/{id}", name="hotelierDeleteHotelChambers")
      */
-    public function DeleteHotelChambersAction(Hotel $hotel)
+    public function DeleteHotelChambersAction(BedRoom $bedRoom)
     {
-        if ($hotel === null) {
-            return $this->redirectToRoute('hotelierHome');
+        if ($bedRoom === null) {
+            return $this->redirectToRoute('hotelierChambresHotel', ['id' => $bedRoom->getHotel()->getId()]);
         }
         $em = $this->getDoctrine()->getManager();
-        $em->remove($hotel);
+        $em->remove($bedRoom);
         $em->flush();
-        return $this->redirectToRoute('hotelierHome');
+        return $this->redirectToRoute('hotelierChambresHotel', ['id' => $bedRoom->getHotel()->getId()]);
     }
 }
