@@ -8,6 +8,8 @@ use App\Entity\Hotel;
 use App\Entity\Region;
 use App\Form\HotelType;
 use App\Repository\PostalCodeRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
