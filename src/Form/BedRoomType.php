@@ -25,7 +25,8 @@ class BedRoomType extends AbstractType
                 'label' => 'bedRoom.options',
                 'class' => 'App\Entity\OptionalEquipment',
                 'choice_label' => 'name',
-                'multiple' => true
+                'multiple' => true,
+                'expanded' => true
             ])
         ;
     }
