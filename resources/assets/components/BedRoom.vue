@@ -11,7 +11,7 @@
         <div class="col-3">
             <h5>Options de la chambre</h5>
             <ul>
-                <li v-for="option in bedRoom.option" :key="option.id">{{ option.name }}</li>
+                <li v-for="option in bedRoom.options" :key="option.id">{{ option.name }}</li>
             </ul>
         </div>
     </article>
