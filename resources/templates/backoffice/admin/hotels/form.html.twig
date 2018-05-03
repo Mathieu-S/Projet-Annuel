@@ -15,14 +15,22 @@
         {{ form_widget(hotelForm.email) }}
         {{ form_label(hotelForm.description) }}
         {{ form_widget(hotelForm.description) }}
-        {{ form_label(hotelForm.region) }}
-        {{ form_widget(hotelForm.region) }}
-        {{ form_label(hotelForm.department) }}
-        {{ form_widget(hotelForm.department) }}
-        {{ form_label(hotelForm.city) }}
-        {{ form_widget(hotelForm.city) }}
-        {{ form_label(hotelForm.postalCode) }}
-        {{ form_widget(hotelForm.postalCode) }}
+        <div id="regionDiv">
+            {{ form_label(hotelForm.region) }}
+            {{ form_widget(hotelForm.region) }}
+        </div>
+        <div id="departmentDiv">
+            {{ form_label(hotelForm.department) }}
+            {{ form_widget(hotelForm.department) }}
+        </div>
+        <div id="cityDiv">
+            {{ form_label(hotelForm.city) }}
+            {{ form_widget(hotelForm.city) }}
+        </div>
+        <div id="postalCodeDiv">
+            {{ form_label(hotelForm.postalCode) }}
+            {{ form_widget(hotelForm.postalCode) }}
+        </div>
 
         <button type="submit" class="btn btn-primary">Valider</button>
         {{ form_end(hotelForm) }}
