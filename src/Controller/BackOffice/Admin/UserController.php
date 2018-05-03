@@ -4,6 +4,7 @@ namespace App\Controller\BackOffice\Admin;
 
 use App\Entity\Hotelier;
 use App\Entity\User;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,6 +13,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @Route("/admin/users")
+ * @Security("is_granted('ROLE_ADMIN')")
  */
 class UserController extends Controller
 {
