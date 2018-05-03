@@ -7,13 +7,12 @@ use App\Entity\Department;
 use App\Entity\Hotel;
 use App\Entity\Region;
 use App\Form\HotelType;
-use App\Repository\PostalCodeRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/admin/hotels")
@@ -92,7 +91,7 @@ class HotelController extends Controller
     }
 
     /**
-     * @Route("/autocomplete-hotel/department/{regionId}", name="autocomplete_department")
+     * @Route("/autocomplete/department/{regionId}", name="autocomplete_department")
      * @ParamConverter("region", class=Region::class, options={"id" = "regionId"})
      * @Method("GET")
      * @return JsonResponse
@@ -101,12 +100,11 @@ class HotelController extends Controller
     {
 
         $data = $this->getDoctrine()->getRepository(Department::class)->findDepartmentsFromRegion($region->getId());
-
         return new JsonResponse($data);
     }
 
     /**
-     * @Route("/autocomplete-hotel/city/{departmentId}", name="autocomplete_city")
+     * @Route("/autocomplete/city/{departmentId}", name="autocomplete_city")
      * @ParamConverter("department", class=Department::class, options={"id" = "departmentId"})
      * @Method("GET")
      * @return JsonResponse

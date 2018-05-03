@@ -17,7 +17,7 @@
         {{ form_widget(hotelForm.description) }}
         <div id="regionDiv">
             {{ form_label(hotelForm.region) }}
-            {{ form_widget(hotelForm.region) }}
+            {{ form_widget(hotelForm.region, {attr: {'data-autocomplete-url': '/fr/admin/hotels/autocomplete/department'}}) }}
         </div>
         <div id="departmentDiv">
             {{ form_label(hotelForm.department) }}

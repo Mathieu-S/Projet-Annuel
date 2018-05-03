@@ -15,13 +15,14 @@ class DepartmentRepository extends ServiceEntityRepository
 
     public function findDepartmentsFromRegion($regionId)
     {
-        return $this->createQueryBuilder('d')
+        $qb = $this->createQueryBuilder('d')
             ->addSelect('region')
             ->join('d.region', 'region')
-            ->where("region.id = :regionId")
+            ->where("d.region = :regionId")
             ->orderBy('d.name', 'ASC')
             ->setParameter('regionId', $regionId)
             ;
+        return $qb->getQuery()->getResult();
     }
 
     /*
