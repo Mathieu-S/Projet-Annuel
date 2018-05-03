@@ -3,16 +3,12 @@
 namespace App\Form;
 
 use App\Entity\Hotel;
-use App\Entity\PostalCode;
 use App\Repository\CityRepository;
 use App\Repository\DepartmentRepository;
 use App\Repository\PostalCodeRepository;
 use App\Repository\RegionRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\ChoiceList\Loader\CallbackChoiceLoader;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,13 +16,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class HotelType extends AbstractType
 {
-
-    private $postalCodeRepository;
-
-    public function __construct(EntityManagerInterface $entityManager)
-    {
-        $this->postalCodeRepository = $entityManager->getRepository(PostalCode::class);
-    }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -48,10 +37,10 @@ class HotelType extends AbstractType
                 'class' => 'App\Entity\Region',
                 'query_builder' => function (RegionRepository $rr) {
                     return $rr->createQueryBuilder('r')
-                        ->orderBy('r.name', 'ASC')
-                        ;
+                        ->orderBy('r.name', 'ASC');
                 },
                 'choice_label' => 'name'
+
             ])
             ->add('department', EntityType::class, [
                 'label' => 'Département',
@@ -61,8 +50,7 @@ class HotelType extends AbstractType
                         ->addSelect('region')
                         ->join('d.region', 'region')
                         ->where("region.slug = 'nouvelle-aquitaine'")
-                        ->orderBy('d.name', 'ASC')
-                        ;
+                        ->orderBy('d.name', 'ASC');
                 },
                 'choice_label' => 'name'
             ])
@@ -70,8 +58,7 @@ class HotelType extends AbstractType
                 'label' => 'Ville',
                 'class' => 'App\Entity\City',
                 'query_builder' => function (CityRepository $cr) {
-                    return $cr->findCitiesFromAquitaine()
-                        ;
+                    return $cr->findCitiesFromAquitaine();
                 },
                 'choice_label' => 'name'
             ])
@@ -82,8 +69,7 @@ class HotelType extends AbstractType
                     return $pcr->findPostalCodesFromAquitaine();
                 },
                 'choice_label' => 'code'
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

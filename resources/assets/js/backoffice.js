@@ -3,6 +3,9 @@ $(document).ready(function () {
     var region = $('#hotel_region');
     var department = $("#hotel_department");
     var city = $("#hotel_city");
+    var departmentDiv = $("#departmentDiv");
+    var cityDiv = $('#cityDiv');
+
     region.prepend($('<option>', {value: ""}).text("Région")).val("");
     department.prepend($('<option>', {value: ""}).text("Département")).val("");
     city.prepend($('<option>', {value: ""}).text("Ville")).val("");
@@ -19,19 +22,8 @@ $(document).ready(function () {
 
     function handleSelectDisplay() {
 
-        if (!region.val()) {
-            $('#departmentDiv').hide();
-            $('#cityDiv').hide();
-        } else {
-            $('#departmentDiv').show();
-        }
-
-        if (!department.val() )
-        {
-            $('#cityDiv').hide();
-        } else {
-            $('#cityDiv').show();
-        }
+        !region.val() ? departmentDiv.hide() : departmentDiv.show();
+        !department.val() ? cityDiv.hide() : cityDiv.show();
     }
 
 });
