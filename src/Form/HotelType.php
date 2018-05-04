@@ -47,22 +47,19 @@ class HotelType extends AbstractType
             ->add('department', EntityType::class, [
                 'label' => 'Département',
                 'class' => 'App\Entity\Department',
+                'choice_label' => 'name',
                 'query_builder' => function (DepartmentRepository $dr) {
-                    return $dr->createQueryBuilder('d')
-                        ->addSelect('region')
-                        ->join('d.region', 'region')
-                        ->where("region.slug = 'nouvelle-aquitaine'")
-                        ->orderBy('d.name', 'ASC');
-                },
-                'choice_label' => 'name'
+                    return $dr->findDepartmentsFromAquitaine();
+                }
+
             ])
             ->add('city', EntityType::class, [
                 'label' => 'Ville',
                 'class' => 'App\Entity\City',
+                'choice_label' => 'name',
                 'query_builder' => function (CityRepository $cr) {
                     return $cr->findCitiesFromAquitaine();
-                },
-                'choice_label' => 'name'
+                }
             ])
             ->add('postalCode', EntityType::class, [
                 'label' => 'Code postal',
@@ -78,19 +75,15 @@ class HotelType extends AbstractType
 
                 // Get the parent form
                 $form = $event->getForm();
-                $department = false;
                 $departmentId = false;
-                $city = false;
-                $choices = [];
+                $cityId = false;
+
                 if (isset($event->getData()['department'])) {
                     $departmentId = $event->getData()['department'];
                 }
                 if (isset($event->getData()['city'])) {
-                    $city = $event->getData()['city'];
+                    $cityId = $event->getData()['city'];
                 }
-
-                $choices[$department] = $department;
-                $choices[$city] = $city;
 
                 // Add the field again, with the new choices :
                 $form->add('department', EntityType::class,
@@ -102,8 +95,17 @@ class HotelType extends AbstractType
                         },
                         'class' => 'App\Entity\Department',
                     ]
+                )
+                ->add('city', EntityType::class,
+                    [
+                        'query_builder' => function (CityRepository $cr) use ($cityId) {
+                            return $cr->createQueryBuilder('c')
+                                ->where("c.id = :cityId")
+                                ->setParameter('cityId', $cityId);
+                        },
+                        'class' => 'App\Entity\City',
+                    ]
                 );
-//                $form->add('city', ChoiceType::class, ['choices' => $choices]);
             });
     }
 
