@@ -23,7 +23,6 @@ $(document).ready(function () {
 
         // filling subzone select according to the selected zone
         $.get($(this).data("autocomplete-url") + "/" + $(this).val(), function (data) {
-            console.log(data);
             $.each(data, function (key, value) {
                 department.append($('<option>', {value: value}).text(key));
             });

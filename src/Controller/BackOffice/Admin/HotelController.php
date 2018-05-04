@@ -99,7 +99,7 @@ class HotelController extends Controller
     public function autocompleteDepartment(Region $region)
     {
 
-        $data = $this->getDoctrine()->getRepository(Department::class)->findDepartmentsFromRegion($region->getId());
+        $data = $this->getDoctrine()->getRepository(Department::class)->findDepartmentsByRegion($region);
         return new JsonResponse($data);
     }
 

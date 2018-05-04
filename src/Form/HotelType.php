@@ -12,6 +12,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class HotelType extends AbstractType
@@ -69,7 +71,40 @@ class HotelType extends AbstractType
                     return $pcr->findPostalCodesFromAquitaine();
                 },
                 'choice_label' => 'code'
-            ]);
+            ])
+            ->addEventListener(
+            FormEvents::PRE_SUBMIT,
+            function (FormEvent $event) {
+
+                // Get the parent form
+                $form = $event->getForm();
+                $department = false;
+                $departmentId = false;
+                $city = false;
+                $choices = [];
+                if (isset($event->getData()['department'])) {
+                    $departmentId = $event->getData()['department'];
+                }
+                if (isset($event->getData()['city'])) {
+                    $city = $event->getData()['city'];
+                }
+
+                $choices[$department] = $department;
+                $choices[$city] = $city;
+
+                // Add the field again, with the new choices :
+                $form->add('department', EntityType::class,
+                    [
+                        'query_builder' => function (DepartmentRepository $dr) use ($departmentId) {
+                        return $dr->createQueryBuilder('d')
+                            ->where("d.id = :departmentId")
+                            ->setParameter('departmentId', $departmentId);
+                        },
+                        'class' => 'App\Entity\Department',
+                    ]
+                );
+//                $form->add('city', ChoiceType::class, ['choices' => $choices]);
+            });
     }
 
     public function configureOptions(OptionsResolver $resolver)
