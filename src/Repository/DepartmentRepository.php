@@ -63,16 +63,15 @@ QUERY;
         return $choices;
     }
 
-    /*
-    public function findBySomething($value)
+    public function findDepartmentsFromAquitaine()
     {
-        return $this->createQueryBuilder('d')
-            ->where('d.something = :value')->setParameter('value', $value)
-            ->orderBy('d.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
+        $qb = $this->createQueryBuilder('d')
+            ->addSelect('region')
+            ->join('d.region', 'region')
+            ->where("d.region = 10")
+            ->orderBy('d.name', 'ASC')
         ;
+        return $qb;
     }
-    */
+
 }
