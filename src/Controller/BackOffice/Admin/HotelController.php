@@ -112,7 +112,7 @@ class HotelController extends Controller
     public function autocompleteCity(Department $department)
     {
 
-        $data = $this->getDoctrine()->getRepository(City::class)->findCitiesFromDepartment($department->getId());
+        $data = $this->getDoctrine()->getRepository(City::class)->findCitiesByDepartment($department);
 
         return new JsonResponse($data);
     }
