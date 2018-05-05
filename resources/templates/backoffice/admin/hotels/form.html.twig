@@ -17,15 +17,15 @@
         {{ form_widget(hotelForm.description) }}
         <div id="regionDiv">
             {{ form_label(hotelForm.region) }}
-            {{ form_widget(hotelForm.region, {attr: {'data-autocomplete-url': '/fr/admin/hotels/autocomplete/department'}}) }}
+            {{ form_widget(hotelForm.region, {attr: {'data-autocomplete-url': '/fr/autocomplete/department'}}) }}
         </div>
         <div id="departmentDiv">
             {{ form_label(hotelForm.department) }}
-            {{ form_widget(hotelForm.department, {attr: {'data-autocomplete-url': '/fr/admin/hotels/autocomplete/city'}}) }}
+            {{ form_widget(hotelForm.department, {attr: {'data-autocomplete-url': '/fr/autocomplete/city'}}) }}
         </div>
         <div id="cityDiv">
             {{ form_label(hotelForm.city) }}
-            {{ form_widget(hotelForm.city, {attr: {'data-autocomplete-url': '/fr/admin/hotels/autocomplete/postalcode'}}) }}
+            {{ form_widget(hotelForm.city, {attr: {'data-autocomplete-url': '/fr/autocomplete/postalcode'}}) }}
         </div>
         <div id="postalCodeDiv">
             {{ form_label(hotelForm.postalCode) }}

@@ -35,8 +35,8 @@ class HotelController extends Controller
             return $this->redirectToRoute('hotelierHome');
 
         }
-        return $this->render('backoffice/hotelier/hotels/form.html.twig', [
-           'hotelForm' => $form->createView(),
+        return $this->render('backoffice/admin/hotels/form.html.twig', [
+            'hotelForm' => $form->createView(),
         ]);
     }
 
