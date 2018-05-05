@@ -5,6 +5,7 @@ namespace App\Controller\BackOffice\Admin;
 use App\Entity\City;
 use App\Entity\Department;
 use App\Entity\Hotel;
+use App\Entity\PostalCode;
 use App\Entity\Region;
 use App\Form\HotelType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -116,4 +117,19 @@ class HotelController extends Controller
 
         return new JsonResponse($data);
     }
+
+    /**
+     * @Route("/autocomplete/postalcode/{cityId}", name="autocomplete_postalcode")
+     * @ParamConverter("city", class=City::class, options={"id" = "cityId"})
+     * @Method("GET")
+     * @return JsonResponse
+     */
+    public function autocompletePostalCode(City $city)
+    {
+
+        $data = $this->getDoctrine()->getRepository(PostalCode::class)->findPostalCodesByCity($city);
+
+        return new JsonResponse($data);
+    }
+
 }

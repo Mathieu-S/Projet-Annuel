@@ -5,6 +5,8 @@ $(document).ready(function () {
     var city = $("#hotel_city");
     var departmentDiv = $("#departmentDiv");
     var cityDiv = $('#cityDiv');
+    var postalCode = $("#hotel_postalCode");
+    var postalCodeDiv = $("#postalCodeDiv");
 
     region.prepend($('<option>', {value: ""}).text("Région")).val("");
     department.prepend($('<option>', {value: ""}).text("Département")).val("");
@@ -31,10 +33,20 @@ $(document).ready(function () {
 
     });
 
+    city.change(function() {
+
+       postalCode.empty().append($('<option>', {value: ""}).text("Code Postal"));
+
+       handleSelectDisplay();
+       loadDatasFromZone(city, postalCode);
+
+    });
+
     function handleSelectDisplay() {
 
         !region.val() ? departmentDiv.hide() : departmentDiv.show();
         !department.val() ? cityDiv.hide() : cityDiv.show();
+        !city.val() ? postalCodeDiv.hide() : postalCodeDiv.show();
     }
 
     function loadDatasFromZone (dataSource, selectToFill) {
