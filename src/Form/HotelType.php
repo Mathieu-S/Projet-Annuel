@@ -77,12 +77,16 @@ class HotelType extends AbstractType
                 $form = $event->getForm();
                 $departmentId = false;
                 $cityId = false;
+                $postalCodeId = false;
 
                 if (isset($event->getData()['department'])) {
                     $departmentId = $event->getData()['department'];
                 }
                 if (isset($event->getData()['city'])) {
                     $cityId = $event->getData()['city'];
+                }
+                if (isset($event->getData()['postalCode'])) {
+                    $postalCodeId = $event->getData()['postalCode'];
                 }
 
                 // Add the field again, with the new choices :
@@ -105,7 +109,18 @@ class HotelType extends AbstractType
                         },
                         'class' => 'App\Entity\City',
                     ]
-                );
+                )
+                ->add('postalCode', EntityType::class,
+                    [
+                        'query_builder' => function (PostalCodeRepository $pcr) use ($postalCodeId) {
+                            return $pcr->createQueryBuilder('pc')
+                                ->where("pc.id = :postalCodeId")
+                                ->setParameter('postalCodeId', $postalCodeId);
+                        },
+                        'class' => 'App\Entity\PostalCode',
+                    ]
+                )
+                ;
             });
     }
 

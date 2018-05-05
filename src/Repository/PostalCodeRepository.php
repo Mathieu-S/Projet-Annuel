@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\City;
 use App\Entity\PostalCode;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query\ResultSetMapping;
@@ -26,35 +27,39 @@ class PostalCodeRepository extends ServiceEntityRepository
             ;
     }
 
-//    public function findPostalCodesFromAquitaine()
-//    {
-//        $qry = <<<QUERY
-//SELECT pc.id, pc.code
-//FROM postal_code as pc
-//LEFT JOIN city ON pc.city_id = city.id
-//LEFT JOIN department ON city.department_id = department.id
-//LEFT JOIN region ON department.region_id = region.id
-//WHERE region.slug = 'nouvelle-aquitaine'
-//GROUP BY pc.id
-//ORDER BY pc.code
-//QUERY;
-//        $rsm = new ResultSetMapping();
-//        $rsm->addScalarResult("id", "id");
-//        $rsm->addScalarResult("code", "code");
-//        $query = $this->getEntityManager()->createNativeQuery($qry, $rsm);
-//        return $query->getResult();
-//    }
-
-    /*
-    public function findBySomething($value)
+    public function findPostalCodesByCityResult(City $city)
     {
-        return $this->createQueryBuilder('p')
-            ->where('p.something = :value')->setParameter('value', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+
+        $cityId = $city->getId();
+        $qry = <<<QUERY
+SELECT pc.id, pc.code, pc.city_id
+FROM postal_code as pc
+LEFT JOIN city ON pc.city_id = city.id
+WHERE pc.city_id = '$cityId'
+GROUP BY pc.id
+ORDER BY pc.code
+QUERY;
+
+        $rsm = new ResultSetMapping();
+        $rsm->addScalarResult("id", "id");
+        $rsm->addScalarResult("code", "code");
+
+        $query = $this->getEntityManager()->createNativeQuery($qry, $rsm);
+
+        return $query->getResult();
     }
-    */
+
+    public function findPostalCodesByCity(City $city)
+    {
+
+        $postalCodes = $this->findPostalCodesByCityResult($city);
+
+        $choices = [];
+
+        foreach ($postalCodes as $postalCode) {
+            $choices[$postalCode["code"]] = $postalCode["id"];
+        }
+        return $choices;
+    }
+
 }
