@@ -2,12 +2,19 @@
 
 namespace App\Controller\BackOffice\Admin;
 
+use App\Entity\City;
+use App\Entity\Department;
 use App\Entity\Hotel;
+use App\Entity\PostalCode;
+use App\Entity\Region;
 use App\Form\HotelType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/admin/hotels")
@@ -42,11 +49,10 @@ class HotelController extends Controller
         $hotel = new Hotel();
         $form = $this->createForm(HotelType::class, $hotel);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
             $hotel->setCreatedAt(new \DateTime());
             $hotel->setOwner($this->getUser());
-            $em = $this->getDoctrine()->getManager();
             $em->persist($hotel);
             $em->flush();
             return $this->redirectToRoute('adminHotels');
@@ -86,4 +92,46 @@ class HotelController extends Controller
         $em->flush();
         return $this->redirectToRoute('adminHotels');
     }
+
+    /**
+     * @Route("/autocomplete/department/{regionId}", name="autocomplete_department")
+     * @ParamConverter("region", class=Region::class, options={"id" = "regionId"})
+     * @Method("GET")
+     * @return JsonResponse
+     */
+    public function autocompleteDepartment(Region $region)
+    {
+
+        $data = $this->getDoctrine()->getRepository(Department::class)->findDepartmentsByRegion($region);
+        return new JsonResponse($data);
+    }
+
+    /**
+     * @Route("/autocomplete/city/{departmentId}", name="autocomplete_city")
+     * @ParamConverter("department", class=Department::class, options={"id" = "departmentId"})
+     * @Method("GET")
+     * @return JsonResponse
+     */
+    public function autocompleteCity(Department $department)
+    {
+
+        $data = $this->getDoctrine()->getRepository(City::class)->findCitiesByDepartment($department);
+
+        return new JsonResponse($data);
+    }
+
+    /**
+     * @Route("/autocomplete/postalcode/{cityId}", name="autocomplete_postalcode")
+     * @ParamConverter("city", class=City::class, options={"id" = "cityId"})
+     * @Method("GET")
+     * @return JsonResponse
+     */
+    public function autocompletePostalCode(City $city)
+    {
+
+        $data = $this->getDoctrine()->getRepository(PostalCode::class)->findPostalCodesByCity($city);
+
+        return new JsonResponse($data);
+    }
+
 }
