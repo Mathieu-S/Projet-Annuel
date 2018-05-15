@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
 import VueRouter from 'vue-router'
+import Vuex from 'vuex'
 import BootstrapVue from 'bootstrap-vue'
 
 Vue.use(VueRouter);
+Vue.use(Vuex);
 Vue.use(BootstrapVue);
 
 // Compoments
@@ -39,6 +41,15 @@ const router = new VueRouter({
     ]
 });
 
+const store = new Vuex.Store({
+    state: {
+        optionBedRoom: []
+    },
+    mutations: {
+
+    }
+});
+
 // Other config
 Vue.config.productionTip = false;
 
@@ -47,5 +58,6 @@ new Vue({
     el: '#app',
     i18n,
     router,
+    store,
     components: { App, Card }
 });
