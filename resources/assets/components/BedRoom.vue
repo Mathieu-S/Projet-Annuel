@@ -1,6 +1,7 @@
 <template>
     <article class="bedRoom row">
         <div class="col-3">
+            <router-link to="/">Retourner voir toute les chambres</router-link>
             <img src="//via.placeholder.com/350x150" class="img-fluid" alt="Responsive image">
         </div>
         <div class="col-6">
