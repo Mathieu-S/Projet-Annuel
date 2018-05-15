@@ -13,16 +13,13 @@ class BedRoomRepository extends ServiceEntityRepository
         parent::__construct($registry, BedRoom::class);
     }
 
-    /*
-    public function findBySomething($value)
+    public function findAvailableBedRoom()
     {
-        return $this->createQueryBuilder('b')
-            ->where('b.something = :value')->setParameter('value', $value)
-            ->orderBy('b.id', 'ASC')
-            ->setMaxResults(10)
+        return $this->createQueryBuilder('bd')
+            ->where('bd.availability = 1')
+            ->orderBy('bd.id', 'DESC')
             ->getQuery()
             ->getResult()
         ;
     }
-    */
 }

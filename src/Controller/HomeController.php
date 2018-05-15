@@ -28,7 +28,7 @@ class HomeController extends Controller
         $bedRooms = $this->getDoctrine()
             ->getManager()
             ->getRepository('App:BedRoom')
-            ->findAll();
+            ->findAvailableBedRoom();
 
         $normalizer = new ObjectNormalizer();
         $normalizer->setIgnoredAttributes(['bedRooms', 'owner']);
