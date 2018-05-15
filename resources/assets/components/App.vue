@@ -3,8 +3,14 @@
         <div class="col-3">
             <div class="card">
                 Hotel filtre
-                <router-link to="/foo">Aller à Foo</router-link>
-                <router-link to="/bar">Aller à Bar</router-link>
+
+                <form>
+                    <ul>
+                        <li><input type="checkbox" value="clim" v-model="optionBedRoom">Climatisation</li>
+                        <li><input type="checkbox" value="tv" v-model="optionBedRoom">TV</li>
+                        <li><input type="checkbox" value="wifi" v-model="optionBedRoom">Wifi</li>
+                    </ul>
+                </form>
             </div>
         </div>
         <div class="col-9">
@@ -17,7 +23,12 @@
 
 <script lang="ts">
     export default {
-        name: "app"
+        name: "app",
+        data() {
+            return {
+                testy: store.state.optionBedRoom
+            }
+        }
     }
 </script>
 
