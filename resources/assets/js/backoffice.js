@@ -8,11 +8,12 @@ $(document).ready(function () {
     var postalCode = $("#hotel_postalCode");
     var postalCodeDiv = $("#postalCodeDiv");
 
-    region.prepend($('<option>', {value: ""}).text("Région")).val("");
-    department.prepend($('<option>', {value: ""}).text("Département")).val("");
-    city.prepend($('<option>', {value: ""}).text("Ville")).val("");
-
-    handleSelectDisplay();
+    if ($("input[name='hotel[name]']").val() === "") {
+        region.prepend($('<option>', {value: ""}).text("Région")).val("");
+        department.prepend($('<option>', {value: ""}).text("Département")).val("");
+        city.prepend($('<option>', {value: ""}).text("Ville")).val("");
+        handleSelectDisplay();
+    }
 
     region.change(function() {
 
