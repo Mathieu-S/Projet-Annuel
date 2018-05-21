@@ -26,7 +26,7 @@
         name: "app",
         data() {
             return {
-                testy: store.state.optionBedRoom
+                optionBedRoom: []
             }
         }
     }
