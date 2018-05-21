@@ -22,14 +22,19 @@
         name: "bedRoom-list",
         data() {
             return {
-                bedRooms: []
+                bedRooms: [],
             }
         },
-        created: function () {
+        mounted: function () {
             axios.get('/' + document.documentElement.lang + '/api/bedRooms')
                 .then(response => {
                     this.bedRooms = response.data
                 })
+        },
+        computed: {
+            optionBedRoom: function () {
+                return this.$store.getters.getOptionBedRoom
+            }
         }
     }
 </script>
