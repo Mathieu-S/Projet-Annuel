@@ -45,8 +45,15 @@ const store = new Vuex.Store({
     state: {
         optionBedRoom: []
     },
+    getters: {
+        getOptionBedRoom: state => {
+            return state.optionBedRoom
+        }
+    },
     mutations: {
-
+        setOptionBedRoom (state, n) {
+            state.optionBedRoom = n
+        }
     }
 });
 
