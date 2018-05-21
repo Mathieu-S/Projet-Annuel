@@ -28,6 +28,11 @@
             return {
                 optionBedRoom: []
             }
+        },
+        watch: {
+            optionBedRoom: function (val) {
+                this.$store.commit('setOptionBedRoom', this.optionBedRoom)
+            }
         }
     }
 </script>
