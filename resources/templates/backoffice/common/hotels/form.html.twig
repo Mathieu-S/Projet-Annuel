@@ -1,0 +1,40 @@
+{% extends 'backoffice/base_backoffice.html.twig' %}
+
+{% block body %}
+    <section class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        <h1>Ajouter un Hôtel</h1>
+
+        {% form_theme hotelForm 'bootstrap_3_layout.html.twig' %}
+        {{ form_start(hotelForm) }}
+
+        {{ form_label(hotelForm.name) }}
+        {{ form_widget(hotelForm.name) }}
+        {{ form_label(hotelForm.address) }}
+        {{ form_widget(hotelForm.address) }}
+        {{ form_label(hotelForm.email) }}
+        {{ form_widget(hotelForm.email) }}
+        {{ form_label(hotelForm.description) }}
+        {{ form_widget(hotelForm.description) }}
+        {{ form_label(hotelForm.image) }}
+        {{ form_widget(hotelForm.image) }}
+        <div id="regionDiv">
+            {{ form_label(hotelForm.region) }}
+            {{ form_widget(hotelForm.region, {attr: {'data-autocomplete-url': '/fr/autocomplete/department'}}) }}
+        </div>
+        <div id="departmentDiv">
+            {{ form_label(hotelForm.department) }}
+            {{ form_widget(hotelForm.department, {attr: {'data-autocomplete-url': '/fr/autocomplete/city'}}) }}
+        </div>
+        <div id="cityDiv">
+            {{ form_label(hotelForm.city) }}
+            {{ form_widget(hotelForm.city, {attr: {'data-autocomplete-url': '/fr/autocomplete/postalcode'}}) }}
+        </div>
+        <div id="postalCodeDiv">
+            {{ form_label(hotelForm.postalCode) }}
+            {{ form_widget(hotelForm.postalCode) }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Valider</button>
+        {{ form_end(hotelForm) }}
+    </section>
+{% endblock %}

@@ -8,9 +8,8 @@
             <thead class="thead-dark">
             <tr>
                 <th scope="col">Nom de l'hôtel</th>
-                <th scope="col">Adresse</th>
                 <th scope="col">Email</th>
-                <th scope="col">Description</th>
+                <th scope="col">Localisation</th>
                 <th scope="col">Image</th>
                 <th scope="col">Date de publication</th>
                 <th scope="col">Ajouté par</th>
@@ -20,19 +19,19 @@
             <tbody>
             {% for hotel in hotels %}
                 <tr>
-                    <td><b><a href="{{ path('hotelierChambresHotel', {id: hotel.id}) }}">{{ hotel.name }}</a></b></td>
-                    <td>{{ hotel.address }}</td>
+                    <td><b><a href="{{ path('hotelierEditHotels', {id: hotel.id}) }}">{{ hotel.name }}</a></b></td>
                     <td>{{ hotel.email }}</td>
-                    <td>{{ hotel.description }}</td>
+                    <td>{{ hotel.address ~ ' ' ~ hotel.postalCode.code ~ ' ' ~ hotel.city.name }}</td>
                     <td>
                         {% if hotel.image %}
-                            <img src="{{ asset('/uploads/images/'~hotel.image.uri) }}" style="width:200px;height:200px;"></td>
+                            <img src="{{ asset('/uploads/images/'~hotel.image.uri) }}" style="width:150px;height:150px;"></td>
                         {% else %}
                             Pas d'image associée
                         {% endif %}
                     <td>{{ hotel.createdAt|date('d-m-Y H:i:s') }}</td>
                     <td>{{ hotel.owner.lastname }} {{ hotel.owner.firstname }}</td>
                     <td>
+                        <a href="{{ path('hotelierChambresHotel', {id: hotel.id}) }}" class="btn btn-primary">Accéder aux chambres</a>
                         <a href="{{ path('hotelierEditHotels', {id: hotel.id}) }}" class="btn btn-warning">Edit</a>
                         <a href="{{ path('hotelierDeleteHotels', {id: hotel.id}) }}" class="btn btn-danger">Delete</a>
                     </td>
