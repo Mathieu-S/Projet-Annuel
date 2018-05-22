@@ -57,6 +57,14 @@ class HotelController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $file = $hotel->getImage()->getUri();
+
+            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+            $file->move(
+                $this->getParameter('images_directory'),
+                $fileName
+            );
+            $hotel->getImage()->setUri($fileName);
             $em->flush();
             return $this->redirectToRoute('hotelierHome');
         }
