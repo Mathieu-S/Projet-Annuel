@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Image;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
@@ -85,6 +86,12 @@ class Hotel
      * @JoinColumn(name="hotelier_id", referencedColumnName="id")
      */
     private $owner;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Image", mappedBy="hotel", cascade={"persist"})
+     * @ORM\JoinColumn(name="image_id", referencedColumnName="id")
+     */
+    private $image;
 
     public function __construct() {
 
@@ -301,5 +308,27 @@ class Hotel
     public function setOwner($owner): void
     {
         $this->owner = $owner;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    public function getImage() {
+        return $this->image;
+    }
+
+    /**
+     * Transform to string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->getId();
     }
 }

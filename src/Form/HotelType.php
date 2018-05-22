@@ -10,6 +10,7 @@ use App\Repository\RegionRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -68,6 +69,9 @@ class HotelType extends AbstractType
                     return $pcr->findPostalCodesFromAquitaine();
                 },
                 'choice_label' => 'code'
+            ])
+            ->add('image', ImageType::class, [
+                'label' => 'Image'
             ])
             ->addEventListener(
             FormEvents::PRE_SUBMIT,
