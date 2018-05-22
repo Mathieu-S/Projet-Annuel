@@ -43,9 +43,17 @@ class HotelController extends Controller
         $form = $this->createForm(HotelType::class, $hotel);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
             $hotel->setCreatedAt(new \DateTime());
             $hotel->setOwner($this->getUser());
+            $em = $this->getDoctrine()->getManager();
+            $file = $hotel->getImage()->getUri();
+
+            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+            $file->move(
+                $this->getParameter('images_directory'),
+                $fileName
+            );
+            $hotel->getImage()->setUri($fileName);
             $em->persist($hotel);
             $em->flush();
             return $this->redirectToRoute('adminHotels');
@@ -65,6 +73,15 @@ class HotelController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $file = $hotel->getImage();
+
+            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+
+            $file->move(
+                $this->getParameter('images_directory'),
+                $fileName
+            );
+            $hotel->setImage($fileName);
             $em->flush();
             return $this->redirectToRoute('adminHotels');
         }
