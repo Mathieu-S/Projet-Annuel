@@ -59,7 +59,7 @@ class HotelController extends Controller
             return $this->redirectToRoute('adminHotels');
 
         }
-        return $this->render('backoffice/admin/hotels/form.html.twig', [
+        return $this->render('backoffice/common/hotels/form.html.twig', [
            'hotelForm' => $form->createView(),
         ]);
     }
@@ -85,7 +85,7 @@ class HotelController extends Controller
             $em->flush();
             return $this->redirectToRoute('adminHotels');
         }
-        return $this->render('backoffice/admin/hotels/form.html.twig', [
+        return $this->render('backoffice/common/hotels/form.html.twig', [
             'hotelForm' => $form->createView()
         ]);
     }
