@@ -17,6 +17,18 @@
 
 <script lang="ts">
     import axios from 'axios';
+    import Fuse from 'fuse.js';
+
+    const filterOptions = {
+        threshold: 0.3,
+        location: 0,
+        distance: 20,
+        maxPatternLength: 32,
+        minMatchCharLength: 1,
+        keys: [
+            "options.name"
+        ]
+    };
 
     export default {
         name: "bedRoom-list",
