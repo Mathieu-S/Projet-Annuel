@@ -1,6 +1,6 @@
 <template>
     <article class="bedRoom">
-        <b-card v-for="bedRoom in bedRooms" :key="bedRoom.id">
+        <b-card v-for="bedRoom in filteredBedRoom" :key="bedRoom.id">
             <b-media no-body>
                 <b-media-aside vertical-align="center">
                     <b-img blank blank-color="#ccc" width="200" height="180" alt="placeholder" />
@@ -35,6 +35,7 @@
         data() {
             return {
                 bedRooms: [],
+                filters: this.$store.getters.getOptionBedRoom
             }
         },
         mounted: function () {
@@ -44,9 +45,22 @@
                 })
         },
         computed: {
-            optionBedRoom: function () {
-                return this.$store.getters.getOptionBedRoom
-            }
+            filteredBedRoom: function () {
+                let bedRooms = this.bedRooms;
+                let filters = this.$store.getters.getOptionBedRoom;
+                filters.forEach(function(filter){
+                    let bedRoomsTmp = bedRooms;
+                    bedRooms = [];
+                    bedRoomsTmp.forEach(function(bedRoomTmp) {
+                        bedRoomTmp.options.forEach(function(option) {
+                            if (filter == option.name) {
+                                bedRooms.push(bedRoomTmp);
+                            }
+                        });
+                    });
+                });
+                return bedRooms;
+            },
         }
     }
 </script>
