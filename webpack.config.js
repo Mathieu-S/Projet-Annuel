@@ -8,6 +8,7 @@ Encore
 
     // Entries
     .addEntry('app', './resources/assets/ts/main.ts')
+    .addEntry('backoffice-js', './resources/assets/js/backoffice.js')
     .addStyleEntry('global', './resources/assets/scss/global.scss')
     .addStyleEntry('backoffice', './resources/assets/scss/backoffice.scss')
 
