@@ -22,12 +22,20 @@
 </template>
 
 <script lang="ts">
+    import axios from 'axios';
+
     export default {
         name: "app",
         data() {
             return {
                 optionBedRoom: []
             }
+        },
+        mounted: function () {
+            axios.get('/' + document.documentElement.lang + '/api/bedRoomOptions')
+                .then(response => {
+                    this.optionsBedRoom = response.data
+                })
         },
         watch: {
             optionBedRoom: function (val) {
