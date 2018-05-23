@@ -28,7 +28,8 @@
         name: "app",
         data() {
             return {
-                optionBedRoom: []
+                optionsBedRoom: [],
+                selectedOptions: []
             }
         },
         mounted: function () {
@@ -38,8 +39,8 @@
                 })
         },
         watch: {
-            optionBedRoom: function (val) {
-                this.$store.commit('setOptionBedRoom', this.optionBedRoom)
+            selectedOptions: function (val) {
+                this.$store.commit('setOptionBedRoom', this.selectedOptions)
             }
         }
     }
