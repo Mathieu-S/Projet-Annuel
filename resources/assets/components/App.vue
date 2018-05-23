@@ -6,9 +6,9 @@
 
                 <form>
                     <ul>
-                        <li><input type="checkbox" value="clim" v-model="optionBedRoom">Climatisation</li>
-                        <li><input type="checkbox" value="tv" v-model="optionBedRoom">TV</li>
-                        <li><input type="checkbox" value="wifi" v-model="optionBedRoom">Wifi</li>
+                        <li v-for="optionBedRoom in optionsBedRoom" :key="optionBedRoom.id">
+                            <input type="checkbox" :value="optionBedRoom.name" v-model="selectedOptions">{{optionBedRoom.name}}
+                        </li>
                     </ul>
                 </form>
             </div>
