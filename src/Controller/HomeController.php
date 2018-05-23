@@ -21,6 +21,31 @@ class HomeController extends Controller
     }
 
     /**
+     * @Route("/api/bedRoomOptions", name="apiBedRoomOptions")
+     */
+    public function BedRoomOptionsAction()
+    {
+        $bedRooms = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('App:OptionalEquipment')
+            ->findAll();
+
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setIgnoredAttributes(['bedRooms']);
+        $normalizer->setCircularReferenceHandler(function ($object) {
+            return $object->getId();
+        });
+        $encoder = new JsonEncoder();
+        $serializer = new Serializer([$normalizer], [$encoder]);
+
+        return new Response(
+            $serializer->serialize($bedRooms, 'json'),
+            Response::HTTP_OK,
+            array('content-type' => 'application/json')
+        );
+    }
+
+    /**
      * @Route("/api/bedRooms", name="apiBedRooms")
      */
     public function BedRoomsAction()
