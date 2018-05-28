@@ -9,6 +9,7 @@ use App\Repository\PostalCodeRepository;
 use App\Repository\RegionRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -70,8 +71,10 @@ class HotelType extends AbstractType
                 },
                 'choice_label' => 'code'
             ])
-            ->add('image', ImageType::class, [
-                'label' => 'Image'
+            ->add('images', CollectionType::class, [
+                'entry_type' => ImageType::class,
+                'allow_add' => true,
+                'by_reference' => false,
             ])
             ->addEventListener(
             FormEvents::PRE_SUBMIT,

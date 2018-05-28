@@ -87,16 +87,21 @@ class Hotel
      */
     private $owner;
 
+//    /**
+//     * @ORM\OneToOne(targetEntity="Image", mappedBy="hotel", cascade={"persist"})
+//     * @ORM\JoinColumn(name="image_id", referencedColumnName="id")
+//     */
+//    private $image;
     /**
-     * @ORM\OneToOne(targetEntity="Image", mappedBy="hotel", cascade={"persist"})
-     * @ORM\JoinColumn(name="image_id", referencedColumnName="id")
+     * @ORM\ManyToMany(targetEntity="Image", cascade={"persist"})
      */
-    private $image;
+    private $images;
 
     public function __construct() {
 
         $this->bedRooms = new ArrayCollection();
         $this->users = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     /**
@@ -311,15 +316,15 @@ class Hotel
     }
 
     /**
-     * @param mixed $image
+     * @param mixed $images
      */
-    public function setImage($image)
+    public function setImages($images)
     {
-        $this->image = $image;
+        $this->images = $images;
     }
 
-    public function getImage() {
-        return $this->image;
+    public function getImages() {
+        return $this->images;
     }
 
     /**

@@ -26,20 +26,13 @@ class Image
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
-     */
-    private $name;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="uri", type="string", length=255)
      */
     private $uri;
 
     /**
-     * One Image concerns one hotel.
-     * @ORM\OneToOne(targetEntity="Hotel", inversedBy="image", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Hotel", inversedBy="images")
+     * @ORM\JoinColumn(name="hotel_id", referencedColumnName="id")
      */
     private $hotel;
 
@@ -51,30 +44,6 @@ class Image
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return Image
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
     }
 
     /**

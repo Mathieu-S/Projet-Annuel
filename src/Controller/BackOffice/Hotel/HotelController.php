@@ -47,14 +47,32 @@ class HotelController extends Controller
             $hotel->setCreatedAt(new \DateTime());
             $hotel->setOwner($this->getUser());
             $em = $this->getDoctrine()->getManager();
-            $file = $hotel->getImage()->getUri();
+//            $file = $hotel->getImage()->getUri();
+//
+//            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+//            $file->move(
+//                $this->getParameter('images_directory'),
+//                $fileName
+//            );
+//            $hotel->getImage()->setUri($fileName);
 
-            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
-            $file->move(
-                $this->getParameter('images_directory'),
-                $fileName
-            );
-            $hotel->getImage()->setUri($fileName);
+            $attachments = $hotel->getImages();
+
+            if ($attachments) {
+                foreach ($attachments as $attachment) {
+                    $file = $attachment->getFile();
+
+                    var_dump($attachment);
+                    $filename = md5(uniqid()) . '.' . $file->guessExtension();
+
+                    $file->move(
+                        $this->getParameter('images_directory'), $filename
+                    );
+                    var_dump($filename);
+                    $attachment->setImage($filename);
+                }
+            }
+
             $em->persist($hotel);
             $em->flush();
             return $this->redirectToRoute('indexHotels');

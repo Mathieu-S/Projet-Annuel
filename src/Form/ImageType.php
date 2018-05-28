@@ -18,10 +18,10 @@ class ImageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class, ['label' => 'Nom'])
             ->add('uri', FileType::class,
                 [
-                    'label' => 'Image',
+                    'label' => 'Images',
+                    'multiple' => true,
                     'data_class' => null,
                 ])
         ;
@@ -42,7 +42,7 @@ class ImageType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'media';
+        return 'image';
     }
 
 
