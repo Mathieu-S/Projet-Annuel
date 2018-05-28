@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/hotelier")
- * @Security("is_granted('ROLE_HOTEL')")
+ * @Security("is_granted(['ROLE_HOTEL', 'ROLE_ADMIN'])")
  */
 class HomeController extends Controller
 {
@@ -23,7 +23,7 @@ class HomeController extends Controller
             ->getRepository('App:Hotel')
             ->getOwnerHotels($this->getUser());
 
-        return $this->render('backoffice/hotelier/index.html.twig', [
+        return $this->render('backoffice/common/hotels/index.html.twig', [
             'hotels' => $hotels
         ]);
     }

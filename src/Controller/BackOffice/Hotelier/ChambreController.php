@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/hotelier/chambres")
- * @Security("is_granted('ROLE_HOTEL')")
+ * @Security("is_granted(['ROLE_HOTEL', 'ROLE_ADMIN'])")
  */
 class ChambreController extends Controller
 {
