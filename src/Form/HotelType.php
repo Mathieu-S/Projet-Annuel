@@ -75,6 +75,7 @@ class HotelType extends AbstractType
                 'entry_type' => ImageType::class,
                 'allow_add' => true,
                 'by_reference' => false,
+                'prototype' => true,
             ])
             ->addEventListener(
             FormEvents::PRE_SUBMIT,
