@@ -72,6 +72,7 @@ class HotelType extends AbstractType
                 'choice_label' => 'code'
             ])
             ->add('images', CollectionType::class, [
+                'label' => false,
                 'entry_type' => ImageType::class,
                 'allow_add' => true,
                 'by_reference' => false,
