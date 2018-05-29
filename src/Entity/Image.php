@@ -37,6 +37,12 @@ class Image
     private $hotel;
 
     /**
+     * @ORM\ManyToOne(targetEntity="BedRoom", inversedBy="images")
+     * @ORM\JoinColumn(name="bedroom_id", referencedColumnName="id")
+     */
+    private $bedRoom;
+
+    /**
      * Get id
      *
      * @return int
@@ -84,6 +90,23 @@ class Image
     public function setHotel($hotel)
     {
         $this->hotel = $hotel;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getBedRoom()
+    {
+        return $this->bedRoom;
+    }
+
+    /**
+     * @param mixed $bedRoom
+     */
+    public function setBedRoom($bedRoom)
+    {
+        $this->bedRoom = $bedRoom;
     }
 
     /**

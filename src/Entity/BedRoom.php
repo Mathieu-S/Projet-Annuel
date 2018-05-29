@@ -43,9 +43,15 @@ class BedRoom
      */
     private $options;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Image", mappedBy="bedRoom", cascade={"persist"})
+     */
+    private $images;
+
     public function __construct() {
 
         $this->options = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     /**
@@ -146,4 +152,17 @@ class BedRoom
         $this->options = $options;
         return $this;
     }
+
+    /**
+     * @param mixed $images
+     */
+    public function setImages($images)
+    {
+        $this->images = $images;
+    }
+
+    public function getImages() {
+        return $this->images;
+    }
+
 }
