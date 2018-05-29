@@ -87,13 +87,8 @@ class Hotel
      */
     private $owner;
 
-//    /**
-//     * @ORM\OneToOne(targetEntity="Image", mappedBy="hotel", cascade={"persist"})
-//     * @ORM\JoinColumn(name="image_id", referencedColumnName="id")
-//     */
-//    private $image;
     /**
-     * @ORM\ManyToMany(targetEntity="Image", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Image", mappedBy="hotel", cascade={"persist"})
      */
     private $images;
 
