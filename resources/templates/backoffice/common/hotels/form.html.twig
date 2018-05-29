@@ -15,22 +15,17 @@
         {{ form_widget(hotelForm.email) }}
         {{ form_label(hotelForm.description) }}
         {{ form_widget(hotelForm.description) }}
-        {#{{ form_label(hotelForm.images) }}#}
-        {#{{ form_widget(hotelForm.images) }}#}
-        <ul id="images-field-list"
-            data-prototype="{{ form_widget(hotelForm.images.vars.prototype)|e }}"
-            data-widget-tags="{{ '<li></li>'|e }}">
-            {% for emailField in hotelForm.images %}
-                <li>
-                    {{ form_errors(emailField) }}
-                    {{ form_widget(emailField) }}
-                </li>
-            {% endfor %}
-        </ul>
 
-        <a href="#"
-           class="add-another-collection-widget"
-           data-list="#email-fields-list">Add another email</a>
+        <div class="row hotel-images-wrapper"
+             data-prototype="{{ form_widget(hotelForm.images.vars.prototype)|e('html_attr') }}"
+             data-index="{{ hotelForm.images|length }}">
+            {% for image in hotelForm.images %}
+            {% endfor %}
+            <a href="#" class="js-hotel-image-add">
+                Ajouter une autre image
+            </a>
+        </div>
+
         <div id="regionDiv">
             {{ form_label(hotelForm.region) }}
             {{ form_widget(hotelForm.region, {attr: {'data-autocomplete-url': '/fr/autocomplete/department'}}) }}
