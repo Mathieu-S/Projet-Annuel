@@ -11,6 +11,7 @@
                     <th scope="col">Description</th>
                     <th scope="col">Options</th>
                     <th scope="col">Prix</th>
+                    <th scope="col">Images</th>
                     <th scope="col">Disponibilité</th>
                     <th scope="col">Actions</th>
                 </tr>
@@ -28,6 +29,15 @@
                             </ul>
                         </td>
                         <td>{{ chambre.price }}€</td>
+                        <td>
+                            {% if chambre.images %}
+                                {% for image in chambre.images %}
+                                    <img src="{{ asset('/uploads/images/'~image.uri) }}" style="width:150px;height:150px;">
+                                {% endfor %}
+                            {% else %}
+                                Pas d'image associée
+                            {% endif %}
+                        </td>
                         {% if chambre.availability %}
                             <td>Oui</td>
                         {% else %}
