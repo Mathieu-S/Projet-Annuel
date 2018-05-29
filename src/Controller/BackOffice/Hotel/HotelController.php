@@ -39,7 +39,6 @@ class HotelController extends Controller
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function createHotelAction(Request $request) {
-
         $hotel = new Hotel();
         $form = $this->createForm(HotelType::class, $hotel);
         $form->handleRequest($request);
@@ -61,13 +60,17 @@ class HotelController extends Controller
                     );
 
                     $attachment->setUri($filename);
-                    $attachment->setHotel($hotel->getId());
+                    $attachment->setHotel($hotel);
                 }
             }
 
             $em->persist($hotel);
             $em->flush();
-            return $this->redirectToRoute('indexHotels');
+            if ($this->getUser()->getRoles()[0] === "ROLE_ADMIN") {
+                return $this->redirectToRoute('indexHotels');
+            } elseif ($this->getUser()->getRoles()[0] === "ROLE_HOTEL") {
+                return $this->redirectToRoute('hotelierHome');
+            }
 
         }
         return $this->render('backoffice/common/hotels/form.html.twig', [
@@ -102,7 +105,11 @@ class HotelController extends Controller
                 }
             }
             $em->flush();
-            return $this->redirectToRoute('indexHotels');
+            if ($this->getUser()->getRoles()[0] === "ROLE_ADMIN") {
+                return $this->redirectToRoute('indexHotels');
+            } elseif ($this->getUser()->getRoles()[0] === "ROLE_HOTEL") {
+                return $this->redirectToRoute('hotelierHome');
+            }
         }
         return $this->render('backoffice/common/hotels/form.html.twig', [
             'hotelForm' => $form->createView()
