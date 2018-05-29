@@ -8,11 +8,12 @@ $(document).ready(function () {
     var postalCode = $("#hotel_postalCode");
     var postalCodeDiv = $("#postalCodeDiv");
 
-    region.prepend($('<option>', {value: ""}).text("Région")).val("");
-    department.prepend($('<option>', {value: ""}).text("Département")).val("");
-    city.prepend($('<option>', {value: ""}).text("Ville")).val("");
-
-    handleSelectDisplay();
+    if ($("input[name='hotel[name]']").val() === "") {
+        region.prepend($('<option>', {value: ""}).text("Région")).val("");
+        department.prepend($('<option>', {value: ""}).text("Département")).val("");
+        city.prepend($('<option>', {value: ""}).text("Ville")).val("");
+        handleSelectDisplay();
+    }
 
     region.change(function() {
 
@@ -56,5 +57,26 @@ $(document).ready(function () {
             });
         });
     }
+
+    function addImage(container, imgButton) {
+        container.on('click', imgButton, function(e) {
+           e.preventDefault();
+
+            var prototype = container.data('prototype');
+            var index = container.data('index');
+            var newForm = prototype.replace(/__name__/g, index);
+            container.data('index', index + 1);
+            $(this).before(newForm);
+
+        });
+    }
+
+    var hotelWrapper = $('.hotel-images-wrapper');
+    var bedRoomWrapper = $('.bedroom-images-wrapper');
+    var hotelBtn = $('.js-hotel-image-add');
+    var bedRoomBtn = $('.js-bedroom-image-add');
+
+    addImage(hotelWrapper, hotelBtn);
+    addImage(bedRoomWrapper, bedRoomBtn);
 
 });
