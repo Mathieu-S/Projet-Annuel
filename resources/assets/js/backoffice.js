@@ -58,14 +58,25 @@ $(document).ready(function () {
         });
     }
 
-    var $wrapper = $('.hotel-images-wrapper');
-    $wrapper.on('click', '.js-hotel-image-add', function(e) {
-        e.preventDefault();
+    function addImage(container, imgButton) {
+        container.on('click', imgButton, function(e) {
+           e.preventDefault();
 
-        var prototype = $wrapper.data('prototype');
-        var index = $wrapper.data('index');
-        var newForm = prototype.replace(/__name__/g, index);
-        $wrapper.data('index', index + 1);
-        $(this).before(newForm);
-    });
+            var prototype = container.data('prototype');
+            var index = container.data('index');
+            var newForm = prototype.replace(/__name__/g, index);
+            container.data('index', index + 1);
+            $(this).before(newForm);
+
+        });
+    }
+
+    var hotelWrapper = $('.hotel-images-wrapper');
+    var bedRoomWrapper = $('.bedroom-images-wrapper');
+    var hotelBtn = $('.js-hotel-image-add');
+    var bedRoomBtn = $('.js-bedroom-image-add');
+
+    addImage(hotelWrapper, hotelBtn);
+    addImage(bedRoomWrapper, bedRoomBtn);
+
 });
