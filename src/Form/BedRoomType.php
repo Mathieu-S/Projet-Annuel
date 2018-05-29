@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\BedRoom;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -27,6 +28,13 @@ class BedRoomType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => true,
                 'expanded' => true
+            ])
+            ->add('images', CollectionType::class, [
+                'label' => false,
+                'entry_type' => ImageType::class,
+                'allow_add' => true,
+                'by_reference' => false,
+                'prototype' => true,
             ])
         ;
     }
