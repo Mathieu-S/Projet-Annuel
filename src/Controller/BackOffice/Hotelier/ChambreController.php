@@ -62,6 +62,22 @@ class ChambreController extends Controller
             $bedRoom->setAvailability(true);
             $bedRoom->setHotel($hotel);
             $em = $this->getDoctrine()->getManager();
+            $attachments = $bedRoom->getImages();
+
+            if ($attachments) {
+                foreach ($attachments as $attachment) {
+                    $file = $attachment->getUri();
+
+                    $filename = md5(uniqid()) . '.' . $file[0]->guessExtension();
+
+                    $file[0]->move(
+                        $this->getParameter('images_directory'), $filename
+                    );
+
+                    $attachment->setUri($filename);
+                    $attachment->setBedRoom($bedRoom);
+                }
+            }
             $em->persist($bedRoom);
             $em->flush();
             return $this->redirectToRoute('hotelierChambresHotel', ['id' => $hotel->getId()]);
@@ -81,6 +97,22 @@ class ChambreController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $attachments = $bedRoom->getImages();
+
+            if ($attachments) {
+                foreach ($attachments as $attachment) {
+                    $file = $attachment->getUri();
+
+                    $filename = md5(uniqid()) . '.' . $file[0]->guessExtension();
+
+                    $file[0]->move(
+                        $this->getParameter('images_directory'), $filename
+                    );
+
+                    $attachment->setUri($filename);
+                    $attachment->setBedRoom($bedRoom);
+                }
+            }
             $em->flush();
             return $this->redirectToRoute('hotelierChambresHotel', ['id' => $bedRoom->getHotel()->getId()]);
         }
