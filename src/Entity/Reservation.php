@@ -30,6 +30,12 @@ class Reservation
     private $bedRoom;
 
     /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="reservations")
+     * @JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $user;
+
+    /**
      * @return mixed
      */
     public function getStartDate()
@@ -75,6 +81,22 @@ class Reservation
     public function setBedRoom($bedRoom): void
     {
         $this->bedRoom = $bedRoom;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user): void
+    {
+        $this->user = $user;
     }
 
 }
