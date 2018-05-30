@@ -6,6 +6,7 @@ use App\Entity\BedRoom;
 use App\Entity\Reservation;
 use App\Form\ReservationType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -13,6 +14,7 @@ class ReservationController extends Controller
 {
     /**
      * @Route("/reservation/{id}", name="create_reservation")
+     * @Security("is_granted(['ROLE_HOTEL', 'ROLE_ADMIN', 'ROLE_USER'])")
      */
     public function CreateAction(Request $request)
     {
