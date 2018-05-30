@@ -17,7 +17,7 @@
 
 <script lang="ts">
     import axios from 'axios';
-    import Fuse from 'fuse.js';
+    import * as Fuse from 'fuse.js';
 
     const filterOptions = {
         threshold: 0.3,
@@ -26,7 +26,8 @@
         maxPatternLength: 32,
         minMatchCharLength: 1,
         keys: [
-            "options.name"
+            "hotel.name",
+            "hotel.city.name"
         ]
     };
 
@@ -48,6 +49,15 @@
             filteredBedRoom: function () {
                 let bedRooms = this.bedRooms;
                 let filters = this.$store.getters.getOptionBedRoom;
+
+                // filtre name & city
+                let inputFilter = this.$store.getters.getSearchData;
+                if (inputFilter !== '') {
+                    let fuse = new Fuse(bedRooms, filterOptions);
+                    bedRooms = fuse.search(inputFilter);
+                }
+
+                // filtre options
                 filters.forEach(function(filter){
                     let bedRoomsTmp = bedRooms;
                     bedRooms = [];
