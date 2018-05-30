@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -57,11 +58,17 @@ class User implements UserInterface
     protected $hotels;
 
     /**
+     * @ORM\OneToMany(targetEntity="Reservation", mappedBy="bedRoom", cascade={"persist"})
+     */
+    protected $reservations;
+
+    /**
      * Constructor
      */
     public function __construct() {
 
         $this->hotels = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->reservations = new ArrayCollection();
     }
 
     /**
@@ -220,4 +227,21 @@ class User implements UserInterface
     {
         return false;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getReservations()
+    {
+        return $this->reservations;
+    }
+
+    /**
+     * @param mixed $reservations
+     */
+    public function setReservations($reservations): void
+    {
+        $this->reservations = $reservations;
+    }
+
 }
