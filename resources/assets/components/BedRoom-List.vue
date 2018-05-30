@@ -3,7 +3,8 @@
         <b-card v-for="bedRoom in filteredBedRoom" :key="bedRoom.id">
             <b-media no-body>
                 <b-media-aside vertical-align="center">
-                    <b-img blank blank-color="#ccc" width="200" height="180" alt="placeholder" />
+                    <!--<b-img src="" width="200" height="180" alt="placeholder" />-->
+                    <img :src="'/uploads/images/' + bedRoom.images[0].uri" class="img-fluid" alt="Responsive image">
                 </b-media-aside>
 
                 <b-media-body class="ml-3">
