@@ -38,7 +38,7 @@
         },
         computed: {
             reservationLink: function () {
-                return '/' + this.localLang + '/admin/';
+                return '/' + this.localLang + '/reservation/';
             }
         }
     }
