@@ -18,6 +18,9 @@
                                     <h3>{{ 'home.filters'|trans|raw }}</h3>
                                 </div>
                                 <div class="form-group col-sm-12 row">
+                                    <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Tapez une ville">
+                                </div>
+                                <div class="form-group col-sm-12 row">
                                     Du :
                                     <input class="form-control form-control-sm" name="datePublication" type="date" value="" id="example-date-input">
                                 </div>
@@ -33,6 +36,7 @@
 
                                 <div class="form-group col-sm-12 row filters">
                                     Catégorie de l'hôtel :
+                                    <b> 1 2 3 4 5</b>
                                 </div>
 
                                 <div class="form-group col-sm-12 row filters">
@@ -83,21 +87,70 @@
                         </div>
                         <div id ="listAnnonces" class="row">
 
-                            <div class="col-sm-12">
+                            <div class="col-sm-12" style="margin-bottom:15px;">
                                 <div class="card">
                                     <div class="card-body row">
                                         <div class="col-sm-4" style="background-color: silver;">
-                                            <img class="card-img-top" src="..." alt="Card image cap">
+                                            <img class="card-img-top" src="assets\img\hotel-1.jpg" alt="Card image cap">
                                         </div>
                                         <div class="col-sm-6">
-                                            <h5 class="card-title">Nom offre</h5>
+                                            <h5 class="card-title">Hôtel du Lac</h5>
                                             <p class="card-text">Description</p>
                                             <div>
                                                 <a>Voir sur la carte</a>
                                             </div>
                                         </div>
                                         <div class="col-sm-2">
-                                            <img class="card-img-top" src="..." alt="icon note ">
+                                            <!--<img class="card-img-top" src="..." alt="icon note "> -->
+                                            <b>8/10</b>
+                                            <p>(très bien)</p>
+                                            <p>104 avis</p>
+                                            <a href="#" class="btn btn-primary">Voir offre</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12" style="margin-bottom:15px;">
+                                <div class="card">
+                                    <div class="card-body row">
+                                        <div class="col-sm-4" style="background-color: silver;">
+                                            <img class="card-img-top" src="assets\img\hotel-1.jpg" alt="Card image cap">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <h5 class="card-title">Hôtel Sud</h5>
+                                            <p class="card-text">Description</p>
+                                            <div>
+                                                <a>Voir sur la carte</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <!--<img class="card-img-top" src="..." alt="icon note ">-->
+                                           <b> 7/10</b>
+                                            <p>(bien)</p>
+                                            <p>40 avis</p>
+                                            <a href="#" class="btn btn-primary">Voir offre</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12" style="margin-bottom:15px;">
+                                <div class="card">
+                                    <div class="card-body row">
+                                        <div class="col-sm-4" style="background-color: silver;">
+                                            <img class="card-img-top" src="assets\img\hotel-1.jpg" alt="Card image cap">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <h5 class="card-title">Hôtel Campione</h5>
+                                            <p class="card-text">Description</p>
+                                            <div>
+                                                <a>Voir sur la carte</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <!--<img class="card-img-top" src="..." alt="icon note ">-->
+                                            <b>9/10</b>
                                             <p>(très bien)</p>
                                             <p>240 avis</p>
                                             <a href="#" class="btn btn-primary">Voir offre</a>
@@ -112,6 +165,6 @@
             </div>
             <!-- FIN Liste annonces-->
         </div>
-    </section>
 
+    </section>
 {% endblock %}
