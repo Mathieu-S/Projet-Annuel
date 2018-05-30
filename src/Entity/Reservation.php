@@ -78,9 +78,10 @@ class Reservation
     /**
      * @param mixed $bedRoom
      */
-    public function setBedRoom($bedRoom): void
+    public function setBedRoom($bedRoom)
     {
         $this->bedRoom = $bedRoom;
+        return $this;
     }
 
     /**
@@ -94,9 +95,10 @@ class Reservation
     /**
      * @param mixed $user
      */
-    public function setUser($user): void
+    public function setUser($user)
     {
         $this->user = $user;
+        return $this;
     }
 
 }
