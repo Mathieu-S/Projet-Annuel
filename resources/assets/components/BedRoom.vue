@@ -15,6 +15,7 @@
                 <li v-for="option in bedRoom.options" :key="option.id">{{ option.name }}</li>
             </ul>
         </div>
+        <a :href="reservationLink + bedRoom.id" class="btn btn-primary">Réserver</a>
     </article>
 </template>
 
@@ -25,6 +26,7 @@
         name: "bedRoom",
         data() {
             return {
+                localLang: document.documentElement.lang,
                 bedRoom: null
             }
         },
@@ -33,6 +35,11 @@
                 .then(response => {
                     this.bedRoom = response.data
                 })
+        },
+        computed: {
+            reservationLink: function () {
+                return '/' + this.localLang + '/admin/';
+            }
         }
     }
 </script>
