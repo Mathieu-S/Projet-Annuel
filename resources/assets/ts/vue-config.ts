@@ -43,16 +43,23 @@ const router = new VueRouter({
 
 const store = new Vuex.Store({
     state: {
-        optionBedRoom: []
+        optionBedRoom: [],
+        searchData: ''
     },
     getters: {
         getOptionBedRoom: state => {
             return state.optionBedRoom
+        },
+        getSearchData: state => {
+            return state.searchData
         }
     },
     mutations: {
         setOptionBedRoom (state, n) {
             state.optionBedRoom = n
+        },
+        setSearchData (state, n) {
+            state.searchData = n
         }
     }
 });
