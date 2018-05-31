@@ -1,0 +1,46 @@
+{% extends 'backoffice/base_backoffice.html.twig' %}
+
+{% block body %}
+    <section class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        <h1>BackOffice - Hotels</h1>
+        <a href="{{ path('createHotel') }}" class="btn btn-primary">Ajouter un hotel</a>
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nom de l'hôtel</th>
+                <th scope="col">Email</th>
+                <th scope="col">Localisation</th>
+                <th scope="col">Images</th>
+                <th scope="col">Date de publication</th>
+                <th scope="col">Ajouté par</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for hotel in hotels %}
+                <tr>
+                    <td><b><a href="{{ path('editHotel', {id: hotel.id}) }}">{{ hotel.name }}</a></b></td>
+                    <td>{{ hotel.email }}</td>
+                    <td>{{ hotel.address ~ ' ' ~ hotel.postalCode.code ~ ' ' ~ hotel.city.name }}</td>
+                    <td>
+                        {% if hotel.images %}
+                            {% for image in hotel.images %}
+                            <img src="{{ asset('/uploads/images/'~image.uri) }}" style="width:150px;height:150px;">
+                            {% endfor %}
+                        {% else %}
+                            Pas d'image associée
+                        {% endif %}
+                    </td>
+                    <td>{{ hotel.createdAt|date('d-m-Y H:i:s') }}</td>
+                    <td>{{ hotel.owner.lastname }} {{ hotel.owner.firstname }}</td>
+                    <td>
+                        <a href="{{ path('hotelierChambresHotel', {id: hotel.id}) }}" class="btn btn-primary">Accéder aux chambres</a>
+                        <a href="{{ path('editHotel', {id: hotel.id}) }}" class="btn btn-warning">Edit</a>
+                        <a href="{{ path('deleteHotel', {id: hotel.id}) }}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
+{% endblock %}
