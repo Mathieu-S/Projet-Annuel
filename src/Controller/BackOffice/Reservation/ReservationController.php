@@ -2,6 +2,7 @@
 
 namespace App\Controller\BackOffice\Reservation;
 
+use App\Entity\Hotel;
 use App\Entity\Reservation;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -26,6 +27,23 @@ class ReservationController extends Controller
             ->getManager()
             ->getRepository('App:Reservation')
             ->findAll();
+
+        return $this->render('backoffice/common/reservations/index.html.twig', [
+            'reservations' => $reservations
+        ]);
+    }
+
+    /**
+     * @Route("/hotel/{id}", name="indexReservationsHotel", requirements={"page": "[1-9]\d*"})
+     */
+    public function HotelReservationsAction(Request $request)
+    {
+        $hotelierId = $request->attributes->get('id');
+        $reservations = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('App:Reservation')
+            ->getOwnerReservations($hotelierId);
 
         return $this->render('backoffice/common/reservations/index.html.twig', [
             'reservations' => $reservations

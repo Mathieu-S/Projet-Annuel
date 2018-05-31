@@ -13,4 +13,15 @@ class ReservationRepository extends ServiceEntityRepository
         parent::__construct($registry, Reservation::class);
     }
 
+    public function getOwnerReservations($idOwner)
+    {
+        return $this->createQueryBuilder('r')
+            ->join('r.bedRoom', 'bedroom')
+            ->join('bedroom.hotel', 'hotel')
+            ->where('hotel.owner = :value')->setParameter('value', $idOwner)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 }
