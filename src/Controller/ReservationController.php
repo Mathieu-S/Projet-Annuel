@@ -35,6 +35,8 @@ class ReservationController extends Controller
             $reservation->setBedRoom($bedRoom)
                         ->setUser($this->getUser());
             $bedRoom->setAvailability(false);
+            $dateNow = new \DateTime('now');
+            $reservation->setAskedDate($dateNow);
 
             $em->persist($reservation);
             $em->flush();
@@ -49,6 +51,4 @@ class ReservationController extends Controller
             'reservationForm' => $reservationForm->createView()
         ]);
     }
-
-
 }

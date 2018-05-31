@@ -14,6 +14,11 @@ class Reservation
     use IdTrait;
 
     /**
+     * @ORM\Column(name="asked_date", type="date")
+     */
+    private $askedDate;
+
+    /**
      * @ORM\Column(name="start_date", type="date")
      */
     private $startDate;
@@ -34,6 +39,22 @@ class Reservation
      * @JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $user;
+
+    /**
+     * @return mixed
+     */
+    public function getAskedDate()
+    {
+        return $this->askedDate;
+    }
+
+    /**
+     * @param mixed $askedDate
+     */
+    public function setAskedDate($askedDate): void
+    {
+        $this->askedDate = $askedDate;
+    }
 
     /**
      * @return mixed
