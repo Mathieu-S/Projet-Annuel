@@ -9,6 +9,7 @@
 
                 <table align="center" class="table table-fixed table-striped table-condensed">
                     <tr style="background-color:#e9e8e6;">
+                        <th style="text-align: center;">Date de demande</th>
                         <th style="text-align: center;">Date d'arrivée</th>
                         <th style="text-align: center;">Date de départ</th>
                         <th style="text-align: center;">Détails de la chambre</th>
@@ -17,10 +18,13 @@
                     {% for reservation in reservations %}
                         <tr>
                             <td align="center">
-                                {{ reservation.startDate|date }}
+                                {{ reservation.askedDate|date('d-m-Y') }}
                             </td>
                             <td align="center">
-                                {{ reservation.finalDate|date }}
+                                {{ reservation.startDate|date('d-m-Y') }}
+                            </td>
+                            <td align="center">
+                                {{ reservation.finalDate|date('d-m-Y') }}
                             </td>
                             <td align="center">
                                 {{ reservation.bedroom.description ~ ' pour un prix de ' ~ reservation.bedroom.price ~ '€' }}
