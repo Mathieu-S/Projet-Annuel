@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @Route("/account")
@@ -47,7 +48,29 @@ class AccountController extends Controller
         return $this->render('account/reservation.html.twig', [
             'reservations' => $reservations
         ]);
+    }
 
+    /**
+     * @Route("/user/edit/{id}", name="editUserData", requirements={"page": "[1-9]\d*"})
+     */
+    public function EditUserDataAction(Request $request, User $user, UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $form = $this->createForm('App\Form\UserType', $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $password = $passwordEncoder->encodePassword($user, $user->getPassword());
+            $user->setPassword($password);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+
+            return $this->redirectToRoute('personalDataAccount', ['id' => $user->getId()]);
+        }
+
+        return $this->render('account/user-form.html.twig', [
+            'userForm' => $form->createView()
+        ]);
     }
 
 }
