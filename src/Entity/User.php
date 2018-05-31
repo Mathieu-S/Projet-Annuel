@@ -58,7 +58,7 @@ class User implements UserInterface
     protected $hotels;
 
     /**
-     * @ORM\OneToMany(targetEntity="Reservation", mappedBy="bedRoom", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Reservation", mappedBy="user", cascade={"persist"})
      */
     protected $reservations;
 
