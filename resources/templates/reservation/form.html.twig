@@ -4,7 +4,7 @@
 <section class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
     <h1>Créer une réservation pour la chambre {{ bedRoom.id ~ " de l'hôtel " ~ bedRoom.hotel.name }} </h1>
 
-    {% form_theme reservationForm 'bootstrap_3_layout.html.twig' %}
+    {% form_theme reservationForm 'bootstrap_4_layout.html.twig' %}
     {{ form_start(reservationForm) }}
 
     {{ form_label(reservationForm.startDate) }}
