@@ -14,9 +14,9 @@ class Reservation
     use IdTrait;
 
     /**
-     * @ORM\Column(name="asked_date", type="date")
+     * @ORM\Column(name="createdAt", type="datetime")
      */
-    private $askedDate;
+    private $createdAt;
 
     /**
      * @ORM\Column(name="start_date", type="date")
@@ -43,17 +43,17 @@ class Reservation
     /**
      * @return mixed
      */
-    public function getAskedDate()
+    public function getcreatedAt()
     {
-        return $this->askedDate;
+        return $this->createdAt;
     }
 
     /**
-     * @param mixed $askedDate
+     * @param mixed $createdAt
      */
-    public function setAskedDate($askedDate): void
+    public function setcreatedAt($createdAt): void
     {
-        $this->askedDate = $askedDate;
+        $this->createdAt = $createdAt;
     }
 
     /**
