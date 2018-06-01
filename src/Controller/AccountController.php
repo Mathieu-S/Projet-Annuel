@@ -73,4 +73,21 @@ class AccountController extends Controller
         ]);
     }
 
+    /**
+     * @Route("/contact/{id}", name="indexContactsAccount")
+     */
+    public function IndexContactAction(Request $request)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $userId = $request->attributes->get('id');
+        $contactRequests = $em
+            ->getRepository('App:Contact')
+            ->findBy(['user' => $userId]);
+        return $this->render('contact/index.html.twig', [
+            'contactRequests' => $contactRequests
+        ]);
+    }
+
 }

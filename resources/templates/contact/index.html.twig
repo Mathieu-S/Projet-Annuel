@@ -2,7 +2,7 @@
 
 {% block body %}
     <section class="container">
-        <p>Mes demandes de contact</p>
+        <h1>Mes demandes de contact</h1>
         <table width="80%" align="center" class="table-bordered">
             <tr>
                 <td class="text-center">
@@ -13,16 +13,16 @@
                             <th style="text-align: center;">Message</th>
                             <th style="text-align: center;">Date de demande</th>
                         </tr>
-                        {% for contact in contacts %}
+                        {% for contactRequest in contactRequests %}
                             <tr>
                                 <td align="center">
-                                    {{ contact.subject }}
+                                    {{ contactRequest.subject }}
                                 </td>
                                 <td align="center">
-                                    {{ contact.message }}
+                                    {{ contactRequest.message }}
                                 </td>
                                 <td align="center">
-                                    {{ contact.createdAt|date('d-m-Y') }}
+                                    {{ contactRequest.createdAt|date('d-m-Y H:i:s') }}
                                 </td>
                             </tr>
                         {% endfor %}

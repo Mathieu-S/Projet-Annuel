@@ -18,7 +18,7 @@ class ContactController extends Controller
     /**
      * @Route("/create", name="createContact")
      */
-    public function IndexAction(Request $request)
+    public function CreateAction(Request $request)
     {
 
         $em = $this->getDoctrine()->getManager();
