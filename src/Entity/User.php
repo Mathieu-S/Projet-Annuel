@@ -63,7 +63,7 @@ class User implements UserInterface
     protected $reservations;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Contact", mappedBy="contacts", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Contact", mappedBy="user", cascade={"persist"})
      */
     protected $contactRequests;
 

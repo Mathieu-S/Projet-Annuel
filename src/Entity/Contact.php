@@ -26,19 +26,12 @@ class Contact
     private $message;
 
     /**
-     * @ORM\Column(type="string", nullable=false)
-     * @Assert\NotBlank()
-     * @Assert\Email()
-     */
-    private $email;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="contactRequests")
      * @JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
@@ -46,7 +39,7 @@ class Contact
     /**
      * @return string
      */
-    public function getSubject(): string
+    public function getSubject()
     {
         return $this->subject;
     }
@@ -54,7 +47,7 @@ class Contact
     /**
      * @param string $subject
      */
-    public function setSubject(string $subject): void
+    public function setSubject(string $subject)
     {
         $this->subject = $subject;
     }
@@ -70,25 +63,9 @@ class Contact
     /**
      * @param mixed $message
      */
-    public function setMessage($message): void
+    public function setMessage($message)
     {
         $this->message = $message;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * @param mixed $email
-     */
-    public function setEmail($email): void
-    {
-        $this->email = $email;
     }
 
     /**
@@ -102,7 +79,7 @@ class Contact
     /**
      * @param mixed $createdAt
      */
-    public function setCreatedAt($createdAt): void
+    public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
     }
@@ -118,18 +95,9 @@ class Contact
     /**
      * @param mixed $user
      */
-    public function setUser($user): void
+    public function setUser($user)
     {
         $this->user = $user;
     }
 
-    /**
-     * Transform to string
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return (string) $this->getId();
-    }
 }
