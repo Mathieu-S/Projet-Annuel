@@ -2,6 +2,33 @@
 
 {% block body %}
     <section class="container">
-        <p>Top contact page</p>
+        <h1>Mes demandes de contact</h1>
+        <table width="80%" align="center" class="table-bordered">
+            <tr>
+                <td class="text-center">
+
+                    <table align="center" class="table table-fixed table-striped table-condensed">
+                        <tr style="background-color:#e9e8e6;">
+                            <th style="text-align: center;">Sujet</th>
+                            <th style="text-align: center;">Message</th>
+                            <th style="text-align: center;">Date de demande</th>
+                        </tr>
+                        {% for contactRequest in contactRequests %}
+                            <tr>
+                                <td align="center">
+                                    {{ contactRequest.subject }}
+                                </td>
+                                <td align="center">
+                                    {{ contactRequest.message }}
+                                </td>
+                                <td align="center">
+                                    {{ contactRequest.createdAt|date('d-m-Y H:i:s') }}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </td>
+            </tr>
+        </table>
     </section>
 {% endblock %}

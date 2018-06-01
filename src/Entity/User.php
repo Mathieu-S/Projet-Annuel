@@ -63,6 +63,11 @@ class User implements UserInterface
     protected $reservations;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Contact", mappedBy="user", cascade={"persist"})
+     */
+    protected $contactRequests;
+
+    /**
      * Constructor
      */
     public function __construct() {
@@ -242,6 +247,22 @@ class User implements UserInterface
     public function setReservations($reservations): void
     {
         $this->reservations = $reservations;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getContactRequests()
+    {
+        return $this->contactRequests;
+    }
+
+    /**
+     * @param mixed $contactRequests
+     */
+    public function setContactRequests($contactRequests)
+    {
+        $this->contactRequests = $contactRequests;
     }
 
 }
