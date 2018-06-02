@@ -31,7 +31,7 @@ class ContactController extends Controller
 
             $dateNow = new \DateTime('now');
             $contact->setCreatedAt($dateNow);
-            $contact->setUser($this->getUser());
+            $contact->setSender($this->getUser());
 
             $em->persist($contact);
             $em->flush();
