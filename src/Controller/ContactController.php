@@ -25,7 +25,9 @@ class ContactController extends Controller
 
         $contact = new Contact();
 
-        $contactForm = $this->createForm(ContactType::class, $contact);
+        $contactForm = $this->createForm(ContactType::class, $contact, [
+            'current_user_id' => $this->getUser()->getId()
+        ]);
         $contactForm->handleRequest($request);
         if ($contactForm->isSubmitted() && $contactForm->isValid()) {
 
