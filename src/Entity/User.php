@@ -63,17 +63,25 @@ class User implements UserInterface
     protected $reservations;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Contact", mappedBy="user", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Contact", mappedBy="sender", cascade={"persist"})
      */
-    protected $contactRequests;
+    protected $sendedMessages;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Contact", mappedBy="receiver", cascade={"persist"})
+     */
+    protected $receivedMessages;
 
     /**
      * Constructor
      */
-    public function __construct() {
+    public function __construct()
+    {
 
         $this->hotels = new \Doctrine\Common\Collections\ArrayCollection();
         $this->reservations = new ArrayCollection();
+        $this->sendedMessages = new ArrayCollection();
+        $this->receivedMessages = new ArrayCollection();
     }
 
     /**
@@ -252,17 +260,33 @@ class User implements UserInterface
     /**
      * @return mixed
      */
-    public function getContactRequests()
+    public function getSendedMessages()
     {
-        return $this->contactRequests;
+        return $this->sendedMessages;
     }
 
     /**
-     * @param mixed $contactRequests
+     * @param mixed $sendedMessages
      */
-    public function setContactRequests($contactRequests)
+    public function setSendedMessages($sendedMessages)
     {
-        $this->contactRequests = $contactRequests;
+        $this->sendedMessages = $sendedMessages;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getReceivedMessages()
+    {
+        return $this->receivedMessages;
+    }
+
+    /**
+     * @param mixed $sendedMessages
+     */
+    public function setReceivedMessages($receivedMessages)
+    {
+        $this->receivedMessages = $receivedMessages;
     }
 
 }

@@ -31,10 +31,16 @@ class Contact
     private $createdAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="contactRequests")
-     * @JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="sendedMessages")
+     * @JoinColumn(name="sender_id", referencedColumnName="id")
      */
-    private $user;
+    private $sender;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="receivedMessages")
+     * @JoinColumn(name="receiver_id", referencedColumnName="id")
+     */
+    private $receiver;
 
     /**
      * @return string
@@ -87,17 +93,33 @@ class Contact
     /**
      * @return mixed
      */
-    public function getUser()
+    public function getSender()
     {
-        return $this->user;
+        return $this->sender;
     }
 
     /**
-     * @param mixed $user
+     * @param mixed $sender
      */
-    public function setUser($user)
+    public function setSender($sender)
     {
-        $this->user = $user;
+        $this->sender = $sender;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getReceiver()
+    {
+        return $this->receiver;
+    }
+
+    /**
+     * @param mixed $receiver
+     */
+    public function setReceiver($receiver)
+    {
+        $this->receiver = $receiver;
     }
 
 }
