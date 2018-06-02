@@ -19,6 +19,9 @@ class ContactType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
+        $currentUserId = $options['current_user_id'];
+
         $builder
             ->add('subject', TextType::class, [
                 'label' => 'Sujet'
@@ -37,8 +40,13 @@ class ContactType extends AbstractType
             ->add('receiver', EntityType::class, [
                 'label' => 'A qui voulez-vous envoyer ce message ?',
                 'class' => 'App\Entity\Hotelier',
+                'query_builder' => function (HotelierRepository $hr) use ($currentUserId) {
+                    return $hr->createQueryBuilder('h')
+                        ->where('h.id != :value')->setParameter('value', $currentUserId)
+                        ;
+                },
                 'choice_label' => function (Hotelier $hotelier) {
-                    return $hotelier->getHotelsOwn()->getOwner()->getEmail();
+                    return $hotelier->getEmail();
                 }
             ])
         ;
@@ -48,7 +56,8 @@ class ContactType extends AbstractType
     {
         $resolver->setDefaults([
             // uncomment if you want to bind to a class
-            'data_class' => Contact::class
+            'data_class' => Contact::class,
+            'current_user_id' => null
         ]);
     }
 }
