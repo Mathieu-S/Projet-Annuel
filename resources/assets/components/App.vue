@@ -62,6 +62,11 @@
             },
             searchInput: function (val) {
                 this.$store.commit('setSearchData', this.searchInput)
+            },
+            maxPrice: function (val) {
+                if (this.maxPrice === '20') {
+                    this.maxPrice = 0
+                }
             }
         }
     }
