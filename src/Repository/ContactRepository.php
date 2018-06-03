@@ -12,4 +12,15 @@ class ContactRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Contact::class);
     }
+
+    public function getReceiverContactRequests($idReceiver)
+    {
+        return $this->createQueryBuilder('c')
+            ->join('c.receiver', 'receiver')
+            ->where('receiver.id = :value')->setParameter('value', $idReceiver)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 }
