@@ -6,11 +6,13 @@
 
                 <form>
                     <input class="form-control form-control-sm" type="text" v-model="searchInput" placeholder="Nom hôtel, Ville">
-                    <ul>
-                        <li v-for="optionBedRoom in optionsBedRoom" :key="optionBedRoom.id">
-                            <input type="checkbox" :value="optionBedRoom.name" v-model="selectedOptions">{{optionBedRoom.name}}
-                        </li>
-                    </ul>
+
+                    <div class="form-check" v-for="optionBedRoom in optionsBedRoom" :key="optionBedRoom.id">
+                        <input class="form-check-input" type="checkbox" v-model="selectedOptions" :value="optionBedRoom.name">
+                        <label class="form-check-label">
+                            {{optionBedRoom.name}}
+                        </label>
+                    </div>
                 </form>
             </div>
         </div>
