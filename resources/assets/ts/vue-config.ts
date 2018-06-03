@@ -44,7 +44,8 @@ const router = new VueRouter({
 const store = new Vuex.Store({
     state: {
         optionBedRoom: [],
-        searchData: ''
+        searchData: '',
+        maxPrice : 0
     },
     getters: {
         getOptionBedRoom: state => {
@@ -52,6 +53,9 @@ const store = new Vuex.Store({
         },
         getSearchData: state => {
             return state.searchData
+        },
+        getMaxPrice: state => {
+            return state.maxPrice
         }
     },
     mutations: {
@@ -60,6 +64,9 @@ const store = new Vuex.Store({
         },
         setSearchData (state, n) {
             state.searchData = n
+        },
+        setMaxPrice (state, n) {
+            state.maxPrice = n
         }
     }
 });

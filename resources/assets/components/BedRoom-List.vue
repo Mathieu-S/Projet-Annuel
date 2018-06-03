@@ -58,6 +58,12 @@
                     bedRooms = fuse.search(inputFilter);
                 }
 
+                // filtre price
+                let maxPrice = this.$store.getters.getMaxPrice;
+                if (maxPrice !== 0) {
+                    bedRooms = bedRooms.filter(bedRoom => bedRoom.price <= maxPrice)
+                }
+
                 // filtre options
                 filters.forEach(function(filter){
                     let bedRoomsTmp = bedRooms;
