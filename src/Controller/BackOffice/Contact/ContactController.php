@@ -31,4 +31,21 @@ class ContactController extends Controller
         ]);
     }
 
+    /**
+     * @Route("/receiver/{id}", name="indexContactRequestsUser", requirements={"page": "[1-9]\d*"})
+     */
+    public function ContactRequestsReceiverAction(Request $request)
+    {
+        $userId = $request->attributes->get('id');
+        $contactRequests = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('App:Contact')
+            ->getReceiverContactRequests($userId);
+
+        return $this->render('backoffice/common/contacts/index.html.twig', [
+            'contactRequests' => $contactRequests
+        ]);
+    }
+
 }
