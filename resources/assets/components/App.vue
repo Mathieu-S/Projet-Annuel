@@ -66,6 +66,9 @@
             maxPrice: function (val) {
                 if (this.maxPrice === '20') {
                     this.maxPrice = 0
+                    this.$store.commit('setMaxPrice', 0)
+                } else {
+                    this.$store.commit('setMaxPrice', this.maxPrice)
                 }
             }
         }
