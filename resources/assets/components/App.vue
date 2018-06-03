@@ -2,8 +2,8 @@
     <article id="hotel-list" class="row">
         <div class="col-3">
             <div class="card">
-                Hotel filtre
                 <form>
+                    Hotel filtre :
                     <div class="form-group">
                         <input class="form-control form-control-sm" type="text" v-model="searchInput" placeholder="Nom hôtel, Ville">
                     </div>
