@@ -46,7 +46,8 @@
             return {
                 optionsBedRoom: [],
                 selectedOptions: [],
-                searchInput: ''
+                searchInput: '',
+                maxPrice : 0
             }
         },
         mounted: function () {
