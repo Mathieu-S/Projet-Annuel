@@ -3,9 +3,10 @@
         <div class="col-3">
             <div class="card">
                 Hotel filtre
-
                 <form>
-                    <input class="form-control form-control-sm" type="text" v-model="searchInput" placeholder="Nom hôtel, Ville">
+                    <div class="form-group">
+                        <input class="form-control form-control-sm" type="text" v-model="searchInput" placeholder="Nom hôtel, Ville">
+                    </div>
 
                     <div class="form-check" v-for="optionBedRoom in optionsBedRoom" :key="optionBedRoom.id">
                         <input class="form-check-input" type="checkbox" v-model="selectedOptions" :value="optionBedRoom.name">
