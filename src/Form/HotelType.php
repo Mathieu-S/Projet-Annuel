@@ -55,7 +55,7 @@ class HotelType extends AbstractType
                 },
                 'choice_label' => 'name',
                 'constraints' => array(
-                    new NotBlank(["message" => "La description de l'hôtel est obligatoire"]),
+                    new NotBlank(["message" => "La région de l'hôtel est obligatoire"]),
                 ),
 
             ])
