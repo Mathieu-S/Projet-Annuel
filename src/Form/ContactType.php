@@ -29,14 +29,6 @@ class ContactType extends AbstractType
             ->add('message', TextareaType::class, [
                 'label' => 'Message'
             ])
-            ->add('receiver', EntityType::class,
-                [
-                    'label' => 'A qui voulez-vous envoyer ce message ?',
-                    'class' => 'App:User',
-                    'choice_label' => 'hotelsOwn',
-                    'multiple' => false,
-                    'expanded' => false
-                ])
             ->add('receiver', EntityType::class, [
                 'label' => 'A qui voulez-vous envoyer ce message ?',
                 'class' => 'App\Entity\Hotelier',
