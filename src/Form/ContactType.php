@@ -4,7 +4,11 @@ namespace App\Form;
 
 use App\Entity\Contact;
 use App\Entity\Hotelier;
+use App\Entity\User;
 use App\Repository\HotelierRepository;
+use App\Repository\HotelRepository;
+use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -17,10 +21,18 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class ContactType extends AbstractType
 {
 
+    private $userRepository;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->userRepository = $entityManager->getRepository(User::class);
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
         $currentUserId = $options['current_user_id'];
+        $currentUser = $this->userRepository->findOneBy(['id' => $currentUserId]);
 
         $builder
             ->add('subject', TextType::class, [
@@ -28,19 +40,32 @@ class ContactType extends AbstractType
             ])
             ->add('message', TextareaType::class, [
                 'label' => 'Message'
-            ])
-            ->add('receiver', EntityType::class, [
-                'label' => 'A qui voulez-vous envoyer ce message ?',
-                'class' => 'App\Entity\Hotelier',
-                'query_builder' => function (HotelierRepository $hr) use ($currentUserId) {
-                    return $hr->createQueryBuilder('h')
-                        ->where('h.id != :value')->setParameter('value', $currentUserId)
-                        ;
-                },
-                'choice_label' => function (Hotelier $hotelier) {
-                    return $hotelier->getEmail();
-                }
-            ])
+            ]);
+            if ($currentUser->getRoles()[0] == "ROLE_ADMIN" || $currentUser->getRoles()[0] == "ROLE_HOTEL") {
+                $builder->add('receiver', EntityType::class, [
+                    'label' => 'A qui voulez-vous envoyer ce message ?',
+                    'class' => 'App\Entity\User',
+                    'query_builder' => function (UserRepository $ur) use ($currentUserId) {
+                        return $ur->createQueryBuilder('u')
+                            ->where('u.id != :value')->setParameter('value', $currentUserId);
+                    },
+                    'choice_label' => function (User $user) {
+                        return $user->getEmail();
+                    }
+                ]);
+            } else {
+                $builder->add('receiver', EntityType::class, [
+                    'label' => 'A qui voulez-vous envoyer ce message ?',
+                    'class' => 'App\Entity\Hotelier',
+                    'query_builder' => function (HotelierRepository $hr) use ($currentUserId) {
+                        return $hr->createQueryBuilder('h')
+                            ->where('h.id != :value')->setParameter('value', $currentUserId);
+                    },
+                    'choice_label' => function (User $user) {
+                        return $user->getEmail();
+                    }
+                ]);
+            }
         ;
     }
 
