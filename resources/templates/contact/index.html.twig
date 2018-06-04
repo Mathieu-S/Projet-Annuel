@@ -12,6 +12,8 @@
                             <th style="text-align: center;">Sujet</th>
                             <th style="text-align: center;">Message</th>
                             <th style="text-align: center;">Date de demande</th>
+                            <th style="text-align: center;">Envoyé par</th>
+                            <th style="text-align: center;">Destinataire</th>
                         </tr>
                         {% for contactRequest in contactRequests %}
                             <tr>
@@ -23,6 +25,12 @@
                                 </td>
                                 <td align="center">
                                     {{ contactRequest.createdAt|date('d-m-Y H:i:s') }}
+                                </td>
+                                <td align="center">
+                                    {{ contactRequest.sender.email }}
+                                </td>
+                                <td align="center">
+                                    {{ contactRequest.receiver.email }}
                                 </td>
                             </tr>
                         {% endfor %}
