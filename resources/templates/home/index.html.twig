@@ -12,59 +12,95 @@
             <div class="col-lg-4 text-center" style="border-right: 0px solid silver;">
                 <div class="row">
                     <!-- FORM FILTERS -->
-                    <div class="col-lg-12 text-left" id="columnFilter">
+                    <div class="col-lg-11 text-left borderFilterBlock" id="columnFilter">
                         <form action="" method="post" class="form-horizontal">
-                                <div class="form-group col-sm-12 row">
-                                    <h3>{{ 'home.filters'|trans|raw }}</h3>
+                                <div class="row" style="background-color:#f05f40;color:white;">
+                                    <div class="form-group col-sm-12">
+                                        <h3>{{ 'home.filters'|trans|raw }}</h3>
+                                    </div>
                                 </div>
-                                <div class="form-group col-sm-12 row">
-                                    <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Tapez une ville">
+                                <div class="row filters">
+                                    <div class="form-group col-sm-12">
+                                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Tapez une ville">
+                                    </div>
                                 </div>
-                                <div class="form-group col-sm-12 row">
-                                    Du :
-                                    <input class="form-control form-control-sm" name="datePublication" type="date" value="" id="example-date-input">
+                                <div class="row filters">
+                                    <div class="form-group col-sm-6 ">
+                                        <b>Du</b>
+                                        <input class="form-control form-control-sm" name="datePublication" type="date" value="" id="example-date-input">
+                                    </div>
+                                    <div class="form-group col-sm-6 ">
+                                        <b>au</b>
+                                        <input class="form-control form-control-sm" name="datePublication" type="date" value="" id="example-date-input">
+                                    </div>
                                 </div>
-                                <div class="form-group col-sm-12 row filters">
-                                    au :
-                                    <input class="form-control form-control-sm" name="datePublication" type="date" value="" id="example-date-input">
-                                </div>
-                            Prix:
-                                <div class="form-group col-sm-12 row filters" data-role="rangeslider">
-
-                                    <input class="custom-slider" type="range" name="price-max" id="price-max" value="800" min="0" max="1000">
-                                </div>
-
-                                <div class="form-group col-sm-12 row filters">
-                                    Catégorie de l'hôtel :
-                                    <b> 1 2 3 4 5</b>
-                                </div>
-
-                                <div class="form-group col-sm-12 row filters">
-                                    Option :
-                                </div>
-
-                                <div class="col-auto input-group mb-2 ">
-                                        <input type="text" class="form-control form-control-sm" id="inlineFormInputGroup" placeholder="Tapez une adresse">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text"><img src="assets/img/side-search.png"></div>
+                                <div class="row filters">
+                                    <div class="form-group col-sm-12" data-role="rangeslider">
+                                        <b>Prix €</b>
+                                        <div data-role="rangeslider">
+                                            <input type="range" name="price-min" id="price-min" value="200" min="0" max="1000">
+                                            <input type="range" name="price-max" id="price-max" value="800" min="0" max="1000">
                                         </div>
+                                    </div>
                                 </div>
-                                <div class="col-auto input-group mb-2">
-                                        <input type="text" class="form-control form-control-sm" id="inlineFormInputGroup" placeholder="Tapez le nom d'un hôtel...">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text"><img src="assets/img/side-search.png"></div>
+                                <div class="row filters">
+                                    <div class="form-group col-sm-12">
+                                        <b>Catégorie de l'hôtel</b>
+                                        <div>
+                                            <i class="material-icons">stars</i>
+                                            <i class="material-icons">stars</i>
+                                            <i class="material-icons">stars</i>
+                                            <i class="material-icons">stars</i>
+                                            <i class="material-icons">stars</i>
                                         </div>
+                                    </div>
                                 </div>
+                                <div class="row filters">
+                                    <div class="form-group col-sm-12">
+                                        <b>Option</b>
+                                        <div>
+                                            <i class="material-icons md-18">wifi</i>
+                                            <i class="material-icons md-18">tv</i>
+                                            <i class="material-icons md-18">ac_unit</i>
+                                            <i class="material-icons md-18">room_service</i>
+                                            <i class="material-icons md-18">pool</i>
+                                            <i class="material-icons">restaurant</i>
+                                            <i class="material-icons">pet</i>
+                                            <i class="material-icons">shopping_cart</i>
+                                            <i class="material-icons">directions_subway</i>
+                                            <i class="material-icons">flight</i>
 
-                                <div class="form-group">
-                                    <div class="col-sm-10">
-                                        <button type="submit" id="filter" name="filter" class="btn btn-primary">Rechercher</button>
-                                        <button type="submit" name="clearFilter" class="btn btn-default">Annuler</button>
+                                        </div>
                                     </div>
                                 </div>
 
+                                <div class="row filters">
+                                    <div class="col-sm-12 input-group mb-2">
+                                            <input type="text" class="form-control form-control-sm" id="inlineFormInputGroup" placeholder="Tapez une adresse">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text"><i class="material-icons md-18">search</i></div>
+                                            </div>
+                                    </div>
+                                    <div class="col-sm-12 input-group mb-2">
+                                        <input type="text" class="form-control form-control-sm" id="inlineFormInputGroup" placeholder="Tapez le nom d'un hôtel...">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="material-icons md-18">search</i></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {#<div class="row">
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <button type="submit" id="filter" name="filter" class="btn btn-primary">Rechercher</button>
+                                            <button type="submit" name="clearFilter" class="btn btn-default">Annuler</button>
+                                        </div>
+                                    </div>
+                                </div>#}
                         </form>
                     </div>
+
+                    <div class="col-lg-1"></div>
                 </div>
             </div>
 
@@ -87,7 +123,7 @@
                         </div>
                         <div id ="listAnnonces" class="row">
 
-                            <div class="col-sm-12" style="margin-bottom:15px;">
+                            {#<div class="col-sm-12" style="margin-bottom:15px;">
                                 <div class="card">
                                     <div class="card-body row">
                                         <div class="col-sm-4" style="background-color: silver;">
@@ -109,55 +145,75 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>#}
 
-                            <div class="col-sm-12" style="margin-bottom:15px;">
-                                <div class="card">
-                                    <div class="card-body row">
-                                        <div class="col-sm-4" style="background-color: silver;">
-                                            <img class="card-img-top" src="assets\img\hotel-1.jpg" alt="Card image cap">
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <h5 class="card-title">Hôtel Sud</h5>
+                            <div class="col-sm-12" style="background-color:grey; height: 180px;margin-bottom: 20px;">
+                                <div class="row">
+                                    <div class="col-sm-4" style="background-color:#003853;height: 180px;">
+                                        <img class="card-img-top" src="C:\wamp\www\Projet-Annuel\resources\assets\img\images.jpg" alt="Card image cap">
+                                    </div>
+                                    <div class="col-sm-6" style="background-color:white;height: 180px;padding-top: 10px;">
+                                        <div>
+                                            <h5 class="card-title">Hôtel du Lac</h5>
                                             <p class="card-text">Description</p>
-                                            <div>
-                                                <a>Voir sur la carte</a>
-                                            </div>
                                         </div>
-                                        <div class="col-sm-2">
-                                            <!--<img class="card-img-top" src="..." alt="icon note ">-->
-                                           <b> 7/10</b>
-                                            <p>(bien)</p>
-                                            <p>40 avis</p>
-                                            <a href="#" class="btn btn-primary">Voir offre</a>
+                                        <div>
+                                            <i class="material-icons md-18">wifi</i>
+                                            <i class="material-icons md-18">tv</i>
+                                            <i class="material-icons md-18">ac_unit</i>
+                                            <i class="material-icons md-18">room_service</i>
+                                            <i class="material-icons md-18">pool</i>
+                                            <i class="material-icons md-18">restaurant</i>
+                                            <i class="material-icons md-18">pet</i>
+                                            <i class="material-icons md-18">shopping_cart</i>
+                                            <i class="material-icons md-18">directions_subway</i>
+                                            <i class="material-icons md-18">flight</i>
                                         </div>
+                                    </div>
+                                    <div class="col-sm-2" style="background-color:#A0B2A6;height: 180px;text-align: right;">
+                                        <b>8/10</b>
+                                        <p>(très bien)</p>
+                                        <p><b>104 avis</b></p>
+                                        <a href="#" class="btn btn-primary">Voir offre</a>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-sm-12" style="margin-bottom:15px;">
-                                <div class="card">
-                                    <div class="card-body row">
-                                        <div class="col-sm-4" style="background-color: silver;">
-                                            <img class="card-img-top" src="assets\img\hotel-1.jpg" alt="Card image cap">
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <h5 class="card-title">Hôtel Campione</h5>
+                            <div class="col-sm-12" style="background-color:grey; height: 180px;margin-bottom: 20px;">
+                                <div class="row">
+                                    <div class="col-sm-4" style="background-color:#7B9E89;height: 180px;">
+                                        <img class="card-img-top" src="C:\wamp\www\Projet-Annuel\resources\assets\img\images.jpg" alt="Card image cap">
+                                    </div>
+                                    <div class="col-sm-6" style="background-color:white;height: 180px;padding-top: 10px;">
+                                        <div>
+                                            <h5 class="card-title">Hôtel du Lac</h5>
                                             <p class="card-text">Description</p>
-                                            <div>
-                                                <a>Voir sur la carte</a>
-                                            </div>
                                         </div>
-                                        <div class="col-sm-2">
-                                            <!--<img class="card-img-top" src="..." alt="icon note ">-->
-                                            <b>9/10</b>
-                                            <p>(très bien)</p>
-                                            <p>240 avis</p>
-                                            <a href="#" class="btn btn-primary">Voir offre</a>
+                                        <div>
+                                            <i class="material-icons md-18">wifi</i>
+                                            <i class="material-icons md-18">tv</i>
+                                            <i class="material-icons md-18">ac_unit</i>
+                                            <i class="material-icons md-18">room_service</i>
+                                            <i class="material-icons md-18">pool</i>
+                                            <i class="material-icons md-18">restaurant</i>
+                                            <i class="material-icons md-18">pet</i>
+                                            <i class="material-icons md-18">shopping_cart</i>
+                                            <i class="material-icons md-18">directions_subway</i>
+                                            <i class="material-icons md-18">flight</i>
                                         </div>
+                                    </div>
+                                    <div class="col-sm-2" style="background-color:#A0B2A6;height: 180px;text-align: right;">
+                                        <b>8/10</b>
+                                        <p>(très bien)</p>
+                                        <p><b>104 avis</b></p>
+                                        <a href="#" class="btn btn-primary">Voir offre</a>
                                     </div>
                                 </div>
                             </div>
+
+
+
+
 
                         </div>
                     </div>

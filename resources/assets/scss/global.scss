@@ -3,18 +3,22 @@
 @import '~bootstrap-vue/dist/bootstrap-vue.css';
 
 //Project dependancy
-@import "home";
+//@import "home";
 @import "contact";
 
+//Configuration Material Icons
+body{
+  background-color: #f7f7f7;
+}
 
 //NAVBAR
 .navbar{
-  background-color: #005274;
+  background-color: rgba(0, 0, 0, 0.84);
 }
 
 //HEADER
 #searchBar{
-  background-color: #00719f;
+  background-color: #f05f40;
   margin-top:0px;
   height:180px;
   padding-top:75px;
@@ -37,7 +41,9 @@
 }
 
 .filters{
-  border-bottom: 2px solid grey;
+  border-bottom: 0.5px solid #f05f40;
+  padding-top : 10px;
+  padding-bottom: 10px;
 }
 
 //RANGER
@@ -137,8 +143,8 @@ footer{
   padding:10px;
 }
 #copyrightBar{
-  background-color: #005274;
-  color:black;
+  background-color: rgba(0, 0, 0, 0.84);
+  color:white;
   margin-top:0px;
   height:auto;
   text-align: center;
