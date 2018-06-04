@@ -3,14 +3,14 @@
         <div class="col-3">
             <div class="card">
                 <form>
-                    Hotel filtre :
+                    Filtrage par nom :
                     <div class="form-group">
                         <input class="form-control form-control-sm" type="text" v-model="searchInput" placeholder="Nom hôtel, Ville">
                     </div>
 
                     <div class="form-group">
                         <label for="formControlRange">
-                            Prix maximale :
+                            Prix maximal :
                             <span v-if="maxPrice === 0"> pas de limite</span>
                             <span v-else>{{ maxPrice }} €</span>
                         </label>
@@ -30,9 +30,7 @@
             </div>
         </div>
         <div class="col-9">
-            <div class="card">
-                <router-view/>
-            </div>
+            <router-view/>
         </div>
     </article>
 </template>
@@ -76,5 +74,14 @@
 </script>
 
 <style scoped lang="scss">
-
+article {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.card {
+    form {
+        padding: 15px;
+        padding-bottom: 0;
+    }
+}
 </style>
