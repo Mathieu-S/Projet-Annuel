@@ -17,6 +17,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ContactType extends AbstractType
 {
@@ -36,10 +37,16 @@ class ContactType extends AbstractType
 
         $builder
             ->add('subject', TextType::class, [
-                'label' => 'Sujet'
+                'label' => 'Sujet',
+                'constraints' => array(
+                    new NotBlank(["message" => "Le sujet du message est obligatoire"]),
+                ),
             ])
             ->add('message', TextareaType::class, [
-                'label' => 'Message'
+                'label' => 'Message',
+                'constraints' => array(
+                    new NotBlank(["message" => "Le contenu du message est obligatoire"]),
+                ),
             ]);
             if ($currentUser->getRoles()[0] == "ROLE_ADMIN" || $currentUser->getRoles()[0] == "ROLE_HOTEL") {
                 $builder->add('receiver', EntityType::class, [
