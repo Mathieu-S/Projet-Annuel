@@ -23,4 +23,16 @@ class ContactRepository extends ServiceEntityRepository
             ;
     }
 
+    public function getUserContactRequests($idUser)
+    {
+        return $this->createQueryBuilder('c')
+            ->join('c.receiver', 'receiver')
+            ->join('c.sender', 'sender')
+            ->where('receiver.id = :value')->setParameter('value', $idUser)
+            ->orWhere('sender.id = :value')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 }
