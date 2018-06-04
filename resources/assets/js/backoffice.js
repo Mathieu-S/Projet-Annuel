@@ -12,6 +12,7 @@ $(document).ready(function () {
         region.prepend($('<option>', {value: ""}).text("Région")).val("");
         department.prepend($('<option>', {value: ""}).text("Département")).val("");
         city.prepend($('<option>', {value: ""}).text("Ville")).val("");
+        postalCode.prepend($('<option>', {value: ""}).text("Code postal")).val("");
         handleSelectDisplay();
     }
 
