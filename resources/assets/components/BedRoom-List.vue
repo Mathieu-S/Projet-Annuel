@@ -1,18 +1,21 @@
 <template>
     <article class="bedRoom">
-        <b-card v-for="bedRoom in filteredBedRoom" :key="bedRoom.id">
-            <b-media no-body>
-                <b-media-aside vertical-align="center">
-                    <!--<b-img src="" width="200" height="180" alt="placeholder" />-->
-                    <img :src="'/uploads/images/' + bedRoom.images[0].uri" class="img-fluid" alt="Responsive image">
-                </b-media-aside>
-
-                <b-media-body class="ml-3">
-                    <h5 class="mt-0"><router-link :to="{name: 'bedRoom', params: {id: bedRoom.id, slug: bedRoom.hotel.name + '/' + bedRoom.id }}" v-text="bedRoom.hotel.name"></router-link></h5>
-                    <p>{{ bedRoom.description }}</p>
-                </b-media-body>
-            </b-media>
-        </b-card>
+        <div class="card" v-for="bedRoom in filteredBedRoom" :key="bedRoom.id">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                        <img class="img-fluid rounded" :src="'/uploads/images/' + bedRoom.images[0].uri" alt="Card image cap">
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <h5 class="card-title">{{ bedRoom.hotel.name }}</h5>
+                        <p class="card-text">{{ bedRoom.description }}</p>
+                    </div>
+                    <div class="col-md-2 col-sm-12">
+                        <router-link class="btn btn-primary" :to="{name: 'bedRoom', params: {id: bedRoom.id, slug: bedRoom.hotel.name + '/' + bedRoom.id }}">Voir l'offre</router-link>
+                    </div>
+                </div>
+            </div>
+        </div>
     </article>
 </template>
 
@@ -93,7 +96,6 @@
 
 <style scoped lang="scss">
     .bedRoom {
-        padding: 10px;
         .card {
             margin-bottom: 10px;
         }
