@@ -2,6 +2,7 @@
     <nav class="col-md-2 d-none d-md-block bg-light sidebar">
         <div class="sidebar-sticky">
             <ul class="nav flex-column">
+                {% if app.user and 'ROLE_ADMIN' in app.user.roles %}
                     <li class="nav-item">
                         <a class="nav-link {% if selectedMenu is defined and selectedMenu == 'accueil' %}active{% endif %}"
                             {% if app.user and 'ROLE_ADMIN' in app.user.roles %} href="{{ path('adminHome') }}" {% elseif app.user and 'ROLE_HOTEL' in app.user.roles %} href="{{ path('hotelierHome') }}" {% endif %}>
@@ -9,6 +10,7 @@
                             Accueil <span class="sr-only">(current)</span>
                         </a>
                     </li>
+                {% endif %}
                     <li class="nav-item">
                         <a class="nav-link {% if selectedMenu is defined and selectedMenu == 'hotel' %}active{% endif %}"
                         {% if app.user and 'ROLE_ADMIN' in app.user.roles %} href="{{ path('indexHotels') }}" {% elseif app.user and 'ROLE_HOTEL' in app.user.roles %} href="{{ path('hotelierHome') }}" {% endif %}>
