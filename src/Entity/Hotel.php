@@ -88,7 +88,7 @@ class Hotel
     private $owner;
 
     /**
-     * @ORM\OneToMany(targetEntity="Image", mappedBy="hotel", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Image", mappedBy="hotel", cascade={"persist"}, orphanRemoval=true)
      */
     private $images;
 

@@ -44,7 +44,7 @@ class BedRoom
     private $options;
 
     /**
-     * @ORM\OneToMany(targetEntity="Image", mappedBy="bedRoom", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Image", mappedBy="bedRoom", cascade={"persist"}, orphanRemoval=true)
      */
     private $images;
 
