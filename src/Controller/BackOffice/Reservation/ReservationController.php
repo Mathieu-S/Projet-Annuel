@@ -29,7 +29,8 @@ class ReservationController extends Controller
             ->findAll();
 
         return $this->render('backoffice/common/reservations/index.html.twig', [
-            'reservations' => $reservations
+            'reservations' => $reservations,
+            'selectedMenu' => 'reservation'
         ]);
     }
 
@@ -46,7 +47,8 @@ class ReservationController extends Controller
             ->getOwnerReservations($hotelierId);
 
         return $this->render('backoffice/common/reservations/index.html.twig', [
-            'reservations' => $reservations
+            'reservations' => $reservations,
+            'selectedMenu' => 'reservation'
         ]);
     }
 

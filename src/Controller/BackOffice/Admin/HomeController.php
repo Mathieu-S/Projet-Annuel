@@ -17,6 +17,8 @@ class HomeController extends Controller
      */
     public function IndexAction()
     {
-        return $this->render('backoffice/admin/index.html.twig', []);
+        return $this->render('backoffice/admin/index.html.twig', [
+            'selectedMenu' => 'accueil'
+        ]);
     }
 }

@@ -24,7 +24,8 @@ class HomeController extends Controller
             ->getOwnerHotels($this->getUser());
 
         return $this->render('backoffice/common/hotels/index.html.twig', [
-            'hotels' => $hotels
+            'hotels' => $hotels,
+            'selectedMenu' => 'hotel'
         ]);
     }
 }

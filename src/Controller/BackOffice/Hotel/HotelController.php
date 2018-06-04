@@ -29,7 +29,8 @@ class HotelController extends Controller
             ->findAll();
 
         return $this->render('backoffice/common/hotels/index.html.twig', [
-            'hotels' => $hotels
+            'hotels' => $hotels,
+            'selectedMenu' => 'hotel'
         ]);
     }
 
@@ -75,6 +76,7 @@ class HotelController extends Controller
         }
         return $this->render('backoffice/common/hotels/form.html.twig', [
            'hotelForm' => $form->createView(),
+            'selectedMenu' => 'hotel'
         ]);
     }
 
@@ -112,7 +114,8 @@ class HotelController extends Controller
             }
         }
         return $this->render('backoffice/common/hotels/form.html.twig', [
-            'hotelForm' => $form->createView()
+            'hotelForm' => $form->createView(),
+            'selectedMenu' => 'hotel'
         ]);
     }
     /**

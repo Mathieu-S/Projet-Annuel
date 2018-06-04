@@ -29,7 +29,8 @@ class ContactController extends Controller
             ->findAll();
 
         return $this->render('backoffice/common/contacts/index.html.twig', [
-            'contactRequests' => $contactRequests
+            'contactRequests' => $contactRequests,
+            'selectedMenu' => 'contact'
         ]);
     }
 
@@ -46,7 +47,8 @@ class ContactController extends Controller
             ->getUserContactRequests($userId);
 
         return $this->render('backoffice/common/contacts/index.html.twig', [
-            'contactRequests' => $contactRequests
+            'contactRequests' => $contactRequests,
+            'selectedMenu' => 'contact'
         ]);
     }
 
@@ -72,12 +74,16 @@ class ContactController extends Controller
 
             $em->persist($contact);
             $em->flush();
-            return $this->redirectToRoute('indexContactRequestsUser', [
-                'id' => $this->getUser()->getId()]);
+            return $this->redirectToRoute('indexContactRequestsUser',
+                [
+                    'id' => $this->getUser()->getId(),
+                    'selectedMenu' => 'contact'
+                ]);
         }
 
         return $this->render('backoffice/common/contacts/form.html.twig', [
-            'contactForm' => $contactForm->createView()
+            'contactForm' => $contactForm->createView(),
+            'selectedMenu' => 'contact'
         ]);
 
     }

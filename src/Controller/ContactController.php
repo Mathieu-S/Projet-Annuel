@@ -38,11 +38,13 @@ class ContactController extends Controller
             $em->persist($contact);
             $em->flush();
             return $this->render('home/index.html.twig', [
+                'selectedMenu' => 'contact'
             ]);
         }
 
         return $this->render('contact/form.html.twig', [
-            'contactForm' => $contactForm->createView()
+            'contactForm' => $contactForm->createView(),
+            'selectedMenu' => 'contact'
         ]);
 
     }

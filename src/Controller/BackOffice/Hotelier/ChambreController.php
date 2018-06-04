@@ -28,7 +28,8 @@ class ChambreController extends Controller
             ->findAll();
 
         return $this->render('backoffice/hotelier/chambres/chambres.html.twig', [
-            'chambres' => $chambres
+            'chambres' => $chambres,
+            'selectedMenu' => 'chambre'
         ]);
     }
 
@@ -45,7 +46,8 @@ class ChambreController extends Controller
 
         return $this->render('backoffice/hotelier/chambres/chambres-hotel.html.twig', [
             'chambres' => $chambres,
-            'hotel' => $hotel
+            'hotel' => $hotel,
+            'selectedMenu' => 'chambre'
         ]);
     }
 
@@ -85,6 +87,7 @@ class ChambreController extends Controller
         }
         return $this->render('backoffice/hotelier/chambres/form.html.twig', [
             'bedRoomForm' => $form->createView(),
+            'selectedMenu' => 'chambre'
         ]);
     }
 
@@ -118,6 +121,7 @@ class ChambreController extends Controller
         }
         return $this->render('backoffice/hotelier/chambres/form.html.twig', [
             'bedRoomForm' => $form->createView(),
+            'selectedMenu' => 'chambre'
         ]);
     }
     /**

@@ -29,7 +29,8 @@ class UserController extends Controller
             ->findAll();
 
         return $this->render('backoffice/admin/users/list.html.twig', [
-            'users' => $users
+            'users' => $users,
+            'selectedMenu' => 'user'
         ]);
     }
 
@@ -52,7 +53,8 @@ class UserController extends Controller
         }
 
         return $this->render('backoffice/admin/users/form.html.twig', [
-            'userForm' => $form->createView()
+            'userForm' => $form->createView(),
+            'selectedMenu' => 'user'
         ]);
     }
 
