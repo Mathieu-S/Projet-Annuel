@@ -84,7 +84,7 @@ class AccountController extends Controller
         $userId = $request->attributes->get('id');
         $contactRequests = $em
             ->getRepository('App:Contact')
-            ->findBy(['user' => $userId]);
+            ->getUserContactRequests($userId);
         return $this->render('contact/index.html.twig', [
             'contactRequests' => $contactRequests
         ]);
