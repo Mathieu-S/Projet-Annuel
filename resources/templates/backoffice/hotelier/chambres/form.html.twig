@@ -5,7 +5,7 @@
         <h1>Ajouter un Hôtel</h1>
 
         {% form_theme bedRoomForm 'bootstrap_4_layout.html.twig' %}
-        {{ form_start(bedRoomForm) }}
+        {{ form_start(bedRoomForm, {'attr': {'novalidate': 'novalidate'}}) }}
 
         {{ form_row(bedRoomForm.description) }}
         {{ form_row(bedRoomForm.price) }}
