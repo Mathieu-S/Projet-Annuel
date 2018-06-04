@@ -4,34 +4,26 @@
             <div id="carousel">
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        <li v-for="(value, index) in bedRoom.images" data-target="#carouselExampleIndicators" :data-slide-to="index" v-bind:class="[index === 0 ? 'active' : '' ]"></li>
                     </ol>
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img class="d-block w-100" src="//www.creativelive.com/blog/wp-content/uploads/2017/08/Inline-Image_Aperture-Sizes.png" alt="First slide">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="//www.creativelive.com/blog/wp-content/uploads/2017/08/Inline-Image_Aperture-Sizes.png" alt="Second slide">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="//www.creativelive.com/blog/wp-content/uploads/2017/08/Inline-Image_Aperture-Sizes.png" alt="Third slide">
+                        <div v-for="(value, index) in bedRoom.images"  class="carousel-item" v-bind:class="[index === 0 ? 'active' : '' ]">
+                            <img class="d-block w-100" :src="'/uploads/images/' + value.uri" alt="First slide">
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
+                        <span class="sr-only">Précèdant</span>
                     </a>
                     <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
+                        <span class="sr-only">Suivant</span>
                     </a>
                 </div>
             </div>
 
             <div class="col-9">
-                <h4>{{ bedRoom.hotel.name }} - chambre</h4>
+                <h4 v-if="bedRoom.hotel">{{ bedRoom.hotel.name }}</h4>
                 <p>{{ bedRoom.description }}</p>
                 <h5>Prix : {{ bedRoom.price }}€</h5>
             </div>
@@ -57,10 +49,10 @@
         data() {
             return {
                 localLang: document.documentElement.lang,
-                bedRoom: null
+                bedRoom: []
             }
         },
-        created: function () {
+        mounted: function () {
             axios.get('/' + document.documentElement.lang + '/api/bedRooms/' + this.$route.params.id)
                 .then(response => {
                     this.bedRoom = response.data
