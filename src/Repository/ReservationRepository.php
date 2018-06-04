@@ -19,6 +19,7 @@ class ReservationRepository extends ServiceEntityRepository
             ->join('r.bedRoom', 'bedroom')
             ->join('bedroom.hotel', 'hotel')
             ->where('hotel.owner = :value')->setParameter('value', $idOwner)
+            ->orderBy('r.createdAt', 'DESC')
             ->getQuery()
             ->getResult()
             ;

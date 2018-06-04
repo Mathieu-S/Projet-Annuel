@@ -18,6 +18,7 @@ class ContactRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('c')
             ->join('c.receiver', 'receiver')
             ->where('receiver.id = :value')->setParameter('value', $idReceiver)
+            ->orderBy('c.createdAt', 'DESC')
             ->getQuery()
             ->getResult()
             ;
@@ -30,6 +31,7 @@ class ContactRepository extends ServiceEntityRepository
             ->join('c.sender', 'sender')
             ->where('receiver.id = :value')->setParameter('value', $idUser)
             ->orWhere('sender.id = :value')
+            ->orderBy('c.createdAt', 'DESC')
             ->getQuery()
             ->getResult()
             ;
