@@ -30,9 +30,7 @@
             </div>
         </div>
         <div class="col-9">
-            <div class="card">
-                <router-view/>
-            </div>
+            <router-view/>
         </div>
     </article>
 </template>
@@ -76,6 +74,10 @@
 </script>
 
 <style scoped lang="scss">
+article {
+    margin-left: 10%;
+    margin-right: 10%;
+}
 .card {
     form {
         padding: 15px;
