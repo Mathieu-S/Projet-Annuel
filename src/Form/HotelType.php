@@ -17,6 +17,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class HotelType extends AbstractType
 {
@@ -25,16 +26,25 @@ class HotelType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'register.name'
+                'label' => 'register.name',
+                'constraints' => array(
+                    new NotBlank(["message" => "Le nom de l'hôtel est obligatoire"]),
+                ),
             ])
             ->add('address', TextType::class, [
-                'label' => 'register.address'
+                'label' => 'register.address',
+                'constraints' => array(
+                    new NotBlank(["message" => "L'adresse de l'hôtel est obligatoire"]),
+                ),
             ])
             ->add('email', EmailType::class, [
                 'label' => 'register.email'
             ])
             ->add('description', TextType::class, [
-                'label' => 'register.description'
+                'label' => 'register.description',
+                'constraints' => array(
+                    new NotBlank(["message" => "La description de l'hôtel est obligatoire"]),
+                ),
             ])
             ->add('region', EntityType::class, [
                 'label' => 'Région',
@@ -43,7 +53,10 @@ class HotelType extends AbstractType
                     return $rr->createQueryBuilder('r')
                         ->orderBy('r.name', 'ASC');
                 },
-                'choice_label' => 'name'
+                'choice_label' => 'name',
+                'constraints' => array(
+                    new NotBlank(["message" => "La description de l'hôtel est obligatoire"]),
+                ),
 
             ])
             ->add('department', EntityType::class, [
@@ -52,7 +65,10 @@ class HotelType extends AbstractType
                 'choice_label' => 'name',
                 'query_builder' => function (DepartmentRepository $dr) {
                     return $dr->findDepartmentsFromAquitaine();
-                }
+                },
+                'constraints' => array(
+                    new NotBlank(["message" => "Le département de l'hôtel est obligatoire"]),
+                ),
 
             ])
             ->add('city', EntityType::class, [
@@ -61,7 +77,10 @@ class HotelType extends AbstractType
                 'choice_label' => 'name',
                 'query_builder' => function (CityRepository $cr) {
                     return $cr->findCitiesFromAquitaine();
-                }
+                },
+                'constraints' => array(
+                    new NotBlank(["message" => "La ville de l'hôtel est obligatoire"]),
+                ),
             ])
             ->add('postalCode', EntityType::class, [
                 'label' => 'Code postal',
@@ -69,7 +88,10 @@ class HotelType extends AbstractType
                 'query_builder' => function (PostalCodeRepository $pcr) {
                     return $pcr->findPostalCodesFromAquitaine();
                 },
-                'choice_label' => 'code'
+                'choice_label' => 'code',
+                'constraints' => array(
+                    new NotBlank(["message" => "Le code postal de l'hôtel est obligatoire"]),
+                ),
             ])
             ->add('images', CollectionType::class, [
                 'label' => false,
@@ -107,6 +129,9 @@ class HotelType extends AbstractType
                             ->setParameter('departmentId', $departmentId);
                         },
                         'class' => 'App\Entity\Department',
+                        'constraints' => array(
+                            new NotBlank(["message" => "Le département de l'hôtel est obligatoire"]),
+                        ),
                     ]
                 )
                 ->add('city', EntityType::class,
@@ -117,19 +142,24 @@ class HotelType extends AbstractType
                                 ->setParameter('cityId', $cityId);
                         },
                         'class' => 'App\Entity\City',
+                        'constraints' => array(
+                            new NotBlank(["message" => "La ville de l'hôtel est obligatoire"]),
+                        ),
                     ]
                 )
-                ->add('postalCode', EntityType::class,
-                    [
-                        'query_builder' => function (PostalCodeRepository $pcr) use ($postalCodeId) {
-                            return $pcr->createQueryBuilder('pc')
-                                ->where("pc.id = :postalCodeId")
-                                ->setParameter('postalCodeId', $postalCodeId);
-                        },
-                        'class' => 'App\Entity\PostalCode',
-                    ]
-                )
-                ;
+                    ->add('postalCode', EntityType::class,
+                        [
+                            'query_builder' => function (PostalCodeRepository $pcr) use ($postalCodeId) {
+                                return $pcr->createQueryBuilder('pc')
+                                    ->where("pc.id = :postalCodeId")
+                                    ->setParameter('postalCodeId', $postalCodeId);
+                            },
+                            'class' => 'App\Entity\PostalCode',
+                            'constraints' => array(
+                                new NotBlank(["message" => "Le code postal de l'hôtel est obligatoire"]),
+                            ),
+                        ]
+                    );
             });
     }
 
