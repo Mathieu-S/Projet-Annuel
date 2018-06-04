@@ -15,7 +15,7 @@
     </div>
 
     {% form_theme reservationForm 'bootstrap_4_layout.html.twig' %}
-    {{ form_start(reservationForm) }}
+    {{ form_start(reservationForm, {'attr': {'novalidate': 'novalidate'}}) }}
 
     {{ form_label(reservationForm.startDate) }}
     {{ form_widget(reservationForm.startDate) }}

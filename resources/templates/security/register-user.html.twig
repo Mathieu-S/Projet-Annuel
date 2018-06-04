@@ -3,7 +3,7 @@
 {% block body %}
     <section class="container">
         {% form_theme userForm 'bootstrap_4_layout.html.twig' %}
-        {{ form_start(userForm) }}
+        {{ form_start(userForm, {'attr': {'novalidate': 'novalidate'}}) }}
 
         {{ form_row(userForm.firstname) }}
         {{ form_row(userForm.lastname) }}
