@@ -2,6 +2,8 @@
 
 namespace App\Controller\BackOffice\Contact;
 
+use App\Entity\Contact;
+use App\Form\ContactType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -41,11 +43,43 @@ class ContactController extends Controller
             ->getDoctrine()
             ->getManager()
             ->getRepository('App:Contact')
-            ->getReceiverContactRequests($userId);
+            ->getUserContactRequests($userId);
 
         return $this->render('backoffice/common/contacts/index.html.twig', [
             'contactRequests' => $contactRequests
         ]);
+    }
+
+    /**
+     * @Route("/create", name="createContactAnswer")
+     */
+    public function CreateAction(Request $request)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $contact = new Contact();
+
+        $contactForm = $this->createForm(ContactType::class, $contact, [
+            'current_user_id' => $this->getUser()->getId()
+        ]);
+        $contactForm->handleRequest($request);
+        if ($contactForm->isSubmitted() && $contactForm->isValid()) {
+
+            $dateNow = new \DateTime('now');
+            $contact->setCreatedAt($dateNow);
+            $contact->setSender($this->getUser());
+
+            $em->persist($contact);
+            $em->flush();
+            return $this->redirectToRoute('indexContactRequestsUser', [
+                'id' => $this->getUser()->getId()]);
+        }
+
+        return $this->render('backoffice/common/contacts/form.html.twig', [
+            'contactForm' => $contactForm->createView()
+        ]);
+
     }
 
 }
