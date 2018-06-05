@@ -44,6 +44,12 @@
                             <td>Non</td>
                         {% endif %}
                         <td>
+
+                            {% if not chambre.availability %}
+                                <a href="{{ path('enableBedRoom', {id: chambre.id}) }}" class="btn btn-info">Enable bedroom</a>
+                            {% else %}
+                                <a href="{{ path('disableBedRoom', {id: chambre.id}) }}" class="btn btn-secondary">Disable bedroom</a>
+                            {% endif %}
                             <a href="{{ path('hotelierEditHotelChambers', {id: chambre.id}) }}" class="btn btn-warning">Edit</a>
                             <a href="{{ path('hotelierDeleteHotelChambers', {id: chambre.id}) }}" class="btn btn-danger">Delete</a>
                         </td>
