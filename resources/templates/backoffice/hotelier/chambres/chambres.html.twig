@@ -35,6 +35,7 @@
                         <td>Non</td>
                     {% endif %}
                     <td>
+                        <a href="{{ path('hotelierCreateHotelChambers', {id: chambre.hotel.id}) }}" class="btn btn-primary">Ajouter une chambre</a>
                         {% if not chambre.availability %}
                             <a href="{{ path('enableBedRoom', {id: chambre.id}) }}" class="btn btn-info">Enable bedroom</a>
                         {% else %}
