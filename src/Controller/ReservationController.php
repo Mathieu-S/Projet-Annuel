@@ -27,7 +27,9 @@ class ReservationController extends Controller
             ->findOneBy(['id' => $bedRoomId]);
         $reservation = new Reservation();
 
-        $reservationForm = $this->createForm(ReservationType::class, $reservation);
+        $reservationForm = $this->createForm(ReservationType::class, $reservation, [
+            'bedRoom' => $bedRoom
+        ]);
         $reservationForm->handleRequest($request);
 
         if ($reservationForm->isSubmitted() && $reservationForm->isValid()) {
