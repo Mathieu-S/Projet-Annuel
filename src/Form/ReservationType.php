@@ -29,9 +29,6 @@ class ReservationType extends AbstractType
             ])
             ->add('nbOfPersons', IntegerType::class, [
                 'label' => 'Nombre de personnes',
-                'constraints' => array(
-                    new NotBlank(["message" => "Veuillez indiquer le nombre de personnes souhaitées"]),
-                ),
             ])
             ->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
                 $form = $event->getForm();

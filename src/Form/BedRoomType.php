@@ -6,6 +6,7 @@ use App\Entity\BedRoom;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -42,6 +43,12 @@ class BedRoomType extends AbstractType
                 'allow_add' => true,
                 'by_reference' => false,
                 'prototype' => true,
+            ])
+            ->add('nbOfPersonsMax', IntegerType::class, [
+                'label' => 'Nombre de places',
+                'constraints' => array(
+                    new NotBlank(["message" => "Veuillez renseigner le nombres de places de la chambre"]),
+                )
             ])
         ;
     }

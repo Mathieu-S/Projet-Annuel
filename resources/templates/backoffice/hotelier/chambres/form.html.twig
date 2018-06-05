@@ -9,6 +9,7 @@
 
         {{ form_row(bedRoomForm.description) }}
         {{ form_row(bedRoomForm.price) }}
+        {{ form_row(bedRoomForm.nbOfPersonsMax) }}
         {{ form_row(bedRoomForm.options) }}
 
         <div class="row bedroom-images-wrapper"
@@ -20,6 +21,8 @@
                 Ajouter une autre image
             </a>
         </div>
+
+        {{ form_row(bedRoomForm.description) }}
         
         <button type="submit" class="btn btn-primary">Valider</button>
         {{ form_end(bedRoomForm) }}
