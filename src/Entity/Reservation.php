@@ -29,6 +29,16 @@ class Reservation
     private $finalDate;
 
     /**
+     * @ORM\Column(name="nb_of_persons", type="integer")
+     */
+    private $nbOfPersons;
+
+    /**
+     * @ORM\Column(name="price", type="float")
+     */
+    private $price;
+
+    /**
      * @ORM\ManyToOne(targetEntity="BedRoom", inversedBy="reservations")
      * @JoinColumn(name="bedroom_id", referencedColumnName="id", onDelete="CASCADE")
      */
@@ -120,6 +130,38 @@ class Reservation
     {
         $this->user = $user;
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNbOfPersons()
+    {
+        return $this->nbOfPersons;
+    }
+
+    /**
+     * @param mixed $nbOfPersons
+     */
+    public function setNbOfPersons($nbOfPersons)
+    {
+        $this->nbOfPersons = $nbOfPersons;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * @param mixed $price
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
     }
 
 }
