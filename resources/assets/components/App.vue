@@ -9,12 +9,21 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="formControlRange">
+                        <label for="price">
                             Prix maximal :
                             <span v-if="maxPrice === 0"> pas de limite</span>
                             <span v-else>{{ maxPrice }} €</span>
                         </label>
-                        <input type="range" class="form-control-range" id="formControlRange" min="20" max="300" step="10" v-model="maxPrice">
+                        <input type="range" class="form-control-range" id="price" min="20" max="300" step="10" v-model="maxPrice">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nbPersonnes">
+                            Nombres de personnes :
+                            <span v-if="nbPersonnes === '0'"> pas de préférence</span>
+                            <span v-else>{{ nbPersonnes }}</span>
+                        </label>
+                        <input type="range" class="form-control-range" id="nbPersonnes" min="0" max="5" step="1" v-model="nbPersonnes">
                     </div>
 
                     <div class="form-group">
@@ -45,7 +54,8 @@
                 optionsBedRoom: [],
                 selectedOptions: [],
                 searchInput: '',
-                maxPrice : 0
+                maxPrice : 0,
+                nbPersonnes: 0
             }
         },
         mounted: function () {
@@ -66,8 +76,11 @@
                     this.maxPrice = 0
                     this.$store.commit('setMaxPrice', 0)
                 } else {
-                    this.$store.commit('setMaxPrice', this.maxPrice)
+                    this.$store.commit('setMaxPrice',  parseInt(this.maxPrice))
                 }
+            },
+            nbPersonnes: function (val) {
+                this.$store.commit('setNbPersonnes', parseInt(this.nbPersonnes))
             }
         }
     }
