@@ -69,6 +69,12 @@
                     bedRooms = bedRooms.filter(bedRoom => bedRoom.price <= maxPrice)
                 }
 
+                // filtre max personnes
+                let maxNbPersonne = this.$store.getters.getNbPersonnes;
+                if (maxNbPersonne !== 0) {
+                    bedRooms = bedRooms.filter(bedRoom => bedRoom.nbOfPersonsMax === maxNbPersonne)
+                }
+
                 // filtre options
                 filters.forEach(function(filter){
                     let bedRoomsTmp = bedRooms;

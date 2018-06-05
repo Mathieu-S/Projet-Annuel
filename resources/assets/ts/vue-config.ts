@@ -45,7 +45,8 @@ const store = new Vuex.Store({
     state: {
         optionBedRoom: [],
         searchData: '',
-        maxPrice : 0
+        maxPrice : 0,
+        nbPersonne : 0
     },
     getters: {
         getOptionBedRoom: state => {
@@ -56,6 +57,9 @@ const store = new Vuex.Store({
         },
         getMaxPrice: state => {
             return state.maxPrice
+        },
+        getNbPersonnes: state => {
+            return state.nbPersonne
         }
     },
     mutations: {
@@ -67,6 +71,9 @@ const store = new Vuex.Store({
         },
         setMaxPrice (state, n) {
             state.maxPrice = n
+        },
+        setNbPersonnes (state, n) {
+            state.nbPersonne = n
         }
     }
 });
