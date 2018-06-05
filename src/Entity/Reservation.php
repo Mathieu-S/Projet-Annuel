@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ReservationRepository")
@@ -30,6 +31,9 @@ class Reservation
 
     /**
      * @ORM\Column(name="nb_of_persons", type="integer")
+     * @Assert\GreaterThan(
+     *     value = 0
+     * )
      */
     private $nbOfPersons;
 
