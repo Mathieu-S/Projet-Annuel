@@ -6,11 +6,13 @@ use App\Entity\Reservation;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ReservationType extends AbstractType
 {
@@ -24,6 +26,12 @@ class ReservationType extends AbstractType
             ->add('finalDate', DateType::class, [
                 'label' => 'Dernier jour de réservation',
                 'widget' => 'single_text'
+            ])
+            ->add('nbOfPersons', IntegerType::class, [
+                'label' => 'Nombre de personnes',
+                'constraints' => array(
+                    new NotBlank(["message" => "Veuillez indiquer le nombre de personnes souhaitées"]),
+                ),
             ])
             ->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
                 $form = $event->getForm();
