@@ -18,10 +18,12 @@ class ReservationType extends AbstractType
     {
         $builder
             ->add('startDate', DateType::class, [
-                'label' => 'Premier jour de réservation'
+                'label' => 'Premier jour de réservation',
+                'widget' => 'single_text'
             ])
             ->add('finalDate', DateType::class, [
-                'label' => 'Dernier jour de réservation'
+                'label' => 'Dernier jour de réservation',
+                'widget' => 'single_text'
             ])
             ->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
                 $form = $event->getForm();
