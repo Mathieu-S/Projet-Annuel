@@ -37,7 +37,7 @@ class ReservationController extends Controller
             $bedRoom->setAvailability(false);
             $dateNow = new \DateTime('now');
             $reservation->setcreatedAt($dateNow);
-
+            $reservation->setPrice($reservation->getNbOfPersons() * $bedRoom->getPrice());
             $em->persist($reservation);
             $em->flush();
             return $this->render('home/index.html.twig', [
