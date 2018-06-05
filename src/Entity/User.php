@@ -2,12 +2,19 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\InheritanceType("JOINED")
+ * @ORM\DiscriminatorColumn(name="type_account", type="string")
+ * @ORM\DiscriminatorMap({
+ *     "user" = "User",
+ *     "hotelier" = "Hotelier"
+ * })
  */
 class User implements UserInterface
 {
@@ -17,51 +24,64 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255, nullable=false)
      * @Assert\NotBlank()
      */
-    private $lastname;
+    protected $lastname;
 
     /**
      * @ORM\Column(type="string", nullable=false)
      * @Assert\NotBlank()
      */
-    private $firstname;
+    protected $firstname;
 
     /**
      * @ORM\Column(type="string", nullable=false, unique=true)
      * @Assert\NotBlank()
      * @Assert\Email()
      */
-    private $email;
+    protected $email;
 
     /**
      * @ORM\Column(type="string", nullable=false)
      * @Assert\NotBlank()
      */
-    private $password;
+    protected $password;
 
     /**
      * @ORM\Column(type="json")
      */
-    private $roles = [];
-
-    /**
-     * @ORM\ManyToOne(targetEntity="TypeUser", inversedBy="users")
-     * @ORM\JoinColumn(name="type_user_id", referencedColumnName="id", onDelete="CASCADE")
-     */
-    private $typeUser;
+    protected $roles = [];
 
     /**
      * Many Users have Many Hotels.
      * @ORM\ManyToMany(targetEntity="Hotel", inversedBy="users")
      * @ORM\JoinTable(name="users_hotels")
      */
-    private $hotels;
+    protected $hotels;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Reservation", mappedBy="user", cascade={"persist"})
+     */
+    protected $reservations;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Contact", mappedBy="sender", cascade={"persist"})
+     */
+    protected $sendedMessages;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Contact", mappedBy="receiver", cascade={"persist"})
+     */
+    protected $receivedMessages;
 
     /**
      * Constructor
      */
-    public function __construct() {
+    public function __construct()
+    {
 
         $this->hotels = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->reservations = new ArrayCollection();
+        $this->sendedMessages = new ArrayCollection();
+        $this->receivedMessages = new ArrayCollection();
     }
 
     /**
@@ -110,22 +130,6 @@ class User implements UserInterface
     public function setEmail($email)
     {
         $this->email = $email;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTypeUser()
-    {
-        return $this->typeUser;
-    }
-
-    /**
-     * @param mixed $typeUser
-     */
-    public function setTypeUser($typeUser)
-    {
-        $this->typeUser = $typeUser;
     }
 
     /**
@@ -236,4 +240,53 @@ class User implements UserInterface
     {
         return false;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getReservations()
+    {
+        return $this->reservations;
+    }
+
+    /**
+     * @param mixed $reservations
+     */
+    public function setReservations($reservations): void
+    {
+        $this->reservations = $reservations;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSendedMessages()
+    {
+        return $this->sendedMessages;
+    }
+
+    /**
+     * @param mixed $sendedMessages
+     */
+    public function setSendedMessages($sendedMessages)
+    {
+        $this->sendedMessages = $sendedMessages;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getReceivedMessages()
+    {
+        return $this->receivedMessages;
+    }
+
+    /**
+     * @param mixed $sendedMessages
+     */
+    public function setReceivedMessages($receivedMessages)
+    {
+        $this->receivedMessages = $receivedMessages;
+    }
+
 }

@@ -1,0 +1,55 @@
+{% extends 'backoffice/base_backoffice.html.twig' %}
+
+{% block body %}
+    <section class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        <h1>Chambres de l'hotel "{{ hotel.name }}"</h1>
+        <a href="{{ path('hotelierCreateHotelChambers', {id: hotel.id}) }}" class="btn btn-primary">Ajouter une chambre</a>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Options</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Images</th>
+                    <th scope="col">Disponibilité</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for chambre in chambres %}
+                    <tr>
+                        <th scope="row">{{ chambre.id }}</th>
+                        <td>{{ chambre.description }}</td>
+                        <td>
+                            <ul>
+                                {% for option in chambre.options %}
+                                    <span class="badge badge-primary">{{ option.name }}</span>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                        <td>{{ chambre.price }}€</td>
+                        <td>
+                            {% if chambre.images %}
+                                {% for image in chambre.images %}
+                                    <img src="{{ asset('/uploads/images/'~image.uri) }}" style="width:150px;height:150px;">
+                                {% endfor %}
+                            {% else %}
+                                Pas d'image associée
+                            {% endif %}
+                        </td>
+                        {% if chambre.availability %}
+                            <td>Oui</td>
+                        {% else %}
+                            <td>Non</td>
+                        {% endif %}
+                        <td>
+                            <a href="{{ path('hotelierEditHotelChambers', {id: chambre.id}) }}" class="btn btn-warning">Edit</a>
+                            <a href="{{ path('hotelierDeleteHotelChambers', {id: chambre.id}) }}" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+{% endblock %}

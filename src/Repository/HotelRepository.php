@@ -13,6 +13,17 @@ class HotelRepository extends ServiceEntityRepository
         parent::__construct($registry, Hotel::class);
     }
 
+    public function getOwnerHotels($idOwners)
+    {
+        return $this->createQueryBuilder('h')
+            ->where('h.owner = :value')->setParameter('value', $idOwners)
+            ->orderBy('h.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     /*
     public function findBySomething($value)
     {

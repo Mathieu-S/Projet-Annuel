@@ -1,0 +1,36 @@
+{% extends 'backoffice/base_backoffice.html.twig' %}
+
+{% block body %}
+    <section class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        <h1>Chambres</h1>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Hotel</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Disponibilité</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for chambre in chambres %}
+                <tr>
+                    <td><b><a href="{{ path('hotelierChambresHotel', {id: chambre.hotel.id}) }}) }}">{{ chambre.hotel.name }}</a></b></td>
+                    <td>{{ chambre.description }}</td>
+                    <td>{{ chambre.price }}</td>
+                    {% if chambre.availability %}
+                        <td>Oui</td>
+                    {% else %}
+                        <td>Non</td>
+                    {% endif %}
+                    <td>
+                        <a href="{{ path('hotelierEditHotelChambers', {id: chambre.id}) }}" class="btn btn-warning">Edit</a>
+                        <a href="{{ path('hotelierDeleteHotelChambers', {id: chambre.id}) }}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'backoffice/base_backoffice.html.twig' %}
+
+{% block body %}
+    <section class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        <h1>Utilisateurs</h1>
+
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Prénom</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Rôles</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                    <tr>
+                        <th scope="row">{{ user.id }}</th>
+                        <td>{{ user.firstname }}</td>
+                        <td>{{ user.lastname }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>
+                            {% if 'ROLE_ADMIN' in user.roles %}
+                                Administrateur
+                            {% elseif 'ROLE_HOTEL' in user.roles %}
+                                Hôtelier
+                            {% else %}
+                                Client
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if 'ROLE_HOTEL' in user.roles %}
+                                {% if not user.enableAccount %}
+                                    <a href="{{ path('adminEnnableAccount', {id: user.id}) }}" class="btn btn-info">Ennable account</a>
+                                {% else %}
+                                    <a href="{{ path('adminDisableAccount', {id: user.id}) }}" class="btn btn-secondary">Disable account</a>
+                                {% endif %}
+                            {% endif %}
+                            <a href="{{ path('adminEditUsers', {id: user.id}) }}" class="btn btn-warning">Edit</a>
+                            <a href="{{ path('adminDeleteUsers', {id: user.id}) }}" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+{% endblock %}

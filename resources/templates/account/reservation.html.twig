@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>Liste de mes réservations</h1>
+    <table width="80%" align="center" class="table-bordered">
+        <tr>
+            <td class="text-center">
+
+                <table align="center" class="table table-fixed table-striped table-condensed">
+                    <tr style="background-color:#e9e8e6;">
+                        <th style="text-align: center;">Date de demande</th>
+                        <th style="text-align: center;">Date d'arrivée</th>
+                        <th style="text-align: center;">Date de départ</th>
+                        <th style="text-align: center;">Détails de la chambre</th>
+                        <th style="text-align: center;">Détails de l'hôtel</th>
+                    </tr>
+                    {% for reservation in reservations %}
+                        <tr>
+                            <td align="center">
+                                {{ reservation.askedDate|date('d-m-Y') }}
+                            </td>
+                            <td align="center">
+                                {{ reservation.startDate|date('d-m-Y') }}
+                            </td>
+                            <td align="center">
+                                {{ reservation.finalDate|date('d-m-Y') }}
+                            </td>
+                            <td align="center">
+                                {{ reservation.bedroom.description ~ ' pour un prix de ' ~ reservation.bedroom.price ~ '€' }}
+                            </td>
+                            <td align="center">
+                                {{ "L'hôtel : " ~ reservation.bedroom.hotel.name ~ ' à ' ~ reservation.bedroom.hotel.city.name }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </td>
+        </tr>
+    </table>
+
+{% endblock %}

@@ -38,14 +38,26 @@ class BedRoom
 
     /**
      * Many BedRooms have Many Options.
-     * @ORM\ManyToMany(targetEntity="Option", inversedBy="bedRooms")
+     * @ORM\ManyToMany(targetEntity="App\Entity\OptionalEquipment", inversedBy="bedRooms")
      * @ORM\JoinTable(name="bedrooms_options")
      */
     private $options;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Image", mappedBy="bedRoom", cascade={"persist"}, orphanRemoval=true)
+     */
+    private $images;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Reservation", mappedBy="bedRoom", cascade={"persist"})
+     */
+    private $reservations;
+
     public function __construct() {
 
         $this->options = new ArrayCollection();
+        $this->images = new ArrayCollection();
+        $this->reservations = new ArrayCollection();
     }
 
     /**
@@ -146,4 +158,33 @@ class BedRoom
         $this->options = $options;
         return $this;
     }
+
+    /**
+     * @param mixed $images
+     */
+    public function setImages($images)
+    {
+        $this->images = $images;
+    }
+
+    public function getImages() {
+        return $this->images;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getReservations()
+    {
+        return $this->reservations;
+    }
+
+    /**
+     * @param mixed $reservations
+     */
+    public function setReservations($reservations): void
+    {
+        $this->reservations = $reservations;
+    }
+
 }

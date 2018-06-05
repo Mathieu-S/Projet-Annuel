@@ -6,11 +6,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\OptionRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\OptionalEquipmentRepository")
  */
-class Option
+class OptionalEquipment
 {
-
     use IdTrait;
 
     /**
@@ -22,7 +21,7 @@ class Option
 
     /**
      * Many Options concern Many BedRooms.
-     * @ORM\ManyToMany(targetEntity="BedRoom", mappedBy="options")
+     * @ORM\ManyToMany(targetEntity="App\Entity\BedRoom", mappedBy="options")
      */
     private $bedRooms;
 

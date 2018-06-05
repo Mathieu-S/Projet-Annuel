@@ -1,0 +1,31 @@
+{% extends 'backoffice/base_backoffice.html.twig' %}
+
+{% block body %}
+    <section class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        <h1>BackOffice - Réservations</h1>
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nom de l'hôtel</th>
+                <th scope="col">Chambre</th>
+                <th scope="col">Localisation</th>
+                <th scope="col">Date de demande</th>
+                <th scope="col">Date d'arrivée</th>
+                <th scope="col">Date de départ</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for reservation in reservations %}
+                <tr>
+                    <td>{{ reservation.bedroom.hotel.name }}</td>
+                    <td>{{ reservation.bedroom.description }}</td>
+                    <td>{{ reservation.bedroom.hotel.address ~ ' ' ~ reservation.bedroom.hotel.postalCode.code ~ ' ' ~ reservation.bedroom.hotel.city.name }}</td>
+                    <td>{{ reservation.createdAt|date('d-m-Y H:i:s') }}</td>
+                    <td>{{ reservation.startDate|date('d-m-Y') }}</td>
+                    <td>{{ reservation.finalDate|date('d-m-Y') }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
+{% endblock %}

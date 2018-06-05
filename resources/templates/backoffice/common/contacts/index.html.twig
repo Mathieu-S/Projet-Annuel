@@ -1,0 +1,31 @@
+
+{% extends 'backoffice/base_backoffice.html.twig' %}
+
+{% block body %}
+    <section class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        <h1>BackOffice - Messages</h1>
+        <a href="{{ path('createContactAnswer') }}" class="btn btn-primary">Envoyer un message</a>
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Sujet du message</th>
+                <th scope="col">Contenu du message</th>
+                <th scope="col">Envoyé par :</th>
+                <th scope="col">Demande effectuée le:</th>
+                <th scope="col">Destinataire</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for contactRequest in contactRequests %}
+                <tr>
+                    <td>{{ contactRequest.subject }}</td>
+                    <td>{{ contactRequest.message }}</td>
+                    <td>{{ contactRequest.sender.email }}</td>
+                    <td>{{ contactRequest.createdAt|date('d-m-Y H:i:s') }}</td>
+                    <td>{{ contactRequest.receiver.email }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
+{% endblock %}
