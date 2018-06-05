@@ -25,6 +25,8 @@
             <div class="col-9">
                 <h4 v-if="bedRoom.hotel">{{ bedRoom.hotel.name }}</h4>
                 <p>{{ bedRoom.description }}</p>
+                <div v-if="bedRoom.nbOfPersonsMax === 1">Chambre pour {{ bedRoom.nbOfPersonsMax }} personne</div>
+                <div v-else>Chambre pour {{ bedRoom.nbOfPersonsMax }} personnes</div>
                 <h5>Prix : {{ bedRoom.price }}€</h5>
             </div>
             <div class="col-3">

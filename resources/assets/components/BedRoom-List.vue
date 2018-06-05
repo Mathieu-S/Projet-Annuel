@@ -9,6 +9,8 @@
                     <div class="col-md-6 col-sm-12">
                         <h5 class="card-title">{{ bedRoom.hotel.name }}</h5>
                         <p class="card-text">{{ bedRoom.description }}</p>
+                        <div v-if="bedRoom.nbOfPersonsMax === 1">Chambre pour {{ bedRoom.nbOfPersonsMax }} personne</div>
+                        <div v-else>Chambre pour {{ bedRoom.nbOfPersonsMax }} personnes</div>
                     </div>
                     <div class="col-md-2 col-sm-12">
                         <router-link class="btn btn-primary" :to="{name: 'bedRoom', params: {id: bedRoom.id, slug: bedRoom.hotel.name + '/' + bedRoom.id }}">Voir l'offre</router-link>
