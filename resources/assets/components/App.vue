@@ -76,7 +76,7 @@
                     this.maxPrice = 0
                     this.$store.commit('setMaxPrice', 0)
                 } else {
-                    this.$store.commit('setMaxPrice', this.maxPrice)
+                    this.$store.commit('setMaxPrice',  parseInt(this.maxPrice))
                 }
             },
             nbPersonnes: function (val) {
