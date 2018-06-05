@@ -18,7 +18,7 @@
                     {% for reservation in reservations %}
                         <tr>
                             <td align="center">
-                                {{ reservation.askedDate|date('d-m-Y') }}
+                                {{ reservation.createdAt|date('d-m-Y') }}
                             </td>
                             <td align="center">
                                 {{ reservation.startDate|date('d-m-Y') }}
@@ -27,7 +27,7 @@
                                 {{ reservation.finalDate|date('d-m-Y') }}
                             </td>
                             <td align="center">
-                                {{ reservation.bedroom.description ~ ' pour un prix de ' ~ reservation.bedroom.price ~ '€' }}
+                                {{ reservation.bedroom.description ~ ' pour un total de ' ~ reservation.price ~ '€ pour ' ~ reservation.nbOfPersons ~ ' personnes' }}
                             </td>
                             <td align="center">
                                 {{ "L'hôtel : " ~ reservation.bedroom.hotel.name ~ ' à ' ~ reservation.bedroom.hotel.city.name }}
