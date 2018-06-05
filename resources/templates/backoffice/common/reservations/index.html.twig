@@ -6,6 +6,7 @@
         <table class="table">
             <thead class="thead-dark">
             <tr>
+                <th scope="col">Utilisateur</th>
                 <th scope="col">Nom de l'hôtel</th>
                 <th scope="col">Chambre</th>
                 <th scope="col">Localisation</th>
@@ -19,6 +20,7 @@
             <tbody>
             {% for reservation in reservations %}
                 <tr>
+                    <td>{{ reservation.user.email }}</td>
                     <td>{{ reservation.bedroom.hotel.name }}</td>
                     <td>{{ reservation.bedroom.description }}</td>
                     <td>{{ reservation.bedroom.hotel.address ~ ' ' ~ reservation.bedroom.hotel.postalCode.code ~ ' ' ~ reservation.bedroom.hotel.city.name }}</td>

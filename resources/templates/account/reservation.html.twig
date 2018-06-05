@@ -12,13 +12,13 @@
                         <th style="text-align: center;">Date de demande</th>
                         <th style="text-align: center;">Date d'arrivée</th>
                         <th style="text-align: center;">Date de départ</th>
-                        <th style="text-align: center;">Détails de la chambre</th>
+                        <th style="text-align: center;">Détails de la chambre et de la réservation</th>
                         <th style="text-align: center;">Détails de l'hôtel</th>
                     </tr>
                     {% for reservation in reservations %}
                         <tr>
                             <td align="center">
-                                {{ reservation.createdAt|date('d-m-Y') }}
+                                {{ reservation.createdAt|date('d-m-Y H:i:s') }}
                             </td>
                             <td align="center">
                                 {{ reservation.startDate|date('d-m-Y') }}
