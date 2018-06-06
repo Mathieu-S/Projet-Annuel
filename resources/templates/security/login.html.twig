@@ -2,30 +2,49 @@
 
 {% block body %}
     <section class="container">
-        {% if error %}
-            <div class="alert alert-danger animated bounceInDown">
-                {{ error.messageKey|trans(error.messageData,'security') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+        <div class="row">
+            <div class="col-sm-3">
             </div>
-        {% endif %}
+            <div class="col-sm-6">
+                <div class="col-sm-12" style="background-color: white; margin-top: 30px;margin-bottom: 30px;">
+                    <div class="row">
+                        <div class="col-sm-12" style="background-color: #2c4c6c; color:white;text-align: center;padding-top:8px;">
+                            <h3>BIENVENUE</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12" style="padding:15px;">
+                            {% if error %}
+                                <div class="alert alert-danger animated bounceInDown">
+                                    {{ error.messageKey|trans(error.messageData,'security') }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            {% endif %}
 
-        <form action="{{ path('security_login') }}" method="post">
-            <div class="form-group">
-                <label for="username">Identifiant</label>
-                <input type="text" class="form-control" id="username" name="_username" value="{{ lastUsername }}"/>
+                            <form action="{{ path('security_login') }}" method="post">
+                                <div class="form-group">
+                                    <label for="username"><b>Identifiant</b></label>
+                                    <input type="text" class="form-control" id="username" name="_username" value="{{ lastUsername }}"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="password"><b>Mot de passe</b></label>
+                                    <input type="password" class="form-control" id="password" name="_password"/>
+                                </div>
+
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+                                {# <input type="hidden" name="_target_path" value="/apres-login" /> #}
+                                <button type="submit" class="btn btn-success btn-block">Login</button>
+                                <a href="{{ path('security_register') }}" class="btn btn-secondary btn-block">S'inscrire</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <div class="form-group">
-                <label for="password">Mot de passe</label>
-                <input type="password" class="form-control" id="password" name="_password"/>
+            <div class="col-sm-3">
             </div>
-
-            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
-            {# <input type="hidden" name="_target_path" value="/apres-login" /> #}
-            <button type="submit" class="btn btn-primary btn-block">Login</button>
-            <a href="{{ path('security_register') }}" class="btn btn-secondary btn-block">S'inscrire</a>
-        </form>
+        </div>
     </section>
 {% endblock %}

@@ -1,22 +1,23 @@
 <template>
-    <article id="hotel-list" class="row">
-        <div class="col-3" id="columnFilter">
-
+    <div id="hotel-list" class="row" style="margin-bottom: 20px;">
+        <div class="col-md-1"></div>
+        <div class="col-md-3">
+            <div class="col-md-12" id="columnFilter">
                 <form>
                     <div class="row" id="titleFilter">
-                        <div class="form-group col-sm-12">
-                        <h3>Filtres</h3>
+                        <div class="form-group col-md-12">
+                        <h3><b>FILTRES</b></h3>
                         </div>
                     </div>
                     <div class="row filters">
-                       <div class="form-group col-sm-12">
+                       <div class="form-group col-md-12">
                            <input type="text" class="form-control" id="inlineFormInputGroup" v-model="searchInput" placeholder="Tapez une ville ou un hôtel">
                        </div>
                     </div>
                     <div class="row filters">
-                        <div class="form-group col-sm-12">
+                        <div class="form-group col-md-12">
                             <label for="formControlRange">
-                                <b>Prix maximal</b>
+                                <b>Prix maximal : </b>
                                 <span v-if="maxPrice === 0"> <i>Pas de limite</i></span>
                                 <span v-else>{{ maxPrice }} €</span>
                             </label>
@@ -24,10 +25,22 @@
                         </div>
                     </div>
                     <div class="row filters">
-                        <div class="form-group col-sm-12">
-                            <b>Options</b>
+                        <div class="form-group col-md-12">
+                            <div style="margin-bottom: 8px;"><b>Options</b></div>
                             <div class="form-check" v-for="optionBedRoom in optionsBedRoom" :key="optionBedRoom.id">
                                 <input class="form-check-input" type="checkbox" v-model="selectedOptions" :value="optionBedRoom.name">
+
+                                    <i v-if="optionBedRoom.name === 'Wifi'" class="material-icons md-18">wifi</i>
+                                    <i v-if="optionBedRoom.name === 'TV'" class="material-icons md-18">tv</i>
+                                    <i v-if="optionBedRoom.name === 'Climatisation'" class="material-icons md-18">ac_unit</i>
+                                    <i v-if="optionBedRoom.name === 'Service de chambre'" class="material-icons md-18">room_service</i>
+                                    <i v-if="optionBedRoom.name === 'Piscine'" class="material-icons md-18">pool</i>
+                                    <i v-if="optionBedRoom.name === 'Restaurant'" class="material-icons">restaurant</i>
+                                    <i v-if="optionBedRoom.name === 'Animaux'" class="material-icons">pets</i>
+                                    <i v-if="optionBedRoom.name === 'Proche commerce'" class="material-icons">shopping_cart</i>
+                                    <i v-if="optionBedRoom.name === 'Proche transport'" class="material-icons">directions_subway</i>
+                                    <i v-if="optionBedRoom.name === 'Proche aeroport'" class="material-icons">flight</i>
+
                                 <label class="form-check-label">
                                     {{optionBedRoom.name}}
                                 </label>
@@ -36,12 +49,13 @@
                     </div>
 
                 </form>
+            </div>
         </div>
-
-        <div class="col-9">
+        <div class="col-md-7">
             <router-view/>
         </div>
-    </article>
+        <div class="col-md-1"></div>
+    </div>
 </template>
 
 <script lang="ts">
@@ -83,13 +97,10 @@
 </script>
 
 <style scoped lang="scss">
-article {
-    margin-left: 10%;
-    margin-right: 10%;
-}
 #titleFilter{
     background-color:#f05f40;
-    color:white;
+    padding-top:15px;
+    text-align: center;
 }
 
 </style>
