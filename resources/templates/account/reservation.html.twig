@@ -41,8 +41,8 @@
                                             <td>{{ reservation.bedroom.description ~ ' pour un total de ' ~ reservation.price ~ '€ pour ' ~ reservation.nbOfPersons ~ ' personnes' }}</td>
                                             <td>{{ "Hôtel " ~ reservation.bedroom.hotel.name ~ ' à ' ~ reservation.bedroom.hotel.city.name }}</td>
                                             <td>
-                                                {% if reservation.startDate|date_modify("-1 day") <= date() %}
-                                                    <button type="submit" class="btn blueLink">Annuler</button>
+                                                {% if reservation.startDate|date_modify("-1 day") >= date() %}
+                                                    <a href="{{ path('deleteReservation', {id: reservation.id}) }}" class="btn blueLink">Annuler</a>
                                                 {% endif %}
                                             </td>
                                         </tr>
