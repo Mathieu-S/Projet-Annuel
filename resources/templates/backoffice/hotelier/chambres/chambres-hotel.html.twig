@@ -3,7 +3,7 @@
 {% block body %}
     <section class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
         <h1>Chambres de l'hotel "{{ hotel.name }}"</h1>
-        <a href="{{ path('hotelierCreateHotelChambers', {id: hotel.id}) }}" class="btn btn-primary">Ajouter une chambre</a>
+        <a href="{{ path('hotelierCreateHotelChambers', {id: hotel.id}) }}" class="btn btn-primary" style="margin-bottom:15px;">Ajouter une chambre</a>
         <table class="table">
             <thead class="thead-dark">
                 <tr>
@@ -12,7 +12,7 @@
                     <th scope="col">Options</th>
                     <th scope="col">Prix</th>
                     <th scope="col">Images</th>
-                    <th scope="col">Disponibilité</th>
+                    <th scope="col">Disponible</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
@@ -46,12 +46,12 @@
                         <td>
 
                             {% if not chambre.availability %}
-                                <a href="{{ path('enableBedRoom', {id: chambre.id}) }}" class="btn btn-info">Enable bedroom</a>
+                                <a href="{{ path('enableBedRoom', {id: chambre.id}) }}" class="btn btn-info">Libérer chambre</a>
                             {% else %}
-                                <a href="{{ path('disableBedRoom', {id: chambre.id}) }}" class="btn btn-secondary">Disable bedroom</a>
+                                <a href="{{ path('disableBedRoom', {id: chambre.id}) }}" class="btn btn-secondary">Verouiller chambre</a>
                             {% endif %}
-                            <a href="{{ path('hotelierEditHotelChambers', {id: chambre.id}) }}" class="btn btn-warning">Edit</a>
-                            <a href="{{ path('hotelierDeleteHotelChambers', {id: chambre.id}) }}" class="btn btn-danger">Delete</a>
+                            <a href="{{ path('hotelierEditHotelChambers', {id: chambre.id}) }}" class="btn btn-warning">Modifier</a>
+                            <a href="{{ path('hotelierDeleteHotelChambers', {id: chambre.id}) }}" class="btn btn-danger">Supprimer</a>
                         </td>
                     </tr>
                 {% endfor %}

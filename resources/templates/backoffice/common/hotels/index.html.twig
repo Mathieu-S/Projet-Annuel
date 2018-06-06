@@ -2,8 +2,8 @@
 
 {% block body %}
     <section class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-        <h1>BackOffice - Hotels</h1>
-        <a href="{{ path('createHotel') }}" class="btn btn-primary">Ajouter un hotel</a>
+        <h1>BackOffice - Hôtels</h1>
+        <a href="{{ path('createHotel') }}" class="btn btn-primary" style="margin-bottom:15px;">Ajouter un hotel</a>
         <table class="table">
             <thead class="thead-dark">
             <tr>
@@ -34,9 +34,9 @@
                     <td>{{ hotel.createdAt|date('d-m-Y H:i:s') }}</td>
                     <td>{{ hotel.owner.lastname }} {{ hotel.owner.firstname }}</td>
                     <td>
-                        <a href="{{ path('hotelierChambresHotel', {id: hotel.id}) }}" class="btn btn-primary">Accéder aux chambres</a>
-                        <a href="{{ path('editHotel', {id: hotel.id}) }}" class="btn btn-warning">Edit</a>
-                        <a href="{{ path('deleteHotel', {id: hotel.id}) }}" class="btn btn-danger">Delete</a>
+                        <a href="{{ path('hotelierChambresHotel', {id: hotel.id}) }}" class="btn btn-primary">Chambres</a>
+                        <a href="{{ path('editHotel', {id: hotel.id}) }}" class="btn btn-warning">Modifier</a>
+                        <a href="{{ path('deleteHotel', {id: hotel.id}) }}" class="btn btn-danger">Supprimer</a>
                     </td>
                 </tr>
             {% endfor %}
