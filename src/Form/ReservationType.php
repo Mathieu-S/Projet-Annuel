@@ -41,7 +41,7 @@ class ReservationType extends AbstractType
                 if ($data->getStartDate() >= $data->getFinalDate()) {
                     $form->get('finalDate')->addError(new FormError("La date d'arrivée doit forcément être plus tard que la date de départ"));
                 }
-                if ($data->getStartDate() <= $currentDate) {
+                if ($data->getStartDate() < $currentDate) {
                     $form->get('startDate')->addError(new FormError("Vous ne pouvez pas réserver pour une date antérieure à celle d'aujourd'hui"));
                 }
                 if ($data->getNbOfPersons() > $bedRoom->getNbOfPersonsMax()) {

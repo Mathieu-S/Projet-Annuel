@@ -59,13 +59,14 @@ class ReservationController extends Controller
      */
     public function DeleteReservationAction(Reservation $reservation)
     {
+        $userId = $this->getUser()->getId();
         if ($reservation === null) {
             return $this->redirectToRoute('reservationDataAccount');
         }
         $em = $this->getDoctrine()->getManager();
         $em->remove($reservation);
         $em->flush();
-        return $this->redirectToRoute('reservationDataAccount');
+        return $this->redirectToRoute('reservationDataAccount', ['id' => $userId]);
     }
 
 }
