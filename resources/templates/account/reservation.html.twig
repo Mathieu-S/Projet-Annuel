@@ -37,11 +37,13 @@
                                     </thead>
                                     <tbody>
                                     {% for reservation in reservations %}
+                                        {% set difference = date(reservation.finalDate).diff(date(reservation.startDate)) %}
+                                        {% set nbDays = difference.days %}
                                         <tr>
                                             <th scope="row" style="vertical-align: middle;">{{ reservation.createdAt|date('d-m-Y H:i:s') }}</th>
                                             <td style="vertical-align: middle;">{{ reservation.startDate|date('d-m-Y') }}</td>
                                             <td style="vertical-align: middle;">{{ reservation.finalDate|date('d-m-Y') }}</td>
-                                            <td style="vertical-align: middle;">{{ reservation.bedroom.description ~ ' pour un total de ' ~ reservation.price ~ '€ pour ' ~ reservation.nbOfPersons ~ ' personnes' }}</td>
+                                            <td style="vertical-align: middle;">{{ reservation.bedroom.description ~ ' pour un total de ' ~ reservation.price * nbDays ~ '€ pour ' ~ reservation.nbOfPersons ~ ' personnes' }}</td>
                                             <td style="vertical-align: middle;">{{ "Hôtel " ~ reservation.bedroom.hotel.name ~ ' à ' ~ reservation.bedroom.hotel.city.name }}</td>
                                             <td>
                                                 {% if reservation.startDate|date_modify("-1 day") >= date() %}
