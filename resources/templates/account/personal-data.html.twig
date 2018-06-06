@@ -2,47 +2,41 @@
 
 {% block body %}
     <div class="row">
-        <div class="col-sm-2">
-        </div>
-        <div class="col-sm-8">
-            <h1 class="redPolice">Vos informations personnelles</h1>
-            <table width="80%" align="center" class="table-bordered">
-                <tr>
-                    <td class="text-center">
-
-                        <table align="center" class="table table-fixed table-striped table-condensed">
-                            <tr style="background-color:#e9e8e6;">
-                                <th style="text-align: center;">Nom</th>
-                                <th style="text-align: center;">Prénom</th>
-                                <th style="text-align: center;">Email</th>
-                                <th style="text-align: center;">Rôle</th>
-                            </tr>
-                            <tr>
-                                <td align="center">
-                                    {{ user.firstname }}
-                                </td>
-                                <td align="center">
-                                    {{ user.lastname }}
-                                </td>
-                                <td align="center">
-                                    {{ user.email }}
-                                </td>
-                                <td align="center">
-                                    {% if user.roles[0] == "ROLE_ADMIN" %}
+        <div class="row col-md-12">
+            <div class="col-md-3">
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12">
+                        <img class="d-block w-100" src="{{ asset('img/inscriptionProfil.jpg') }}"
+                             alt="illustration profil">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" style="border-radius:30px;background-color: white; margin-top:30px; margin-bottom:30px;text-align: center;padding-top: 0px;">
+                        <div class="row" style="padding-top: 20px;border-radius:30px 30px 0px 0px;background-color: #f1a929;border-bottom:8px solid #263e53;">
+                            <div class="col-md-12">
+                                <h4><b>VOS INFORMATIONS PERSONNELLES</b></h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12" style="text-align: left;padding: 30px;border-top:12px solid #648496;">
+                                <p><b class="bluePolice">Nom :</b> {{ user.firstname }}</p>
+                                <p><b class="bluePolice">Prénom :</b> {{ user.lastname }}</p>
+                                <p><b class="bluePolice">Email :</b> {{ user.email }}</p>
+                                <p><b class="bluePolice">Rôle : </b>{% if user.roles[0] == "ROLE_ADMIN" %}
                                         Admin
                                     {% elseif user.roles[0] == "ROLE_HOTELIER" %}
                                         Hôtelier
                                     {% else %}
                                         Utilisateur
-                                    {% endif %}
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div class="col-sm-2">
+                                    {% endif %}</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
