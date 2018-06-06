@@ -1,47 +1,69 @@
 <template>
-    <article id="hotel-list" class="row">
-        <div class="col-3">
-            <div class="card">
+    <div id="hotel-list" class="row" style="margin-bottom: 20px;">
+        <div class="col-md-1"></div>
+        <div class="col-md-3">
+            <div class="col-md-12" id="columnFilter">
                 <form>
-                    Filtrage par nom :
-                    <div class="form-group">
-                        <input class="form-control form-control-sm" type="text" v-model="searchInput" placeholder="Nom hôtel, Ville">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="price">
-                            Prix maximal :
-                            <span v-if="maxPrice === 0"> pas de limite</span>
-                            <span v-else>{{ maxPrice }} €</span>
-                        </label>
-                        <input type="range" class="form-control-range" id="price" min="20" max="300" step="10" v-model="maxPrice">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="nbPersonnes">
-                            Nombres de personnes :
-                            <span v-if="nbPersonnes === '0'"> pas de préférence</span>
-                            <span v-else>{{ nbPersonnes }}</span>
-                        </label>
-                        <input type="range" class="form-control-range" id="nbPersonnes" min="0" max="5" step="1" v-model="nbPersonnes">
-                    </div>
-
-                    <div class="form-group">
-                        Options :
-                        <div class="form-check" v-for="optionBedRoom in optionsBedRoom" :key="optionBedRoom.id">
-                            <input class="form-check-input" type="checkbox" v-model="selectedOptions" :value="optionBedRoom.name">
-                            <label class="form-check-label">
-                                {{optionBedRoom.name}}
-                            </label>
+                    <div class="row" id="titleFilter">
+                        <div class="form-group col-md-12">
+                        <h3><b>FILTRES</b></h3>
                         </div>
                     </div>
+                    <div class="row filters">
+                        <div class="form-group col-md-12">
+                            <input type="text" class="form-control" id="inlineFormInputGroup" v-model="searchInput" placeholder="Tapez une ville ou un hôtel">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="formControlRange">
+                                <b>Prix maximal : </b>
+                                <span v-if="maxPrice === 0"> <i>Pas de limite</i></span>
+                                <span v-else>{{ maxPrice }} €</span>
+                            </label>
+                            <input type="range" class="form-control-range" id="formControlRange" min="20" max="300" step="10" v-model="maxPrice">
+                        </div>
+                    </div>
+                    <div class="row filters">
+                        <div class="form-group col-md-12">
+                            <label for="nbPersonnes">
+                                <b>Nombres de personnes : </b>
+                                <span v-if="nbPersonnes === '0'"> Pas de préférence</span>
+                                <span v-else>{{ nbPersonnes }}</span>
+                            </label>
+                            <input type="range" class="form-control-range" id="nbPersonnes" min="0" max="5" step="1" v-model="nbPersonnes">
+                        </div>
+                    </div>
+                    <div class="row filters">
+                        <div class="form-group col-md-12">
+                            <div style="margin-bottom: 8px;"><b>Options</b></div>
+                            <div class="form-check" v-for="optionBedRoom in optionsBedRoom" :key="optionBedRoom.id">
+                                <input class="form-check-input" type="checkbox" v-model="selectedOptions" :value="optionBedRoom.name">
+
+                                    <i v-if="optionBedRoom.name === 'Wifi'" class="material-icons md-18">wifi</i>
+                                    <i v-if="optionBedRoom.name === 'TV'" class="material-icons md-18">tv</i>
+                                    <i v-if="optionBedRoom.name === 'Climatisation'" class="material-icons md-18">ac_unit</i>
+                                    <i v-if="optionBedRoom.name === 'Service de chambre'" class="material-icons md-18">room_service</i>
+                                    <i v-if="optionBedRoom.name === 'Piscine'" class="material-icons md-18">pool</i>
+                                    <i v-if="optionBedRoom.name === 'Restaurant'" class="material-icons">restaurant</i>
+                                    <i v-if="optionBedRoom.name === 'Animaux'" class="material-icons">pets</i>
+                                    <i v-if="optionBedRoom.name === 'Proche commerce'" class="material-icons">shopping_cart</i>
+                                    <i v-if="optionBedRoom.name === 'Proche transport'" class="material-icons">directions_subway</i>
+                                    <i v-if="optionBedRoom.name === 'Proche aeroport'" class="material-icons">flight</i>
+
+                                <label class="form-check-label">
+                                    {{optionBedRoom.name}}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
                 </form>
             </div>
         </div>
-        <div class="col-9">
+        <div class="col-md-7">
             <router-view/>
         </div>
-    </article>
+        <div class="col-md-1"></div>
+    </div>
 </template>
 
 <script lang="ts">
@@ -87,14 +109,10 @@
 </script>
 
 <style scoped lang="scss">
-article {
-    margin-left: 10%;
-    margin-right: 10%;
+#titleFilter{
+    background-color:#f1a929;
+    padding-top:15px;
+    text-align: center;
 }
-.card {
-    form {
-        padding: 15px;
-        padding-bottom: 0;
-    }
-}
+
 </style>

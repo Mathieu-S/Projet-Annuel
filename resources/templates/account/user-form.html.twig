@@ -1,19 +1,44 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <section class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-        <h1>Utilisateur</h1>
+<div class="row">
+    <div class="row col-md-12">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12" style="background-color: white; margin-top:30px; margin-bottom:30px;text-align: center;padding-top: 0px;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img class="d-block w-100" src="{{ asset('img/inscriptionProfil.jpg') }}" alt="illustration profil">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" style="margin-top: 20px;">
+                            <h4><b>VOTRE PROFIL UTILISATEUR</b></h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" style="margin-top: 20px;text-align: left;padding: 30px;">
+                            {% form_theme userForm 'bootstrap_4_layout.html.twig' %}
+                            {{ form_start(userForm) }}
 
-        {% form_theme userForm 'bootstrap_4_layout.html.twig' %}
-        {{ form_start(userForm) }}
+                            {{ form_row(userForm.firstname) }}
+                            {{ form_row(userForm.lastname) }}
+                            {{ form_row(userForm.email) }}
+                            {{ form_row(userForm.password.first) }}
+                            {{ form_row(userForm.password.second) }}
 
-        {{ form_row(userForm.firstname) }}
-        {{ form_row(userForm.lastname) }}
-        {{ form_row(userForm.email) }}
-        {{ form_row(userForm.password.first) }}
-        {{ form_row(userForm.password.second) }}
+                            <button type="submit" class="btn btn-success">Valider</button>
+                            <router-link class="btn blueLink" to="/">Annuler</router-link>
+                            {{ form_end(userForm) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-        <button type="submit" class="btn btn-primary">Validate</button>
-        {{ form_end(userForm) }}
-    </section>
+
 {% endblock %}

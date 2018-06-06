@@ -37,11 +37,12 @@ class ReservationType extends AbstractType
             ->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) use ($bedRoom) {
                 $form = $event->getForm();
                 $currentDate = new \DateTime('now');
+                $currentDate->setTime(0,0,0);
                 $data = $event->getData();
                 if ($data->getStartDate() >= $data->getFinalDate()) {
                     $form->get('finalDate')->addError(new FormError("La date d'arrivée doit forcément être plus tard que la date de départ"));
                 }
-                if ($data->getStartDate() <= $currentDate) {
+                if ($data->getStartDate() < $currentDate) {
                     $form->get('startDate')->addError(new FormError("Vous ne pouvez pas réserver pour une date antérieure à celle d'aujourd'hui"));
                 }
                 if ($data->getNbOfPersons() > $bedRoom->getNbOfPersonsMax()) {

@@ -1,14 +1,36 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <section class="container">
-        <div class="row">
-            <div class="col-sm">
-                <a href="{{ path('security_register_user') }}" class="btn btn-primary">Je suis un particulier</a>
+    <div class="row">
+        <div class="row col-md-12">
+            <div class="col-md-3">
             </div>
-            <div class="col-sm">
-                <a href="{{ path('security_register_hotel') }}" class="btn btn-success">Je suis un hôtelier</a>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12" style="background-color: white; margin-top:30px; margin-bottom:30px;text-align: center;padding: 0px 0px 20px 0px;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <img class="d-block w-100" src="{{ asset('img/imgRegisterSelector.jpg') }}" alt="illustration hôtel">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12" style="margin-bottom: 20px; margin-top: 20px;">
+                                <h4><b>BONJOUR, QUI ÊTES VOUS ?</b></h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a href="{{ path('security_register_user') }}" class="btn btn-primary">Je suis un particulier</a>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="{{ path('security_register_hotel') }}" class="btn btn-success">Je suis un hôtelier</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
             </div>
         </div>
-    </section>
+    </div>
 {% endblock %}

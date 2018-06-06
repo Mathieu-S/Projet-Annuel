@@ -1,46 +1,63 @@
 <template>
-    <article class="bedRoom card">
-        <div class="card-body row">
-            <div id="carousel">
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li v-for="(value, index) in bedRoom.images" data-target="#carouselExampleIndicators" :data-slide-to="index" v-bind:class="[index === 0 ? 'active' : '' ]"></li>
-                    </ol>
-                    <div class="carousel-inner">
-                        <div v-for="(value, index) in bedRoom.images"  class="carousel-item" v-bind:class="[index === 0 ? 'active' : '' ]">
-                            <img class="d-block w-100" :src="'/uploads/images/' + value.uri" alt="First slide">
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-11 bedRoom" style="background-color: white; margin-top: 20px; margin-bottom: 20px;">
+            <div class="row" style="border-bottom: 15px solid #003d55;">
+                <div id="col-sm-12 carousel" style="width:100%;">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li v-for="(value, index) in bedRoom.images" data-target="#carouselExampleIndicators" :data-slide-to="index" v-bind:class="[index === 0 ? 'active' : '' ]"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div v-for="(value, index) in bedRoom.images"  class="carousel-item" v-bind:class="[index === 0 ? 'active' : '' ]">
+                                <img class="d-block w-100" :src="'/uploads/images/' + value.uri" alt="First slide">
+                            </div>
                         </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Précèdant</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Suivant</span>
+                        </a>
                     </div>
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Précèdant</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Suivant</span>
-                    </a>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-8" style="margin-top: 15px;">
+                    <h4 v-if="bedRoom.hotel">{{ bedRoom.hotel.name }}</h4>
+                    <p>{{ bedRoom.description }}</p>
+                    <div v-if="bedRoom.nbOfPersonsMax === 1"><i>Chambre pour {{ bedRoom.nbOfPersonsMax }} personne</i></div>
+                    <div v-else><i>Chambre pour {{ bedRoom.nbOfPersonsMax }} personnes</i></div>
+                    <h5>Prix : {{ bedRoom.price }}€</h5>
+                </div>
+                <div class="col-md-4" style="margin-top: 15px;">
+                    <h4>Options de la chambre</h4>
 
-            <div class="col-9">
-                <h4 v-if="bedRoom.hotel">{{ bedRoom.hotel.name }}</h4>
-                <p>{{ bedRoom.description }}</p>
-                <div v-if="bedRoom.nbOfPersonsMax === 1">Chambre pour {{ bedRoom.nbOfPersonsMax }} personne</div>
-                <div v-else>Chambre pour {{ bedRoom.nbOfPersonsMax }} personnes</div>
-                <h5>Prix : {{ bedRoom.price }}€</h5>
+                    <div v-for="option in bedRoom.options" :key="option.id" style="margin: 4px;">
+                        <i v-if="option.name === 'Wifi'" class="material-icons md-18">wifi</i>
+                        <i v-if="option.name === 'TV'" class="material-icons md-18">tv</i>
+                        <i v-if="option.name === 'Climatisation'" class="material-icons md-18">ac_unit</i>
+                        <i v-if="option.name === 'Service de chambre'" class="material-icons md-18">room_service</i>
+                        <i v-if="option.name === 'Piscine'" class="material-icons md-18">pool</i>
+                        <i v-if="option.name === 'Restaurant'" class="material-icons">restaurant</i>
+                        <i v-if="option.name === 'Animaux'" class="material-icons">pets</i>
+                        <i v-if="option.name === 'Proche commerce'" class="material-icons">shopping_cart</i>
+                        <i v-if="option.name === 'Proche transport'" class="material-icons">directions_subway</i>
+                        <i v-if="option.name === 'Proche aeroport'" class="material-icons">flight</i>
+                        {{ option.name }}
+                    </div>
+                </div>
             </div>
-            <div class="col-3">
-                <h5>Options de la chambre</h5>
-                <ul>
-                    <li v-for="option in bedRoom.options" :key="option.id">{{ option.name }}</li>
-                </ul>
-            </div>
-            <div id="btn-bedRoom">
-                <router-link class="btn btn-secondary" to="/">Retourner voir toute les chambres</router-link>
-                <a :href="reservationLink + bedRoom.id" class="btn btn-primary">Réserver</a>
+            <div class="row" style="margin-bottom: 15px;">
+                <div id="btn-bedRoom">
+                    <a :href="reservationLink + bedRoom.id" class="btn btn-success">Réserver</a>
+                    <router-link class="btn blueLink" to="/">Retourner voir toutes les chambres</router-link>
+                </div>
             </div>
         </div>
-    </article>
+    </div>
 </template>
 
 <script lang="ts">

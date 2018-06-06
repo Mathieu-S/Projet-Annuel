@@ -3,5 +3,124 @@
 @import '~bootstrap-vue/dist/bootstrap-vue.css';
 
 //Project dependancy
+//@import "home";
 @import "contact";
+
+//Configuration Material Icons
+body{
+  background-color: #ebebeb;
+}
+
+.redPolice{
+  color:#f05f40;
+}
+.bluePolice{
+  color:#003d55;
+}
+
+.blueLink{
+  margin-top: 15px;
+  background-color: #003d55;
+  color:white;
+  margin-bottom: 15px;
+}
+.blueLink:hover{
+  background-color: white;
+  border: 1px solid #003d55;
+  color:#003d55;
+}
+
+.redLink{
+  margin-top: 15px;
+  background-color: #f05f40;
+  color:white;
+}
+.redLink:hover{
+  background-color: white;
+  border: 1px solid #f05f40;
+  color:#f05f40;
+}
+
+.yellowLink{
+  margin-top: 15px;
+  background-color: #f1a929;
+  color:white;
+}
+.yellowLink:hover{
+  background-color: white;
+  border: 1px solid #f1a929;
+  color: #003d55;
+}
+
+//NAVBAR
+.navbar{
+  background-color: rgba(0, 0, 0, 0.84);
+}
+
+.marginLeftBtn{
+  margin-left:10px;
+}
+
+//HEADER
+#searchBar{
+  background-color: #648496;
+  margin-top:0px;
+}
+
+#searchInput{
+  margin:auto;
+}
+
+//BODY
+#columnFilter{
+  background-color:white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#columnAnnounces{
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+.filters{
+  border-bottom: 1px solid #f1a929;
+  padding-top : 10px;
+  padding-bottom: 10px;
+}
+
+//CONTACT
+.divTitleSAVtel{
+  background-color: #003d55;
+  color : white;
+  margin-bottom: 20px;
+  padding-top:5px;
+}
+
+.divSAVtel{
+  border:1px solid #003d55;
+  margin-bottom: 20px;
+  background-color: white;
+}
+
+
+
+//FOOTER
+footer{
+  background-color: #003d55;
+}
+#linksFooter{
+  background-color: #003853;
+  color:white;
+  margin-top:0px;
+  height:auto;
+  padding:10px;
+}
+#copyrightBar{
+  background-color: rgba(0, 0, 0, 0.84);
+  color:white;
+  margin-top:0px;
+  height:auto;
+  text-align: center;
+}
 @import "footer";

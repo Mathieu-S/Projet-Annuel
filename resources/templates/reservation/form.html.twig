@@ -1,30 +1,50 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<section class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-    <h1>Réserver pour :</h1>
-    <div>
-        <div><span>Nom de l'hôtel : {{ bedRoom.hotel.name }} </span></div>
-        <div><span>Contact de l'hôtel : {{ bedRoom.hotel.email }}</span></div>
-        <div><span>Adresse : {{ bedRoom.hotel.address }}</span></div>
-        <div><span>Département : {{ bedRoom.hotel.department.name }} </span></div>
-        <div><span>Ville : {{ bedRoom.hotel.city.name }}</span></div>
-        <div><span>Code postal : {{ bedRoom.hotel.postalCode.code }}</span></div>
-        <div><span>Prix de la chambre : {{ bedRoom.price ~ '€' }}</span></div>
-        <div><span>Description de la chambre : {{ bedRoom.description }}</span></div>
+<div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+        <div class="row">
+            <div class="col-sm-12" style="background-color: white;margin: 20px;">
+                <div class="row">
+                    <div class="col-lg-12 divTitleSAVtel">
+                        <h1>Réserver pour :</h1>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 20px; ">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-6" style="display: inline-flex; flex-direction:column;margin-bottom: 15px;">
+                                <span><b>Nom de l'hôtel :</b> {{ bedRoom.hotel.name }} </span>
+                                <span><b>Contact de l'hôtel :</b> {{ bedRoom.hotel.email }}</span>
+                                <span><b>Adresse :</b> {{ bedRoom.hotel.address }}</span>
+                                <span><b>Département :</b> {{ bedRoom.hotel.department.name }} </span>
+                                <span><b>Ville :</b> {{ bedRoom.hotel.city.name }}</span>
+                                <span><b>Code postal :</b> {{ bedRoom.hotel.postalCode.code }}</span>
+                                <span><b>Prix de la chambre :</b> {{ bedRoom.price ~ '€' }}</span>
+                                <span><b>Description de la chambre :</b> {{ bedRoom.description }}</span>
+                            </div>
+                            <div class="col-lg-6">
+                                <b>SELECTIONNEZ UNE PERIODE DE RESERVATION :</b>
+                                {% form_theme reservationForm 'bootstrap_4_layout.html.twig' %}
+                                {{ form_start(reservationForm, {'attr': {'novalidate': 'novalidate'}}) }}
+
+                                {{ form_label(reservationForm.startDate) }}
+                                {{ form_widget(reservationForm.startDate) }}
+                                {{ form_label(reservationForm.finalDate) }}
+                                {{ form_widget(reservationForm.finalDate) }}
+                                {{ form_label(reservationForm.nbOfPersons) }}
+                                {{ form_widget(reservationForm.nbOfPersons) }}
+                                <button type="submit" class="btn btn-success" style="text-align: right;margin-top: 20px;">Valider</button>
+                                {{ form_end(reservationForm) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <div class="col-sm-2"></div>
+</div>
 
-    {% form_theme reservationForm 'bootstrap_4_layout.html.twig' %}
-    {{ form_start(reservationForm, {'attr': {'novalidate': 'novalidate'}}) }}
-
-    {{ form_label(reservationForm.startDate) }}
-    {{ form_widget(reservationForm.startDate) }}
-    {{ form_label(reservationForm.finalDate) }}
-    {{ form_widget(reservationForm.finalDate) }}
-    {{ form_label(reservationForm.nbOfPersons) }}
-    {{ form_widget(reservationForm.nbOfPersons) }}
-
-    <button type="submit" class="btn btn-primary">Valider</button>
-    {{ form_end(reservationForm) }}
-</section>
 {% endblock %}

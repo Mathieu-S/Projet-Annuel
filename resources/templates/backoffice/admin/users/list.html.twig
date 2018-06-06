@@ -11,7 +11,7 @@
                     <th scope="col">Prénom</th>
                     <th scope="col">Nom</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Rôles</th>
+                    <th scope="col">Rôle</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
@@ -34,13 +34,13 @@
                         <td>
                             {% if 'ROLE_HOTEL' in user.roles %}
                                 {% if not user.enableAccount %}
-                                    <a href="{{ path('adminEnnableAccount', {id: user.id}) }}" class="btn btn-info">Ennable account</a>
+                                    <a href="{{ path('adminEnnableAccount', {id: user.id}) }}" class="btn btn-info">Activer le compte</a>
                                 {% else %}
-                                    <a href="{{ path('adminDisableAccount', {id: user.id}) }}" class="btn btn-secondary">Disable account</a>
+                                    <a href="{{ path('adminDisableAccount', {id: user.id}) }}" class="btn btn-secondary">Désactiver le compte</a>
                                 {% endif %}
                             {% endif %}
-                            <a href="{{ path('adminEditUsers', {id: user.id}) }}" class="btn btn-warning">Edit</a>
-                            <a href="{{ path('adminDeleteUsers', {id: user.id}) }}" class="btn btn-danger">Delete</a>
+                            <a href="{{ path('adminEditUsers', {id: user.id}) }}" class="btn btn-warning">Modifier</a>
+                            <a href="{{ path('adminDeleteUsers', {id: user.id}) }}" class="btn btn-danger">Supprimer</a>
                         </td>
                     </tr>
                 {% endfor %}

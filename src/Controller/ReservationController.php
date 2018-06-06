@@ -53,4 +53,20 @@ class ReservationController extends Controller
             'reservationForm' => $reservationForm->createView()
         ]);
     }
+
+    /**
+     * @Route("/delete/{id}", name="deleteReservation")
+     */
+    public function DeleteReservationAction(Reservation $reservation)
+    {
+        $userId = $this->getUser()->getId();
+        if ($reservation === null) {
+            return $this->redirectToRoute('reservationDataAccount');
+        }
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($reservation);
+        $em->flush();
+        return $this->redirectToRoute('reservationDataAccount', ['id' => $userId]);
+    }
+
 }
