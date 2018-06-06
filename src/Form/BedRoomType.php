@@ -19,19 +19,19 @@ class BedRoomType extends AbstractType
     {
         $builder
             ->add('description', TextType::class, [
-                'label' => 'bedRoom.description',
+                'label' => 'Description',
                 'constraints' => array(
                     new NotBlank(["message" => "La description de la chambre est obligatoire"]),
                 ),
             ])
             ->add('price', MoneyType::class, [
-                'label' => 'bedRoom.price',
+                'label' => 'Prix de la chambre',
                 'constraints' => array(
                     new NotBlank(["message" => "Le prix de la chambre est obligatoire"]),
                 ),
             ])
             ->add('options', EntityType::class, [
-                'label' => 'bedRoom.options',
+                'label' => 'Options de la chambre',
                 'class' => 'App\Entity\OptionalEquipment',
                 'choice_label' => 'name',
                 'multiple' => true,
