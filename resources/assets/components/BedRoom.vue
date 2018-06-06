@@ -28,8 +28,8 @@
                 <div class="col-md-8" style="margin-top: 15px;">
                     <h4 v-if="bedRoom.hotel">{{ bedRoom.hotel.name }}</h4>
                     <p>{{ bedRoom.description }}</p>
-                    <div v-if="bedRoom.nbOfPersonsMax === 1">Chambre pour {{ bedRoom.nbOfPersonsMax }} personne</div>
-                    <div v-else>Chambre pour {{ bedRoom.nbOfPersonsMax }} personnes</div>
+                    <div v-if="bedRoom.nbOfPersonsMax === 1"><i>Chambre pour {{ bedRoom.nbOfPersonsMax }} personne</i></div>
+                    <div v-else><i>Chambre pour {{ bedRoom.nbOfPersonsMax }} personnes</i></div>
                     <h5>Prix : {{ bedRoom.price }}€</h5>
                 </div>
                 <div class="col-md-4" style="margin-top: 15px;">

@@ -41,6 +41,17 @@ body{
   color:#f05f40;
 }
 
+.yellowLink{
+  margin-top: 15px;
+  background-color: #f1a929;
+  color:white;
+}
+.yellowLink:hover{
+  background-color: white;
+  border: 1px solid #f1a929;
+  color: #003d55;
+}
+
 //NAVBAR
 .navbar{
   background-color: rgba(0, 0, 0, 0.84);
@@ -52,7 +63,7 @@ body{
 
 //HEADER
 #searchBar{
-  background-color: #f1a929;
+  background-color: #648496;
   margin-top:0px;
 }
 
@@ -73,7 +84,7 @@ body{
 }
 
 .filters{
-  border-bottom: 0.5px solid #f05f40;
+  border-bottom: 1px solid #f1a929;
   padding-top : 10px;
   padding-bottom: 10px;
 }

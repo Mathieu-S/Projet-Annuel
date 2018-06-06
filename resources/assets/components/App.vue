@@ -23,14 +23,16 @@
                         </div>
                     </div>
                     <div class="row filters">
-                        <div class="form-group">
+                        <div class="form-group col-md-12">
                             <label for="nbPersonnes">
-                                Nombres de personnes :
-                                <span v-if="nbPersonnes === '0'"> pas de préférence</span>
+                                <b>Nombres de personnes : </b>
+                                <span v-if="nbPersonnes === '0'"> Pas de préférence</span>
                                 <span v-else>{{ nbPersonnes }}</span>
                             </label>
                             <input type="range" class="form-control-range" id="nbPersonnes" min="0" max="5" step="1" v-model="nbPersonnes">
                         </div>
+                    </div>
+                    <div class="row filters">
                         <div class="form-group col-md-12">
                             <div style="margin-bottom: 8px;"><b>Options</b></div>
                             <div class="form-check" v-for="optionBedRoom in optionsBedRoom" :key="optionBedRoom.id">
@@ -108,7 +110,7 @@
 
 <style scoped lang="scss">
 #titleFilter{
-    background-color:#f05f40;
+    background-color:#f1a929;
     padding-top:15px;
     text-align: center;
 }

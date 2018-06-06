@@ -10,8 +10,8 @@
                             <div class="col-md-12">
                                 <h5 class="card-title">{{ bedRoom.hotel.name }}</h5>
                                 <p class="card-text">{{ bedRoom.description }}</p>
-                                <div v-if="bedRoom.nbOfPersonsMax === 1">Chambre pour {{ bedRoom.nbOfPersonsMax }} personne</div>
-                                <div v-else>Chambre pour {{ bedRoom.nbOfPersonsMax }} personnes</div>
+                                <div v-if="bedRoom.nbOfPersonsMax === 1"><i>Chambre pour {{ bedRoom.nbOfPersonsMax }} personne</i></div>
+                                <div v-else><i>Chambre pour {{ bedRoom.nbOfPersonsMax }} personnes</i></div>
                             </div>
                         </div>
                         <div class="row" style="display:flex;padding-left: 10px;">

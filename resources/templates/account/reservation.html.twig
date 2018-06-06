@@ -1,42 +1,61 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
-    <h1>Liste de mes réservations</h1>
-    <table width="80%" align="center" class="table-bordered">
-        <tr>
-            <td class="text-center">
-
-                <table align="center" class="table table-fixed table-striped table-condensed">
-                    <tr style="background-color:#e9e8e6;">
-                        <th style="text-align: center;">Date de demande</th>
-                        <th style="text-align: center;">Date d'arrivée</th>
-                        <th style="text-align: center;">Date de départ</th>
-                        <th style="text-align: center;">Détails de la chambre et de la réservation</th>
-                        <th style="text-align: center;">Détails de l'hôtel</th>
-                    </tr>
-                    {% for reservation in reservations %}
-                        <tr>
-                            <td align="center">
-                                {{ reservation.createdAt|date('d-m-Y H:i:s') }}
-                            </td>
-                            <td align="center">
-                                {{ reservation.startDate|date('d-m-Y') }}
-                            </td>
-                            <td align="center">
-                                {{ reservation.finalDate|date('d-m-Y') }}
-                            </td>
-                            <td align="center">
-                                {{ reservation.bedroom.description ~ ' pour un total de ' ~ reservation.price ~ '€ pour ' ~ reservation.nbOfPersons ~ ' personnes' }}
-                            </td>
-                            <td align="center">
-                                {{ "L'hôtel : " ~ reservation.bedroom.hotel.name ~ ' à ' ~ reservation.bedroom.hotel.city.name }}
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </table>
-            </td>
-        </tr>
-    </table>
-
+    <div class="row">
+        <div class="row col-md-12">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-12">
+                        <img class="d-block w-100" src="{{ asset('img/inscriptionProfil.jpg') }}"
+                             alt="illustration profil">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" style="border-radius: 30px;background-color: white; margin-top:30px; margin-bottom:30px;text-align: center;padding-top: 0px;">
+                        <div class="row">
+                            <div class="col-md-12" style="border-radius: 30px 30px 0px 0px;margin-top:0px; padding-top: 25px;padding-bottom: 25px;background-color: #f1a929;">
+                                <h4><b>LISTE DE VOS RESERVATIONS</b></h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12" style="margin-top: 20px;text-align: left;padding: 30px;">
+                                <table class="table table-striped" style="text-align: center;">
+                                    <thead>
+                                    <tr style="background-color: #648496;">
+                                        <th scope="col">Date de demande</th>
+                                        <th scope="col">Date d'arrivée</th>
+                                        <th scope="col">Date de départ</th>
+                                        <th scope="col">Détails de la chambre et de la réservation</th>
+                                        <th scope="col">Détails de l'hôtel</th>
+                                        <th scope="col">Annuler une réservation</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for reservation in reservations %}
+                                        <tr>
+                                            <th scope="row">{{ reservation.createdAt|date('d-m-Y H:i:s') }}</th>
+                                            <td>{{ reservation.startDate|date('d-m-Y') }}</td>
+                                            <td>{{ reservation.finalDate|date('d-m-Y') }}</td>
+                                            <td>{{ reservation.bedroom.description ~ ' pour un total de ' ~ reservation.price ~ '€ pour ' ~ reservation.nbOfPersons ~ ' personnes' }}</td>
+                                            <td>{{ "Hôtel " ~ reservation.bedroom.hotel.name ~ ' à ' ~ reservation.bedroom.hotel.city.name }}</td>
+                                            <td>
+                                                {% if reservation.startDate|date_modify("-1 day") <= date() %}
+                                                    <button type="submit" class="btn blueLink">Annuler</button>
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1">
+            </div>
+        </div>
+    </div>
 {% endblock %}
