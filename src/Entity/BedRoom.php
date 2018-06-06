@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BedRoomRepository")
@@ -35,6 +36,14 @@ class BedRoom
      * @JoinColumn(name="hotel_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $hotel;
+
+    /**
+     * @ORM\Column(name="nb_of_persons_max", type="integer")
+     * @Assert\GreaterThan(
+     *     value = 0
+     * )
+     */
+    private $nbOfPersonsMax;
 
     /**
      * Many BedRooms have Many Options.
@@ -185,6 +194,22 @@ class BedRoom
     public function setReservations($reservations): void
     {
         $this->reservations = $reservations;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNbOfPersonsMax()
+    {
+        return $this->nbOfPersonsMax;
+    }
+
+    /**
+     * @param mixed $nbOfPersonsMax
+     */
+    public function setNbOfPersonsMax($nbOfPersonsMax)
+    {
+        $this->nbOfPersonsMax = $nbOfPersonsMax;
     }
 
 }

@@ -137,4 +137,54 @@ class ChambreController extends Controller
         $em->flush();
         return $this->redirectToRoute('hotelierChambresHotel', ['id' => $bedRoom->getHotel()->getId()]);
     }
+
+    /**
+     * @Route("/enableBedRoom/{id}", name="enableBedRoom", requirements={"page": "[1-9]\d*"})
+     */
+    public function EnableBedRoomAction(BedRoom $bedRoom)
+    {
+        if ($bedRoom === null) {
+            if ($this->getUser()->getRoles()[0] == "ROLE_ADMIN") {
+                return $this->redirectToRoute('hotelierChambres');
+            } else if ($this->getUser()->getRoles()[0] == "ROLE_HOTEL") {
+                return $this->redirectToRoute('hotelierChambresHotel', ['id' => $this->getUser()->getId()]);
+            }
+        }
+
+        $bedRoom->setAvailability(true);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->flush();
+
+        if ($this->getUser()->getRoles()[0] == "ROLE_ADMIN") {
+            return $this->redirectToRoute('hotelierChambres');
+        } else if ($this->getUser()->getRoles()[0] == "ROLE_HOTEL") {
+            return $this->redirectToRoute('hotelierChambresHotel', ['id' => $this->getUser()->getId()]);
+        }
+    }
+
+    /**
+     * @Route("/disableBedRoom/{id}", name="disableBedRoom", requirements={"page": "[1-9]\d*"})
+     */
+    public function DisableBedRoomAction(BedRoom $bedRoom)
+    {
+        if ($bedRoom === null) {
+            if ($this->getUser()->getRoles()[0] == "ROLE_ADMIN") {
+                return $this->redirectToRoute('hotelierChambres');
+            } else if ($this->getUser()->getRoles()[0] == "ROLE_HOTEL") {
+                return $this->redirectToRoute('hotelierChambresHotel', ['id' => $this->getUser()->getId()]);
+            }
+        }
+
+        $bedRoom->setAvailability(false);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->flush();
+
+        if ($this->getUser()->getRoles()[0] == "ROLE_ADMIN") {
+            return $this->redirectToRoute('hotelierChambres');
+        } else if ($this->getUser()->getRoles()[0] == "ROLE_HOTEL") {
+            return $this->redirectToRoute('hotelierChambresHotel', ['id' => $this->getUser()->getId()]);
+        }
+    }
 }

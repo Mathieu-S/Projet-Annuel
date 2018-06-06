@@ -33,6 +33,8 @@
                                 {{ form_widget(reservationForm.startDate) }}
                                 {{ form_label(reservationForm.finalDate) }}
                                 {{ form_widget(reservationForm.finalDate) }}
+                                {{ form_label(reservationForm.nbOfPersons) }}
+                                {{ form_widget(reservationForm.nbOfPersons) }}
                                 <button type="submit" class="btn btn-success" style="text-align: right;margin-top: 20px;">Valider</button>
                                 {{ form_end(reservationForm) }}
                             </div>
@@ -45,5 +47,4 @@
     <div class="col-sm-2"></div>
 </div>
 
-</section>
 {% endblock %}

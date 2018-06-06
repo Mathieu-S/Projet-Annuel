@@ -6,24 +6,35 @@ use App\Entity\Reservation;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ReservationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $bedRoom = $options['bedRoom'];
         $builder
             ->add('startDate', DateType::class, [
-                'label' => 'Premier jour de réservation'
+                'label' => 'Premier jour de réservation',
+                'widget' => 'single_text'
             ])
             ->add('finalDate', DateType::class, [
-                'label' => 'Dernier jour de réservation'
+                'label' => 'Dernier jour de réservation',
+                'widget' => 'single_text'
             ])
-            ->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
+            ->add('nbOfPersons', IntegerType::class, [
+                'label' => 'Nombre de personnes',
+                'constraints' => array(
+                    new NotBlank(["message" => "Le nombre de personnes est obligatoire"]),
+                ),
+            ])
+            ->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) use ($bedRoom) {
                 $form = $event->getForm();
                 $currentDate = new \DateTime('now');
                 $data = $event->getData();
@@ -33,7 +44,9 @@ class ReservationType extends AbstractType
                 if ($data->getStartDate() <= $currentDate) {
                     $form->get('startDate')->addError(new FormError("Vous ne pouvez pas réserver pour une date antérieure à celle d'aujourd'hui"));
                 }
-
+                if ($data->getNbOfPersons() > $bedRoom->getNbOfPersonsMax()) {
+                    $form->get('nbOfPersons')->addError(new FormError("Le nombre de personnes ne peut être supérieur au nombre de places"));
+                }
             });
         ;
     }
@@ -42,6 +55,7 @@ class ReservationType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Reservation::class,
+            'bedRoom' => null
         ]);
     }
 }

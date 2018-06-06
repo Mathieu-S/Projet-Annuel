@@ -27,7 +27,9 @@ class ReservationController extends Controller
             ->findOneBy(['id' => $bedRoomId]);
         $reservation = new Reservation();
 
-        $reservationForm = $this->createForm(ReservationType::class, $reservation);
+        $reservationForm = $this->createForm(ReservationType::class, $reservation, [
+            'bedRoom' => $bedRoom
+        ]);
         $reservationForm->handleRequest($request);
 
         if ($reservationForm->isSubmitted() && $reservationForm->isValid()) {
@@ -37,7 +39,7 @@ class ReservationController extends Controller
             $bedRoom->setAvailability(false);
             $dateNow = new \DateTime('now');
             $reservation->setcreatedAt($dateNow);
-
+            $reservation->setPrice($reservation->getNbOfPersons() * $bedRoom->getPrice());
             $em->persist($reservation);
             $em->flush();
             return $this->render('home/index.html.twig', [

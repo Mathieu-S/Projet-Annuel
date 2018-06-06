@@ -28,6 +28,8 @@
                 <div class="col-md-8" style="margin-top: 15px;">
                     <h4 v-if="bedRoom.hotel">{{ bedRoom.hotel.name }}</h4>
                     <p>{{ bedRoom.description }}</p>
+                    <div v-if="bedRoom.nbOfPersonsMax === 1">Chambre pour {{ bedRoom.nbOfPersonsMax }} personne</div>
+                    <div v-else>Chambre pour {{ bedRoom.nbOfPersonsMax }} personnes</div>
                     <h5>Prix : {{ bedRoom.price }}€</h5>
                 </div>
                 <div class="col-md-4" style="margin-top: 15px;">
@@ -46,7 +48,6 @@
                         <i v-if="option.name === 'Proche aeroport'" class="material-icons">flight</i>
                         {{ option.name }}
                     </div>
-
                 </div>
             </div>
             <div class="row" style="margin-bottom: 15px;">

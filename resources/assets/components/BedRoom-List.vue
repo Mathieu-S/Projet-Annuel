@@ -8,8 +8,10 @@
                     <div class="col-md-5" style="background-color:white;height: 180px;padding-top: 10px;">
                         <div class="row">
                             <div class="col-md-12">
-                                <h5>{{ bedRoom.hotel.name }}</h5>
-                                <p>{{ bedRoom.description }}</p>
+                                <h5 class="card-title">{{ bedRoom.hotel.name }}</h5>
+                                <p class="card-text">{{ bedRoom.description }}</p>
+                                <div v-if="bedRoom.nbOfPersonsMax === 1">Chambre pour {{ bedRoom.nbOfPersonsMax }} personne</div>
+                                <div v-else>Chambre pour {{ bedRoom.nbOfPersonsMax }} personnes</div>
                             </div>
                         </div>
                         <div class="row" style="display:flex;padding-left: 10px;">
@@ -87,6 +89,12 @@
                 let maxPrice = this.$store.getters.getMaxPrice;
                 if (maxPrice !== 0) {
                     bedRooms = bedRooms.filter(bedRoom => bedRoom.price <= maxPrice)
+                }
+
+                // filtre max personnes
+                let maxNbPersonne = this.$store.getters.getNbPersonnes;
+                if (maxNbPersonne !== 0) {
+                    bedRooms = bedRooms.filter(bedRoom => bedRoom.nbOfPersonsMax === maxNbPersonne)
                 }
 
                 // filtre options

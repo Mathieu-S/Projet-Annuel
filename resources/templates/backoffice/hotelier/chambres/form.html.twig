@@ -2,13 +2,14 @@
 
 {% block body %}
     <section class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-        <h1>Ajouter un Hôtel</h1>
+        <h1>Ajouter une chambre</h1>
 
         {% form_theme bedRoomForm 'bootstrap_4_layout.html.twig' %}
         {{ form_start(bedRoomForm, {'attr': {'novalidate': 'novalidate'}}) }}
 
         {{ form_row(bedRoomForm.description) }}
         {{ form_row(bedRoomForm.price) }}
+        {{ form_row(bedRoomForm.nbOfPersonsMax) }}
         {{ form_row(bedRoomForm.options) }}
 
         <div class="row bedroom-images-wrapper"
@@ -20,6 +21,8 @@
                 Ajouter une autre image
             </a>
         </div>
+
+        {{ form_row(bedRoomForm.description) }}
         
         <button type="submit" class="btn btn-primary">Valider</button>
         {{ form_end(bedRoomForm) }}

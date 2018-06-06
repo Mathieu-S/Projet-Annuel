@@ -10,11 +10,9 @@
                         </div>
                     </div>
                     <div class="row filters">
-                       <div class="form-group col-md-12">
-                           <input type="text" class="form-control" id="inlineFormInputGroup" v-model="searchInput" placeholder="Tapez une ville ou un hôtel">
-                       </div>
-                    </div>
-                    <div class="row filters">
+                        <div class="form-group col-md-12">
+                            <input type="text" class="form-control" id="inlineFormInputGroup" v-model="searchInput" placeholder="Tapez une ville ou un hôtel">
+                        </div>
                         <div class="form-group col-md-12">
                             <label for="formControlRange">
                                 <b>Prix maximal : </b>
@@ -25,6 +23,14 @@
                         </div>
                     </div>
                     <div class="row filters">
+                        <div class="form-group">
+                            <label for="nbPersonnes">
+                                Nombres de personnes :
+                                <span v-if="nbPersonnes === '0'"> pas de préférence</span>
+                                <span v-else>{{ nbPersonnes }}</span>
+                            </label>
+                            <input type="range" class="form-control-range" id="nbPersonnes" min="0" max="5" step="1" v-model="nbPersonnes">
+                        </div>
                         <div class="form-group col-md-12">
                             <div style="margin-bottom: 8px;"><b>Options</b></div>
                             <div class="form-check" v-for="optionBedRoom in optionsBedRoom" :key="optionBedRoom.id">
@@ -68,7 +74,8 @@
                 optionsBedRoom: [],
                 selectedOptions: [],
                 searchInput: '',
-                maxPrice : 0
+                maxPrice : 0,
+                nbPersonnes: 0
             }
         },
         mounted: function () {
@@ -89,8 +96,11 @@
                     this.maxPrice = 0
                     this.$store.commit('setMaxPrice', 0)
                 } else {
-                    this.$store.commit('setMaxPrice', this.maxPrice)
+                    this.$store.commit('setMaxPrice',  parseInt(this.maxPrice))
                 }
+            },
+            nbPersonnes: function (val) {
+                this.$store.commit('setNbPersonnes', parseInt(this.nbPersonnes))
             }
         }
     }
