@@ -1,42 +1,56 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <section class="container">
-        <h1>Mes demandes de contact</h1>
-        <table width="80%" align="center" class="table-bordered">
-            <tr>
-                <td class="text-center">
-
-                    <table align="center" class="table table-fixed table-striped table-condensed">
-                        <tr style="background-color:#e9e8e6;">
-                            <th style="text-align: center;">Sujet</th>
-                            <th style="text-align: center;">Message</th>
-                            <th style="text-align: center;">Date de demande</th>
-                            <th style="text-align: center;">Envoyé par</th>
-                            <th style="text-align: center;">Destinataire</th>
-                        </tr>
-                        {% for contactRequest in contactRequests %}
-                            <tr>
-                                <td align="center">
-                                    {{ contactRequest.subject }}
-                                </td>
-                                <td align="center">
-                                    {{ contactRequest.message }}
-                                </td>
-                                <td align="center">
-                                    {{ contactRequest.createdAt|date('d-m-Y H:i:s') }}
-                                </td>
-                                <td align="center">
-                                    {{ contactRequest.sender.email }}
-                                </td>
-                                <td align="center">
-                                    {{ contactRequest.receiver.email }}
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </table>
-                </td>
-            </tr>
-        </table>
-    </section>
+    <div class="row">
+        <div class="row col-md-12">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-12">
+                        <img class="d-block w-100" src="{{ asset('img/inscriptionProfil.jpg') }}"
+                             alt="illustration profil">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" style="border-radius: 30px;background-color: white; margin-top:30px; margin-bottom:30px;text-align: center;padding-top: 0px;">
+                        <div class="row">
+                            <div class="col-md-12" style="border-radius: 30px 30px 0px 0px;margin-top:0px; padding-top: 25px;padding-bottom: 20px;background-color: #f1a929;">
+                                <h4><b>LISTE DE VOS MESSAGES</b></h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12" style="text-align: center;padding: 10px;">
+                                <i>Vous trouverez ci-dessous tous vos échanges avec nos contacts du Service après-vente.</i>
+                                <table class="table table-striped" style="margin-top:30px;text-align: center;">
+                                    <thead>
+                                    <tr style="background-color: #648496;">
+                                        <th scope="col">Sujet</th>
+                                        <th scope="col">Message</th>
+                                        <th scope="col">Date de demande</th>
+                                        <th scope="col">Envoyé par</th>
+                                        <th scope="col">Destinataire</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for contactRequest in contactRequests %}
+                                        <tr>
+                                            <th scope="row" style="vertical-align: middle;">{{ contactRequest.subject }}</th>
+                                            <td style="vertical-align: middle;">{{ contactRequest.message }}</td>
+                                            <td style="vertical-align: middle;">{{ contactRequest.createdAt|date('d-m-Y H:i:s') }}</td>
+                                            <td style="vertical-align: middle;">{{ contactRequest.sender.email }}</td>
+                                            <td style="vertical-align: middle;">{{ contactRequest.receiver.email }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1">
+            </div>
+        </div>
+    </div>
 {% endblock %}

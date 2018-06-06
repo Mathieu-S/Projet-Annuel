@@ -52,6 +52,10 @@ body{
   color: #003d55;
 }
 
+.horizontaleAlign{
+  vertical-align: middle;
+}
+
 //NAVBAR
 .navbar{
   background-color: rgba(0, 0, 0, 0.84);
@@ -95,6 +99,7 @@ body{
   color : white;
   margin-bottom: 20px;
   padding-top:5px;
+  text-align:center;
 }
 
 .divSAVtel{

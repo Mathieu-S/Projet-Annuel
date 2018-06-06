@@ -14,24 +14,27 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12" style="border-radius:30px;background-color: white; margin-top:30px; margin-bottom:30px;text-align: center;padding-top: 0px;">
-                        <div class="row" style="padding-top: 20px;border-radius:30px 30px 0px 0px;background-color: #f1a929;border-bottom:8px solid #263e53;">
+                        <div class="row" style="padding-top: 20px;padding-bottom: 5px;border-radius:30px 30px 0px 0px;background-color: #f1a929;border-bottom:6px solid #003d55;">
                             <div class="col-md-12">
                                 <h4><b>VOS INFORMATIONS PERSONNELLES</b></h4>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12" style="text-align: left;padding: 30px;border-top:12px solid #648496;">
-                                <p><b class="bluePolice">Nom :</b> {{ user.firstname }}</p>
-                                <p><b class="bluePolice">Prénom :</b> {{ user.lastname }}</p>
-                                <p><b class="bluePolice">Email :</b> {{ user.email }}</p>
-                                <p><b class="bluePolice">Rôle : </b>{% if user.roles[0] == "ROLE_ADMIN" %}
+                            <div class="col-md-6" style="text-align: left;padding: 30px;">
+                                <h6><b class="bluePolice">Nom :</b> {{ user.firstname }}</h6>
+                                <h6><b class="bluePolice">Prénom :</b> {{ user.lastname }}</h6>
+                                <h6><b class="bluePolice">Email :</b> {{ user.email }}</h6>
+                                <h6><b class="bluePolice">Rôle : </b>{% if user.roles[0] == "ROLE_ADMIN" %}
                                         Admin
                                     {% elseif user.roles[0] == "ROLE_HOTELIER" %}
                                         Hôtelier
                                     {% else %}
                                         Utilisateur
-                                    {% endif %}</p>
-
+                                    {% endif %}
+                                </h6>
+                            </div>
+                            <div class="col-md-6" style="text-align: left;padding: 30px;">
+                                <img class="d-block w-100" src="{{ asset('img/imgProfil.jpg') }}" alt="illustration profil">
                             </div>
                         </div>
                     </div>
