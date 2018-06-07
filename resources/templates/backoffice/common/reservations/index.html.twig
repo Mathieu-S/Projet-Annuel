@@ -19,13 +19,15 @@
             </thead>
             <tbody>
             {% for reservation in reservations %}
+                {% set difference = date(reservation.finalDate).diff(date(reservation.startDate)) %}
+                {% set nbDays = difference.days %}
                 <tr>
                     <td>{{ reservation.user.email }}</td>
                     <td>{{ reservation.bedroom.hotel.name }}</td>
                     <td>{{ reservation.bedroom.description }}</td>
                     <td>{{ reservation.bedroom.hotel.address ~ ' ' ~ reservation.bedroom.hotel.postalCode.code ~ ' ' ~ reservation.bedroom.hotel.city.name }}</td>
                     <td>{{ reservation.nbOfPersons }}</td>
-                    <td>{{ reservation.price ~ '€' }}</td>
+                    <td>{{ reservation.price * nbDays ~ '€' }}</td>
                     <td>{{ reservation.createdAt|date('d-m-Y H:i:s') }}</td>
                     <td>{{ reservation.startDate|date('d-m-Y') }}</td>
                     <td>{{ reservation.finalDate|date('d-m-Y') }}</td>
