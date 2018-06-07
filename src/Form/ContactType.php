@@ -37,20 +37,20 @@ class ContactType extends AbstractType
 
         $builder
             ->add('subject', TextType::class, [
-                'label' => 'Sujet',
+                'label' => 'register.subject',
                 'constraints' => array(
                     new NotBlank(["message" => "Le sujet du message est obligatoire"]),
                 ),
             ])
             ->add('message', TextareaType::class, [
-                'label' => 'Message',
+                'label' => 'register.message',
                 'constraints' => array(
                     new NotBlank(["message" => "Le contenu du message est obligatoire"]),
                 ),
             ]);
             if ($currentUser->getRoles()[0] == "ROLE_ADMIN" || $currentUser->getRoles()[0] == "ROLE_HOTEL") {
                 $builder->add('receiver', EntityType::class, [
-                    'label' => 'A qui voulez-vous envoyer ce message ?',
+                    'label' => 'register.receiver',
                     'class' => 'App\Entity\User',
                     'query_builder' => function (UserRepository $ur) use ($currentUserId) {
                         return $ur->createQueryBuilder('u')
@@ -62,7 +62,7 @@ class ContactType extends AbstractType
                 ]);
             } else {
                 $builder->add('receiver', EntityType::class, [
-                    'label' => 'A qui voulez-vous envoyer ce message ?',
+                    'label' => 'register.receiver',
                     'class' => 'App\Entity\Hotelier',
                     'query_builder' => function (HotelierRepository $hr) use ($currentUserId) {
                         return $hr->createQueryBuilder('h')
