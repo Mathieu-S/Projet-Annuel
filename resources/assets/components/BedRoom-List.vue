@@ -126,7 +126,7 @@
 
 <style scoped lang="scss">
     .contentOffers{
-        padding-top:20px;
+        padding-top:40px;
         padding-bottom:20px;
         padding-left:20px;
         margin-bottom: 20px;

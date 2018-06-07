@@ -65,9 +65,17 @@ body{
   margin-left:10px;
 }
 
+.carousel-fade {
+  .carousel-item {
+    opacity: 0;
+    transition-duration: 3s;
+    transition-property: opacity;
+  }
+}
+
 //HEADER
 #searchBar{
-  background-color: #648496;
+  background-color: silver;
   margin-top:0px;
 }
 
@@ -78,7 +86,7 @@ body{
 //BODY
 #columnFilter{
   background-color:white;
-  margin-top: 20px;
+  margin-top: 40px;
   margin-bottom: 20px;
 }
 
@@ -94,12 +102,23 @@ body{
 }
 
 //CONTACT
+.divTitleReservationtel{
+  background-color: #003d55;
+  color : white;
+  text-align:center;
+  vertical-align: middle;
+  margin:0px;
+  height: 225px;
+  padding-top: 40px;
+}
+
 .divTitleSAVtel{
   background-color: #003d55;
   color : white;
-  margin-bottom: 20px;
-  padding-top:5px;
   text-align:center;
+  vertical-align: middle;
+  padding: 15px;
+  margin-bottom: 15px;
 }
 
 .divSAVtel{

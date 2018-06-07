@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="col-sm-1"></div>
-        <div class="col-sm-11 bedRoom" style="background-color: white; margin-top: 20px; margin-bottom: 20px;">
+        <div class="col-sm-11 bedRoom" style="background-color: white; margin-top: 40px; margin-bottom: 40px;">
             <div class="row" style="border-bottom: 15px solid #003d55;">
                 <div id="col-sm-12 carousel" style="width:100%;">
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
