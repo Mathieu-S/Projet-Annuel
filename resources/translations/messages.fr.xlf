@@ -65,6 +65,42 @@
                 <source>register.siren</source>
                 <target>Numéro SIREN</target>
             </trans-unit>
+
+            <!--BackOffice Admin Register Hotel page-->
+            <trans-unit id="register.image">
+                <source>register.image</source>
+                <target>Images</target>
+            </trans-unit>
+            <trans-unit id="register.region">
+                <source>register.region</source>
+                <target>Région</target>
+            </trans-unit>
+            <trans-unit id="register.departement">
+                <source>register.departement</source>
+                <target>Département</target>
+            </trans-unit>
+            <trans-unit id="register.city">
+                <source>register.city</source>
+                <target>Ville</target>
+            </trans-unit>
+            <trans-unit id="register.cp">
+                <source>register.cp</source>
+                <target>Code Postal</target>
+            </trans-unit>
+
+            <!--BackOffice Admin Register BedRoom page-->
+            <trans-unit id="register.price">
+                <source>register.price</source>
+                <target>Prix de la chambre</target>
+            </trans-unit>
+            <trans-unit id="register.nbOfPersonsMax">
+                <source>register.nbOfPersonsMax</source>
+                <target>Nombre de places</target>
+            </trans-unit>
+            <trans-unit id="register.options">
+                <source>register.options</source>
+                <target>Options de la chambre</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
