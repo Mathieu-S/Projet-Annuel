@@ -47,7 +47,7 @@ class HotelType extends AbstractType
                 ),
             ])
             ->add('region', EntityType::class, [
-                'label' => 'Région',
+                'label' => 'register.region',
                 'class' => 'App\Entity\Region',
                 'query_builder' => function (RegionRepository $rr) {
                     return $rr->createQueryBuilder('r')
@@ -60,7 +60,7 @@ class HotelType extends AbstractType
 
             ])
             ->add('department', EntityType::class, [
-                'label' => 'Département',
+                'label' => 'register.departement',
                 'class' => 'App\Entity\Department',
                 'choice_label' => 'name',
                 'query_builder' => function (DepartmentRepository $dr) {
@@ -72,7 +72,7 @@ class HotelType extends AbstractType
 
             ])
             ->add('city', EntityType::class, [
-                'label' => 'Ville',
+                'label' => 'register.city',
                 'class' => 'App\Entity\City',
                 'choice_label' => 'name',
                 'query_builder' => function (CityRepository $cr) {
@@ -83,7 +83,7 @@ class HotelType extends AbstractType
                 ),
             ])
             ->add('postalCode', EntityType::class, [
-                'label' => 'Code postal',
+                'label' => 'register.cp',
                 'class' => 'App\Entity\PostalCode',
                 'query_builder' => function (PostalCodeRepository $pcr) {
                     return $pcr->findPostalCodesFromAquitaine();

@@ -61,6 +61,74 @@
                 <source>register.description</source>
                 <target>Description</target>
             </trans-unit>
+            <trans-unit id="register.siren">
+                <source>register.siren</source>
+                <target>Numéro SIREN</target>
+            </trans-unit>
+
+            <!--BackOffice Admin Register Hotel page-->
+            <trans-unit id="register.image">
+                <source>register.image</source>
+                <target>Images</target>
+            </trans-unit>
+            <trans-unit id="register.region">
+                <source>register.region</source>
+                <target>Région</target>
+            </trans-unit>
+            <trans-unit id="register.departement">
+                <source>register.departement</source>
+                <target>Département</target>
+            </trans-unit>
+            <trans-unit id="register.city">
+                <source>register.city</source>
+                <target>Ville</target>
+            </trans-unit>
+            <trans-unit id="register.cp">
+                <source>register.cp</source>
+                <target>Code Postal</target>
+            </trans-unit>
+
+            <!--BackOffice Admin Register BedRoom page-->
+            <trans-unit id="register.price">
+                <source>register.price</source>
+                <target>Prix de la chambre</target>
+            </trans-unit>
+            <trans-unit id="register.nbOfPersonsMax">
+                <source>register.nbOfPersonsMax</source>
+                <target>Nombre de places</target>
+            </trans-unit>
+            <trans-unit id="register.options">
+                <source>register.options</source>
+                <target>Options de la chambre</target>
+            </trans-unit>
+
+            <!--Contact page-->
+            <trans-unit id="register.subject">
+                <source>register.subject</source>
+                <target>Sujet</target>
+            </trans-unit>
+            <trans-unit id="register.message">
+                <source>register.message</source>
+                <target>Message</target>
+            </trans-unit>
+            <trans-unit id="register.receiver">
+                <source>register.receiver</source>
+                <target>A qui voulez-vous envoyer ce message ?</target>
+            </trans-unit>
+
+            <!--Reservation page-->
+            <trans-unit id="register.startDate">
+                <source>register.startDate</source>
+                <target>Premier jour de réservation</target>
+            </trans-unit>
+            <trans-unit id="register.finalDate">
+                <source>register.finalDate</source>
+                <target>Dernier jour de réservation</target>
+            </trans-unit>
+            <trans-unit id="register.nbOfPersons">
+                <source>register.nbOfPersons</source>
+                <target>Nombre de personnes</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

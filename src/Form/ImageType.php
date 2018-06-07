@@ -20,7 +20,7 @@ class ImageType extends AbstractType
         $builder
             ->add('uri', FileType::class,
                 [
-                    'label' => 'Images',
+                    'label' => 'register.image',
                     'multiple' => true,
                     'data_class' => null,
                 ])
