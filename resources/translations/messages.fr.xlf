@@ -101,6 +101,20 @@
                 <source>register.options</source>
                 <target>Options de la chambre</target>
             </trans-unit>
+
+            <!--Contact page-->
+            <trans-unit id="register.subject">
+                <source>register.subject</source>
+                <target>Sujet</target>
+            </trans-unit>
+            <trans-unit id="register.message">
+                <source>register.message</source>
+                <target>Message</target>
+            </trans-unit>
+            <trans-unit id="register.receiver">
+                <source>register.receiver</source>
+                <target>A qui voulez-vous envoyer ce message ?</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
