@@ -5,7 +5,7 @@
                     <div class="col-md-4 divImgOffer">
                         <img class="imgOffers" :src="'/uploads/images/' + bedRoom.images[0].uri" alt="Card image cap">
                     </div>
-                    <div class="col-md-5" style="background-color:white;height: 200px;padding-top: 10px;">
+                    <div class="col-md-5" style="background-color:white;height: 180px;padding-top: 10px;">
                         <div class="row">
                             <div class="col-md-12">
                                 <h4 class="card-title">{{ bedRoom.hotel.name }}</h4>
@@ -134,7 +134,7 @@
 
     .divImgOffer{
         background-color:#003853;
-        height:200px;
+        height:180px;
         padding: 0px 15px 0px 0px;
     }
 
@@ -145,7 +145,7 @@
 
     .divLinkOffers{
         background-color:white;
-        height: 200px;
+        height: 180px;
         text-align: right;
     }
 
