@@ -10,7 +10,6 @@
                             <div class="col-md-12">
                                 <h4 class="card-title">{{ bedRoom.hotel.name }}</h4>
                                 <h6>Ville: {{ bedRoom.hotel.city.name }}</h6>
-                                <p class="card-text" style="display:block;max-height: 40px;max-width: 100%;text-overflow: '...';">{{ bedRoom.description }}</p>
                                 <div v-if="bedRoom.nbOfPersonsMax === 1"><i>Chambre pour {{ bedRoom.nbOfPersonsMax }} personne</i></div>
                                 <div v-else><i>Chambre pour {{ bedRoom.nbOfPersonsMax }} personnes</i></div>
                             </div>
