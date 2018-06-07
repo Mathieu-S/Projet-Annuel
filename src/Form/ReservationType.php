@@ -21,15 +21,15 @@ class ReservationType extends AbstractType
         $bedRoom = $options['bedRoom'];
         $builder
             ->add('startDate', DateType::class, [
-                'label' => 'Premier jour de réservation',
+                'label' => 'register.startDate',
                 'widget' => 'single_text'
             ])
             ->add('finalDate', DateType::class, [
-                'label' => 'Dernier jour de réservation',
+                'label' => 'register.finalDate',
                 'widget' => 'single_text'
             ])
             ->add('nbOfPersons', IntegerType::class, [
-                'label' => 'Nombre de personnes',
+                'label' => 'register.nbOfPersons',
                 'constraints' => array(
                     new NotBlank(["message" => "Le nombre de personnes est obligatoire"]),
                 ),

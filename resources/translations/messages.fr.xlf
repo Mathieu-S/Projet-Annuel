@@ -115,6 +115,20 @@
                 <source>register.receiver</source>
                 <target>A qui voulez-vous envoyer ce message ?</target>
             </trans-unit>
+
+            <!--Reservation page-->
+            <trans-unit id="register.startDate">
+                <source>register.startDate</source>
+                <target>Premier jour de réservation</target>
+            </trans-unit>
+            <trans-unit id="register.finalDate">
+                <source>register.finalDate</source>
+                <target>Dernier jour de réservation</target>
+            </trans-unit>
+            <trans-unit id="register.nbOfPersons">
+                <source>register.nbOfPersons</source>
+                <target>Nombre de personnes</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
