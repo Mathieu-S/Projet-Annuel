@@ -29,7 +29,8 @@ class AccountController extends Controller
             ->findOneBy(['id' => $userId]);
 
         return $this->render('account/personal-data.html.twig', [
-            'user' => $user
+            'user' => $user,
+            'selectedMenu' => 'monCompte'
         ]);
     }
 
@@ -46,7 +47,8 @@ class AccountController extends Controller
             ->getRepository('App:Reservation')
             ->findBy(['user' => $userId]);
         return $this->render('account/reservation.html.twig', [
-            'reservations' => $reservations
+            'reservations' => $reservations,
+            'selectedMenu' => 'monCompte'
         ]);
     }
 
@@ -69,7 +71,8 @@ class AccountController extends Controller
         }
 
         return $this->render('account/user-form.html.twig', [
-            'userForm' => $form->createView()
+            'userForm' => $form->createView(),
+            'selectedMenu' => 'monCompte'
         ]);
     }
 
@@ -86,7 +89,8 @@ class AccountController extends Controller
             ->getRepository('App:Contact')
             ->getUserContactRequests($userId);
         return $this->render('contact/index.html.twig', [
-            'contactRequests' => $contactRequests
+            'contactRequests' => $contactRequests,
+            'selectedMenu' => 'monCompte'
         ]);
     }
 
