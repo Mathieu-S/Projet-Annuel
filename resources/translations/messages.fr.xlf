@@ -61,6 +61,10 @@
                 <source>register.description</source>
                 <target>Description</target>
             </trans-unit>
+            <trans-unit id="register.siren">
+                <source>register.siren</source>
+                <target>Numéro SIREN</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
