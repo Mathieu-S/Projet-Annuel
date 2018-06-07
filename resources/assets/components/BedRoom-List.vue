@@ -5,12 +5,12 @@
                     <div class="col-md-4 divImgOffer">
                         <img class="imgOffers" :src="'/uploads/images/' + bedRoom.images[0].uri" alt="Card image cap">
                     </div>
-                    <div class="col-md-5" style="background-color:white;height: 180px;padding-top: 10px;">
+                    <div class="col-md-5" style="background-color:white;height: 200px;padding-top: 10px;">
                         <div class="row">
                             <div class="col-md-12">
-                                <h5 class="card-title">{{ bedRoom.hotel.name }}</h5>
-                                <h5>Ville: {{ bedRoom.hotel.city.name }}</h5>
-                                <p class="card-text">{{ bedRoom.description }}</p>
+                                <h4 class="card-title">{{ bedRoom.hotel.name }}</h4>
+                                <h6>Ville: {{ bedRoom.hotel.city.name }}</h6>
+                                <p class="card-text" style="display:block;max-height: 40px;max-width: 100%;text-overflow: '...';">{{ bedRoom.description }}</p>
                                 <div v-if="bedRoom.nbOfPersonsMax === 1"><i>Chambre pour {{ bedRoom.nbOfPersonsMax }} personne</i></div>
                                 <div v-else><i>Chambre pour {{ bedRoom.nbOfPersonsMax }} personnes</i></div>
                             </div>
@@ -135,18 +135,18 @@
 
     .divImgOffer{
         background-color:#003853;
-        height:180px;
+        height:200px;
         padding: 0px 15px 0px 0px;
     }
 
     .divOffers{
         height:180px;
-        margin-bottom: 25px;
+        margin-bottom: 40px;
     }
 
     .divLinkOffers{
         background-color:white;
-        height: 180px;
+        height: 200px;
         text-align: right;
     }
 
